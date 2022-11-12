@@ -6,6 +6,7 @@ const todoSchema = new mongoose.Schema(
     owner: { type: String, required: true },
     start: { type: Date, required: true},
     end: { type: Date, required: true},
+    state: { type: String },
   },
   {
     timestamps: true,
@@ -17,8 +18,8 @@ todoSchema.statics.create = function (payload) {
   return todo.save();
 };
 
-todoSchema.statics.findAll = function () {
-  return this.find({});
+todoSchema.statics.findAll = function (user) {
+  return this.find({ owner: user });
 };
 
 todoSchema.statics.findOneByInfo = function (user, title) {

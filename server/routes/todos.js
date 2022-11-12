@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Todo = require("../models/todo");
 
 router.get("/", (req, res) => {
-    Todo.findAll()
+    Todo.findAll(req.session.userId)
       .then((todos) => {
         res.send(todos);
       })
@@ -10,8 +10,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    const todoInfo = req.body;
-    Todo.create(todoInfo)
+    const body = req.body;
+    Todo.create({
+      title: body.title,
+      owner: req.session.userId,
+      start: body.start,
+      end: body.end,
+      state: 'UNDONE'
+    })
       .then((todo) => res.send(todo))
       .catch((err) => res.status(500).send(err));
   });
