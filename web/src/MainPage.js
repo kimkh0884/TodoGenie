@@ -1,59 +1,58 @@
-import React from 'react';
+import React, {useState} from 'react';
+import DailyBoard from "./DailyBoard"
+import WeeklyBoard from './WeeklyBoard';
+import MonthlyBoard from "./MonthlyBoard";
 
 const MainPage = () => {
-  return (
-    <div class = "mainpage">
-      <DailyBoard />
-    </div>
-  );
+  const [boardNum, setBoardNum] = useState(0);
+
+  if (boardNum === 0) {
+    return (
+      <div className="bodypage">
+        <MenuBar setBoardNum={setBoardNum}/>
+        <DailyBoard />
+      </div>
+    );
+  }
+  else if (boardNum === 1) {
+    return (
+      <div className="bodypage">
+        <MenuBar setBoardNum={setBoardNum}/>
+        <WeeklyBoard />
+      </div>
+    );
+  }
+  else {
+    return (
+      <div className="bodypage">
+        <MenuBar setBoardNum={setBoardNum}/>
+        <MonthlyBoard />
+      </div>
+    );
+  }
+  
 };
 
-const DailyBoard = () => {
-  return (
-    <div class = "dailyboard">
-      <h1>Daily board</h1>
-    </div>
-  );
-};
+const MenuBar = ({setBoardNum}) => {
+  const showDailyBoard = () => {
+    setBoardNum(0);
+  };
 
-const DailyBoardItem = () => {
-  return (
-    <div class = "dailyboarditem">
-      <h1>Daily board item</h1>
-    </div>
-  );
-};
+  const showWeeklyBoard = () => {
+    setBoardNum(1);
+  };
 
-const WeeklyBoard = () => {
-  return (
-    <div class = "weeklyboard">
-      <h1>Weekly board</h1>
-    </div>
-  );
-};
+  const showMonthlyBoard = () => {
+    setBoardNum(2);
+  };
 
-const WeeklyBoardItem = () => {
   return (
-    <div class = "weeklyboarditem">
-      <h1>Weekly board item</h1>
+    <div className="headpage flex-row">
+      <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={showDailyBoard}>Daily</button></div>
+      <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={showWeeklyBoard}>Weekly</button></div>
+      <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={showMonthlyBoard}>Monthly</button></div>
     </div>
   );
-};
-
-const MonthlyBoard = () => {
-  return (
-    <div class = "monthlyboard">
-      <h1>Monthly board</h1>
-    </div>
-  );
-};
-
-const MonthlyBoardItem = () => {
-  return (
-    <div class = "monthlyboarditem">
-      <h1>Monthly board item</h1>
-    </div>
-  );
-};
+}
 
 export default MainPage;

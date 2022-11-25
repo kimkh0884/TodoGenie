@@ -1,0 +1,122 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    background-color: lightgreen;
+}
+
+input {
+    margin-left: 1vw;
+    padding-left: 1vw;
+}
+
+.wholepage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.headpage {
+    background-color: aquamarine;
+    width: 100vw;
+    min-width: 800px;
+    height: 5vw;
+    min-height: 50px;
+    vertical-align: middle;
+}
+
+.bodypage {
+    width: 100vw;
+    min-width: 800px;
+}
+
+.todogenie-title-logo {
+    background-color: green;
+    width: 36vw;
+    min-width: 360px;
+    height: 9vw;
+    min-height: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25vh;
+    margin-bottom: 5vh;
+}
+
+.margin-1vh {
+    margin: 1vh;
+}
+
+.margin-1vw {
+    margin: 1vw;
+}
+
+.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.flex-row {
+    display: flex;
+    width: 100%;
+}
+
+.flex-cell-5 {
+    flex: 5;
+}
+
+.flex-cell-1 {
+    flex: 1;
+}
+
+.floating-right {
+    float: right;
+}
+
+.circle {
+    width: 3vw;
+    min-width: 30px;
+    height: 3vw;
+    min-height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.rectangle-10-1 {
+    width: 30vw;
+    min-width: 300px;
+    height: 3vw;
+    min-height: 30px;
+    border-radius: 5% / 50%;
+    font-size: 1vw;
+}
+
+.rectangle-8-1 {
+    width: 24vw;
+    min-width: 240px;
+    height: 3vw;
+    min-height: 30px;
+    border-radius: 6.25% / 50%;
+    font-size: 1vw;
+}
+
+.rectangle-4-1 {
+    width: 12vw;
+    min-width: 120px;
+    height: 3vw;
+    min-height: 30px;
+    border-radius: 12.5% / 50%;
+    font-size: 1vw;
+}
+
+.rectangle-2-1 {
+    width: 6vw;
+    min-width: 60px;
+    height: 3vw;
+    min-height: 30px;
+    border-radius: 25% / 50%;
+    font-size: 1vw;
+}
