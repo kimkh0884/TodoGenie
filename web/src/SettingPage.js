@@ -23,10 +23,32 @@ iii. Open Source used
 E. Sign out button
 */
 
-const SettingPage = () => {
+const SettingPage = ({exitSetting}) => {
+  const applyChangeAndExit = () => {
+    if (window.confirm("Do you apply the modified settings?")) {
+      exitSetting();
+    }
+  };
+
+  const exitWithoutChange = () => {
+    if (window.confirm("Do you want to exit without any change?")) {
+      exitSetting();
+    }
+  };
+
   return (
-    <div class = "settingpage">
+    <div className = "settingpage">
+      <MenuBar exitWithoutChange={exitWithoutChange} applyChangeAndExit={applyChangeAndExit} />
       <h1>Setting page</h1>
+    </div>
+  );
+};
+
+const MenuBar = ({exitWithoutChange, applyChangeAndExit}) => {
+  return (
+    <div className="headpage flex-row">
+      <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={exitWithoutChange}>Cancel</button></div>
+      <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={applyChangeAndExit}>Apply</button></div>
     </div>
   );
 };

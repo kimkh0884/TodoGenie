@@ -9,11 +9,27 @@ const MainFrame = () => {
     const [loginFlag, setLoginFlag] = useState(1);
     const [pageNum, setPageNum] = useState(0);
 
+    const showLoginPage = () => {
+        setLoginFlag(0);
+    };
+
+    const showSettingPage = () => {
+        setPageNum(1);
+    };
+
+    const showTutorialPage = () => {
+        setPageNum(2);
+    };
+
+    const exitCurrPage = () => {
+        setPageNum(0);
+    };
+
     if (loginFlag === 1) {
         if (pageNum === 0) {
             return (
                 <div className="wholepage">
-                    <NavBar setLoginFlag={setLoginFlag} setPageNum={setPageNum} />
+                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
                     <MainPage />
                 </div>
             );
@@ -21,22 +37,24 @@ const MainFrame = () => {
         else if (pageNum === 1) {
             return (
                 <div className="wholepage">
-                    <NavBar setLoginFlag={setLoginFlag} setPageNum={setPageNum} />
-                    <SettingPage />
+                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
+                    <SettingPage exitSetting={exitCurrPage} />
                 </div>
             );
         }
         else {
             return (
                 <div className="wholepage">
-                    <NavBar setLoginFlag={setLoginFlag} setPageNum={setPageNum} />
-                    <TutorialPage />
+                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
+                    <TutorialPage exitTutorial={exitCurrPage} />
                 </div>
             );
         }
     }
     else {
-        <LoginPage />
+        return (
+            <LoginPage />
+        );
     }
 };
 

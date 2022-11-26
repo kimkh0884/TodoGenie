@@ -11,19 +11,24 @@ const RegisterPage = () => {
     setFlag(1);
   };
 
+  const cancelRegister = () => {
+    setFlag(1);
+  };
+
   if (registerFlag === 0) {
     return (
       <div className="wholepage">
         <div className="todogenie-title-logo">To-do Genie logo</div>
-        <div className="align-center margin-1vh">
+        <div className="margin-1vh align-center">
           <button className="rectangle-2-1">ID</button>
           <input className='rectangle-10-1' placeholder="ID (essential)" />
         </div>
-        <div className="align-center margin-1vh">
+        <div className="margin-1vh align-center">
           <button className="rectangle-2-1">PW</button>
           <input className='rectangle-10-1' placeholder="password (essential)" />
         </div>
-        <button className="rectangle-10-1 align-center" onClick={tryRegister}>Register!</button>
+        <button className="rectangle-10-1 align-center margin-1vh" onClick={tryRegister}>Register!</button>
+        <button className="rectangle-10-1 align-center margin-1vh" onClick={cancelRegister}>Cancel</button>
       </div>
     );
   }

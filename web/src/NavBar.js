@@ -1,23 +1,15 @@
 import React from 'react';
 
-const NavBar = ({setLoginFlag, setPageNum}) => {
+const NavBar = ({showLoginPage, showSettingPage, showTutorialPage}) => {
   const tryLogout = () => {
-    if (window.confirm("Logout?")) {
-      setLoginFlag(0);
+    if (window.confirm("Do you want to logout?")) {
+      showLoginPage();
     }
   };
 
-  const showSettingPage = () => {
-    setPageNum(1);
-  }
-
-  const showTutorialPage = () => {
-    setPageNum(2);
-  }
-
   return (
     <div className = "headpage flex-row">
-      <div className='flex-cell-1'><b>To-do Genie</b></div>
+      <div className='flex-cell-1'><b>To-do Genie Logo</b></div>
       <div className='flex-cell-1'>
         <div className='floating-right'>
           <b>User id</b>

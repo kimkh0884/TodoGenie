@@ -10,7 +10,10 @@ const LoginPage = () => {
 
   // trying login
   const tryLogin = () => {
+    //if success, go to main page.
     setPageNum(1);
+
+    //if fail, alert.
   };
 
   const goRegisterPage = () => {
@@ -20,7 +23,7 @@ const LoginPage = () => {
   if (pageNum === 0) {
     return (
       <div className="wholepage">
-      <div className="todogenie-title-logo">To-do Genie logo</div>
+        <div className="todogenie-title-logo">To-do Genie logo</div>
         <button className="rectangle-10-1 margin-1vh align-center" onClick={tryLogin}>Sign in with Google</button>
         <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
       </div>
