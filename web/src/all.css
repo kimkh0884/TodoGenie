@@ -33,6 +33,14 @@ input {
     padding-bottom: 1px;
 }
 
+.menubar {
+    background-color: aquamarine;
+    width: 100vw;
+    min-width: 800px;
+    height: fit-content;
+    vertical-align: middle;
+}
+
 .todogenie-title-logo {
     background-color: green;
     width: 36vw;
@@ -41,7 +49,7 @@ input {
     min-height: 90px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25vh;
+    padding-top: 25vh;
     margin-bottom: 5vh;
 }
 
@@ -84,8 +92,10 @@ input {
 .circle {
     width: 3vw;
     min-width: 30px;
+    max-width: 45px;
     height: 3vw;
     min-height: 30px;
+    max-height: 45px;
     border-radius: 50%;
     font-weight: bold;
 }
@@ -93,8 +103,10 @@ input {
 .circle-small {
     width: 2vw;
     min-width: 20px;
+    max-width: 30px;
     height: 2vw;
     min-height: 20px;
+    max-height: 30px;
     border-radius: 50%;
     font-weight: bold;
 }
@@ -102,8 +114,10 @@ input {
 .rectangle-10-1 {
     width: 30vw;
     min-width: 300px;
+    max-width: 450px;
     height: 3vw;
     min-height: 30px;
+    max-height: 45px;
     border-radius: 5% / 50%;
     font-size: 1vw;
 }
@@ -111,8 +125,10 @@ input {
 .rectangle-small-10-1 {
     width: 20vw;
     min-width: 200px;
+    max-width: 300px;
     height: 2vw;
     min-height: 20px;
+    max-height: 30px;
     border-radius: 5% / 50%;
     font-size: 0.66vw;
 }
@@ -120,17 +136,32 @@ input {
 .rectangle-8-1 {
     width: 24vw;
     min-width: 240px;
+    max-width: 360px;
     height: 3vw;
     min-height: 30px;
+    max-height: 45px;
     border-radius: 6.25% / 50%;
     font-size: 1vw;
+}
+
+.rectangle-small-8-1 {
+    width: 16vw;
+    min-width: 160px;
+    max-width: 240px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 6.25% / 50%;
+    font-size: 0.66vw;
 }
 
 .rectangle-4-1 {
     width: 12vw;
     min-width: 120px;
+    max-width: 180px;
     height: 3vw;
     min-height: 30px;
+    max-height: 45px;
     border-radius: 12.5% / 50%;
     font-size: 1vw;
 }
@@ -138,8 +169,10 @@ input {
 .rectangle-small-4-1 {
     width: 8vw;
     min-width: 80px;
+    max-width: 120px;
     height: 2vw;
     min-height: 20px;
+    max-height: 30px;
     border-radius: 12.5% / 50%;
     font-size: 0.66vw;
 }
@@ -147,8 +180,10 @@ input {
 .rectangle-2-1 {
     width: 6vw;
     min-width: 60px;
+    max-width: 90px;
     height: 3vw;
     min-height: 30px;
+    max-height: 45px;
     border-radius: 25% / 50%;
     font-size: 1vw;
 }
@@ -156,8 +191,10 @@ input {
 .rectangle-small-2-1 {
     width: 4vw;
     min-width: 40px;
+    max-width: 60px;
     height: 2vw;
     min-height: 20px;
+    max-height: 30px;
     border-radius: 25% / 50%;
     font-size: 0.66vw;
 }
@@ -166,7 +203,7 @@ input {
     width: 98vw;
     min-width: 784px;
     border: 1px solid black;
-    margin: 1%;
+    margin: 0.5% 1% 1% 1%;
     text-align: center;
     vertical-align: middle;
     display: flex;
@@ -265,7 +302,7 @@ input {
     margin-top: 2px;
     margin-bottom: 10px;
     text-align: center;
-    font-size: 1vw;
+    font-size: 0.8vw;
 }
 
 .mb-head {
@@ -329,12 +366,12 @@ input {
 }
 
 .mbi-title {
-    margin-top: 2px;
+    margin-top: 1px;
     margin-bottom: 6px;
     padding-left: 1vw;
     width: 10vw;
     min-width: 80px;
-    font-size: 1.5vw;
+    font-size: 1vw;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -342,8 +379,8 @@ input {
 .mbi-time {
     margin-top: 2px;
     margin-bottom: 6px;
+    font-size: 0.75vw;
     text-align: center;
-    font-size: 1vw;
 }
 
 .state_done {

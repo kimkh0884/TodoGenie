@@ -60,7 +60,7 @@ const TutorialPage = ({exitTutorial}) => {
 
 const MenuBar = ({currPageNum, showPrev, showNext, exitTutorial}) => {
   return (
-    <div className='headpage flex-row'>
+    <div className='menubar flex-row'>
       <div className='flex-cell-1'><button className='rectangle-4-1 margin-1vh align-center' onClick={showPrev}>Previous</button></div>
       <div className='flex-cell-1'><button className='rectangle-10-1 margin-1vh align-center'>{currPageNum()}/3</button></div>
       <div className='flex-cell-1'><button className='rectangle-4-1 margin-1vh align-center' onClick={showNext}>Next</button></div>

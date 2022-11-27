@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import AutoLogin from './AutoLogin';
+import LoginPage from './LoginPage';
 
 const RegisterPage = () => {
   const [registerFlag, setFlag]= useState(0);
   // 0: not registered
   // 1: registered
+  // 2: return to login page
 
   // trying login
   const tryRegister = () => {
@@ -12,7 +14,7 @@ const RegisterPage = () => {
   };
 
   const cancelRegister = () => {
-    setFlag(1);
+    setFlag(2);
   };
 
   if (registerFlag === 0) {
@@ -32,9 +34,14 @@ const RegisterPage = () => {
       </div>
     );
   }
-  else {
+  else if (registerFlag === 1) {
     return (
       <AutoLogin />
+    );
+  }
+  else {
+    return (
+      <LoginPage />
     );
   }
 };

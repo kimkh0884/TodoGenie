@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const sampleData = [
     {
@@ -28,187 +28,322 @@ const dateToInt = (date) => {
     return ((date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate());
 };
 
+const intToYYYYMM = (dtint) => {
+    return (parseInt(dtint / 10000) + "-" + parseInt((dtint % 10000) / 100));
+};
+
+const intToMMDD = (dtint) => {
+    return (parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
+};
+
 const intToString = (date) => {
     return (parseInt(date / 10000) + "-" + parseInt((date % 10000) / 100) + "-" + (date % 100));
 };
 
-const __oneMonthBefore = (date) => {
-    var dt = new Date(intToString(date));
-    dt.setDate(dt.getDate()-1);
-    return dateToInt(dt);
+const daysOfMonth = (date) => {
+    let month = date.getMonth();
+
+    switch (month) {
+        case 0:
+        case 2:
+        case 4:
+        case 6:
+        case 7:
+        case 9:
+        case 11:
+            return 31;
+        
+        case 3:
+        case 5:
+        case 8:
+        case 10:
+            return 30;
+        
+        case 1:
+            let year = date.getFullYear;
+            if (year % 4 === 0) {
+                if (year % 100 === 0 && year % 400 !== 0) {
+                    return 29;
+                }
+                else {
+                    return 28;
+                }
+            }
+            else {
+                return 28;
+            }
+        
+        default:
+            return 0;
+    }
 };
 
-const __oneMonthAfter = (date) => {
-    var dt = new Date(intToString(date));
-    dt.setDate(dt.getDate()+1);
-    return dateToInt(dt);
+const startOfWeek = (date) => {
+    let dow = date.getDay();
+    date.setDate(date.getDate() - dow);
+    return date;
+};
+
+const startOfMonth = (date) => {
+    date.setDate(1);
+    return date;
+};
+
+let numOfRows = 0;
+
+const calcNumOfRows = (focusedDate) => {
+    let dt = new Date(intToString(focusedDate));
+    let dow = dt.getDay();
+    let days = daysOfMonth(dt);
+
+    if (dow + days <= 28) {
+        numOfRows = 4;
+    }
+    else if (dow + days <= 35) {
+        numOfRows = 5;
+    }
+    else {
+        numOfRows = 6;
+    }
+};
+
+let focusedDates = [[0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0]];
+
+const fillFocusedDates = (focusedDate) => {
+    let dt = new Date(intToString(focusedDate));
+    dt = startOfWeek(dt);
+
+    for (let i = 0; i < numOfRows; ++i) {
+        for (let j = 0; j < 7; ++j) {
+            focusedDates[i][j] = dateToInt(dt);
+            dt.setDate(dt.getDate() + 1);
+        }
+    }
 };
 
 const MonthlyBoard = ({showEditPage}) => {
     const today = new Date();
-    const [focusedDate, setFocusedDate] = useState(dateToInt(today));
+    const [focusedDate, setFocusedDate] = useState(dateToInt(startOfMonth(today)));
+
+    calcNumOfRows(focusedDate);
+    fillFocusedDates(focusedDate);
+    useEffect(() => {
+        calcNumOfRows(focusedDate);
+        fillFocusedDates(focusedDate);
+    }, [focusedDate]);
+
+    const oneMonthBefore = () => {
+        let dt = new Date(intToString(focusedDate));
+        dt.setMonth(dt.getMonth()-1);
+        setFocusedDate(dateToInt(dt));
+    };
+
+    const oneMonthAfter = () => {
+        let dt = new Date(intToString(focusedDate));
+        dt.setMonth(dt.getMonth()+1);
+        setFocusedDate(dateToInt(dt));
+    };
+
+    if (numOfRows === 4) {
+        return (
+            <div className="monthlyboard">
+                <div className='mb-head'>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthBefore}>Previous Month</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-05vw'>{intToYYYYMM(focusedDate)}</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
+                </div>
+                <div className='mb-body'>
+                    <div id="mb-row0" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row1" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row2" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row3" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    else if (numOfRows === 5) {
+        return (
+            <div className="monthlyboard">
+                <div className='mb-head'>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthBefore}>Previous Month</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-05vw'>{intToYYYYMM(focusedDate)}</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
+                </div>
+                <div className='mb-body'>
+                    <div id="mb-row0" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row1" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row2" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row3" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row4" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    else {
+        return (
+            <div className="monthlyboard">
+                <div className='mb-head'>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthBefore}>Previous Month</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-05vw'>{intToYYYYMM(focusedDate)}</button></div>
+                    <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
+                </div>
+                <div className='mb-body'>
+                    <div id="mb-row0" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row1" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row2" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row3" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row4" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} />
+                    </div>
+                    <div id="mb-row5" className='mb-row'>
+                        <MonthlyBoardCell date={focusedDates[5][0]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][1]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][2]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][3]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][4]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][5]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][6]} showEditPage={showEditPage} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+};
+
+const MonthlyBoardCell = ({date, showEditPage}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
     const loadTodolist = () => {
         return sampleData;
-    }
+    };
     
     const removeTodo = (id) => {
         setRmFlag(rmFlag + 1);
     };
 
     return (
-        <div className="monthlyboard">
-            <div className='mb-head'>
-                <div className='flex-cell-1'><button className='rectangle-small-10-1 align-center margin-05vw'>Previous Month</button></div>
-                <div className='flex-cell-1'><button className='rectangle-small-4-1 align-center margin-05vw'>2022-11</button></div>
-                <div className='flex-cell-1'><button className='rectangle-small-10-1 align-center margin-05vw'>Next Month</button></div>
+        <div className='mb-cell'>
+            <div className='mb-cell-head'>
+                <button className='rectangle-small-4-1 align-center margin-05vw'>{intToMMDD(date)}</button>
             </div>
-            <div className='mb-body'>
-                <div id="mb-row0" className='mb-row'>
-                    <div id="mb-cell00" className='mb-cell'>
-                        <div className='mb-cell-head'>
-                            <button className='rectangle-small-4-1 align-center margin-05vw'>10-30</button>
-                        </div>
-                        {loadTodolist().map((todoitem) => (
-                            <MonthlyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
-                        ))}
-                    </div>
-                    <div id="mb-cell01" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell02" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell03" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell04" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell05" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell06" className='mb-cell'>
-                        
-                    </div>
-                </div>
-                <div id="mb-row1" className='mb-row'>
-                    <div id="mb-cell10" className='mb-cell'>
-
-                    </div>
-                    <div id="mb-cell11" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell12" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell13" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell14" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell15" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell16" className='mb-cell'>
-                        
-                    </div>
-                </div>
-                <div id="mb-row2" className='mb-row'>
-                    <div id="mb-cell20" className='mb-cell'>
-
-                    </div>
-                    <div id="mb-cell21" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell22" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell23" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell24" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell25" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell26" className='mb-cell'>
-                        
-                    </div>
-                </div>
-                <div id="mb-row3" className='mb-row'>
-                    <div id="mb-cell30" className='mb-cell'>
-
-                    </div>
-                    <div id="mb-cell31" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell32" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell33" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell34" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell35" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell36" className='mb-cell'>
-                        
-                    </div>
-                </div>
-                <div id="mb-row4" className='mb-row'>
-                    <div id="mb-cell40" className='mb-cell'>
-
-                    </div>
-                    <div id="mb-cell41" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell42" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell43" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell44" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell45" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell46" className='mb-cell'>
-                        
-                    </div>
-                </div>
-                <div id="mb-row5" className='mb-row'>
-                    <div id="mb-cell50" className='mb-cell'>
-
-                    </div>
-                    <div id="mb-cell51" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell52" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell53" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell54" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell55" className='mb-cell'>
-                        
-                    </div>
-                    <div id="mb-cell56" className='mb-cell'>
-                        
-                    </div>
-                </div>
-            </div>
+            {loadTodolist(date).map((todoitem) => (
+                <MonthlyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+            ))}
         </div>
     );
 };
@@ -261,7 +396,12 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
                     <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__removeTodo}>Remove</button></div>
                 </div>
                 <div className='mbi-text-space'><h5 title={title} className='mbi-title'>{title}</h5></div>
-                <div className='mbi-text-space'><h6 className='mbi-time'>{start.substring(11)} ~ {end.substring(11)}</h6></div>
+                <div className='mbi-text-space'>
+                    <h6 className='mbi-time'>
+                        Start : {start}<br />
+                        End : {end}
+                    </h6>
+                </div>
             </div>
         );
     }

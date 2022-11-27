@@ -28,20 +28,8 @@ const dateToInt = (date) => {
     return ((date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate());
 };
 
-const intToString = (date) => {
-    return (parseInt(date / 10000) + "-" + parseInt((date % 10000) / 100) + "-" + (date % 100));
-};
-
-const __oneDayBefore = (date) => {
-    var dt = new Date(intToString(date));
-    dt.setDate(dt.getDate()-1);
-    return dateToInt(dt);
-};
-
-const __oneDayAfter = (date) => {
-    var dt = new Date(intToString(date));
-    dt.setDate(dt.getDate()+1);
-    return dateToInt(dt);
+const intToString = (dtint) => {
+    return (parseInt(dtint / 10000) + "-" + parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
 };
 
 const DailyBoard = ({showEditPage}) => {
@@ -50,11 +38,15 @@ const DailyBoard = ({showEditPage}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
     const oneDayBefore = () => {
-        setFocusedDate(__oneDayBefore(focusedDate));
+        let dt = new Date(intToString(focusedDate));
+        dt.setDate(dt.getDate() - 1);
+        setFocusedDate(dateToInt(dt));
     };
 
     const oneDayAfter = () => {
-        setFocusedDate(__oneDayAfter(focusedDate));
+        let dt = new Date(intToString(focusedDate));
+        dt.setDate(dt.getDate() + 1);
+        setFocusedDate(dateToInt(dt));
     };
 
     const loadTodolist = () => {

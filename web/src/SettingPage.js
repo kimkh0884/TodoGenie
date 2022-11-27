@@ -46,7 +46,7 @@ const SettingPage = ({exitSetting}) => {
 
 const MenuBar = ({exitWithoutChange, applyChangeAndExit}) => {
   return (
-    <div className="headpage flex-row">
+    <div className="menubar flex-row">
       <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={exitWithoutChange}>Cancel</button></div>
       <div className='flex-cell-1'><button className='rectangle-8-1 margin-1vh align-center' onClick={applyChangeAndExit}>Apply</button></div>
     </div>

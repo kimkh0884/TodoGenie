@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const sampleData = [
     {
@@ -24,10 +24,73 @@ const sampleData = [
     }
 ];
 
+const dateToInt = (date) => {
+    return ((date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate());
+};
+
+const intToString = (date) => {
+    return (parseInt(date / 10000) + "-" + parseInt((date % 10000) / 100) + "-" + (date % 100));
+};
+
+const startOfWeek = (date) => {
+    let dow = date.getDay();
+    date.setDate(date.getDate() - dow);
+    return date;
+};
+
+let focusedDates = [0, 0, 0, 0, 0, 0, 0];
+
+const fillFocusedDates = (focusedDate) => {
+    let dt = new Date(intToString(focusedDate));
+
+    for (let i = 0; i < 7; ++i) {
+        focusedDates[i] = dateToInt(dt);
+        dt.setDate(dt.getDate() + 1);
+    }
+};
+
 const WeeklyBoard = ({showEditPage}) => {
+    const today = new Date();
+    const [focusedDate, setFocusedDate] = useState(dateToInt(startOfWeek(today)));
+
+    fillFocusedDates(focusedDate);
+    useEffect(() => {fillFocusedDates(focusedDate)}, [focusedDate]);
+
+    const oneWeekBefore = () => {
+        let dt = new Date(intToString(focusedDate));
+        dt.setDate(dt.getDate() - 7);
+        setFocusedDate(dateToInt(dt));
+    };
+
+    const oneWeekAfter = () => {
+        let dt = new Date(intToString(focusedDate));
+        dt.setDate(dt.getDate() + 7);
+        setFocusedDate(dateToInt(dt));
+    };
+    
+    return (
+        <div className='weeklyboard'>
+            <div className='wb-head'>
+                <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneWeekBefore}>Previous Week</button></div>
+                <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneWeekAfter}>Next Week</button></div>
+            </div>
+            <div className="wb-body">
+                <WeeklyBoardColumn date={focusedDates[0]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[1]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[2]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[3]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[4]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[5]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[6]} showEditPage={showEditPage} />
+            </div>
+        </div>
+    );
+};
+
+const WeeklyBoardColumn = ({date, showEditPage}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
-    const loadTodolist = () => {
+    const loadTodolist = (date) => {
         return sampleData;
     }
     
@@ -35,57 +98,15 @@ const WeeklyBoard = ({showEditPage}) => {
         setRmFlag(rmFlag + 1);
     };
 
-    const dates_of_focused_week = [
-        "2022-11-20",
-        "2022-11-21",
-        "2022-11-22",
-        "2022-11-23",
-        "2022-11-24",
-        "2022-11-25",
-        "2022-11-26"
-    ];
-    
     return (
-        <div className='weeklyboard'>
-            <div className='wb-head'>
-                <div className='flex-cell-1'><button className='rectangle-small-10-1 align-center margin-05vw'>Previous Week</button></div>
-                <div className='flex-cell-1'><button className='rectangle-small-10-1 align-center margin-05vw'>Next Week</button></div>
-            </div>
-            <div className="wb-body">
-                <div id="wb-sun" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[0]}</button></div>
-                    {loadTodolist().map((todoitem) => (
-                        <WeeklyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
-                    ))}
-                </div>
-                <div id="wb-mon" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[1]}</button></div>
-                    
-                </div>
-                <div id="wb-tue" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[2]}</button></div>
-                    
-                </div>
-                <div id="wb-wed" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[3]}</button></div>
-                    
-                </div>
-                <div id="wb-thr" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[4]}</button></div>
-                    
-                </div>
-                <div id="wb-fri" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[5]}</button></div>
-                    
-                </div>
-                <div id="wb-sat" className='wb-column'>
-                    <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{dates_of_focused_week[6]}</button></div>
-                    
-                </div>
-            </div>
+        <div className='wb-column'>
+            <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{intToString(date)}</button></div>
+            {loadTodolist(date).map((todoitem) => (
+                <WeeklyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+            ))}
         </div>
     );
-}
+};
   
 const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}) => {
     const [moreFlag, setFlag] = useState(0);
@@ -122,7 +143,12 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 {currState === 0 ? <button className='circle-small margin-05vw state_notyet' onClick={revState} /> : <button className='circle-small margin-05vw state_done' onClick={revState}>&#10003;</button>}
                 <button className="circle-small margin-05vw floating-right" onClick={unfold}>...</button>
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
-                <div className='wbi-text-space'><h6 className='wbi-time'>{start.substring(11)} ~ {end.substring(11)}</h6></div>
+                <div className='wbi-text-space'>
+                    <h6 className='wbi-time'>
+                        Start : {start}<br />
+                        End : {end}
+                    </h6>
+                </div>
             </div>
         );
     }
@@ -136,7 +162,12 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                     <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__removeTodo}>Remove</button></div>
                 </div>
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
-                <div className='wbi-text-space'><h6 className='wbi-time'>{start.substring(11)} ~ {end.substring(11)}</h6></div>
+                <div className='wbi-text-space'>
+                    <h6 className='wbi-time'>
+                        Start : {start}<br />
+                        End : {end}
+                    </h6>
+                </div>
             </div>
         );
     }
