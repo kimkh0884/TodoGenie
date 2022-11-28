@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1695" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1695" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/drawable/ic_launcher_background.xml" value="0.143" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1695" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/drawable/simple_stroke.xml" value="0.176" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.16298527443105756" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout-w1240dp/activity_login_custom.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout-w936dp/activity_login.xml" value="0.190234375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/activity_login_custom.xml" value="0.1125" />
@@ -12,9 +17,29 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/content_login.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_first.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_home.xml" value="0.1125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_home__daily.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_home__monthly.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_home__weekly.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_home_daily.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_notifications.xml" value="0.1125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/fragment_second.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/item_todo.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layout/simple_stroke.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/login/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/login/layout/activity_login_custom.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/login/layout/content_login.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/login/layout/fragment_first.xml" value="0.176" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/login/layout/fragment_second.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/activity_main.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/content_login.xml" value="0.1125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_dashboard.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_home__daily.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_home__monthly.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_home__weekly.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/fragment_notifications.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/layouts/main/layout/item_todo.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TodoGenie/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.143" />
       </map>
     </option>
