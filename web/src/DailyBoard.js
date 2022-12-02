@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { loadTodo, deleteTodo } from './api';
 
 const sampleData = [
     {
@@ -50,10 +51,15 @@ const DailyBoard = ({showEditPage}) => {
     };
 
     const loadTodolist = () => {
-        return sampleData;
+        let startdt = new Date(intToString(focusedDate)+" 00:00");
+        let enddt = new Date(intToString(focusedDate)+" 23:59");
+
+        let res = loadTodo(startdt.getTime(), enddt.getTime());
+        return res;
     };
 
     const removeTodo = (id) => {
+        deleteTodo(id);
         setRmFlag(rmFlag + 1);
     };
   
@@ -105,10 +111,15 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
             <div className="dailyboarditem">
                 <div className='flex-row'>
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
-                    <div className='dbi-text-space'><h3 className='dbi-time'>{start} ~ {end}</h3></div>
+                    <div className='dbi-text-space'>
+                        <h3 className='dbi-time'>
+                            Start : {start}<br />
+                            End : {end}
+                        </h3>
+                    </div>
                 </div>
-                {currState === 0 ? <button className='circle margin-1vw state_notyet' onClick={revState} /> : <button className='circle margin-1vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle margin-1vw" onClick={unfold}>...</button>
+                {currState === 0 ? <button className='circle margin-1vw state-notyet floating-left' onClick={revState} /> : <button className='circle margin-1vw state-done-circle floating-left' onClick={revState} />}
+                <button className="circle margin-1vw unfold-button" onClick={unfold} />
             </div>
         );
     }
@@ -117,12 +128,17 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
             <div className="dailyboarditem">
                 <div className='flex-row'>
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
-                    <div className='dbi-text-space'><h3 className='dbi-time'>{start} ~ {end}</h3></div>
+                    <div className='dbi-text-space'>
+                        <h3 className='dbi-time'>
+                            Start : {start}<br />
+                            End : {end}
+                        </h3>
+                    </div>
                 </div>
-                {currState === 0 ? <button className='circle margin-1vw state_notyet' onClick={revState} /> : <button className='circle margin-1vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle margin-1vw" onClick={fold}>&#9664;</button>
-                <button className="rectangle-2-1 margin-1vw" onClick={__showEditPage}>Edit</button>
-                <button className="rectangle-2-1 margin-1vw" onClick={__removeTodo}>Remove</button>
+                {currState === 0 ? <button className='circle margin-1vw state-notyet floating-left' onClick={revState} /> : <button className='circle margin-1vw state-done-circle floating-left' onClick={revState} />}
+                <button className="circle margin-1vw fold-button" onClick={fold} />
+                <button className="circle margin-1vw edit-button" onClick={__showEditPage} />
+                <button className="circle margin-1vw delete-button" onClick={__removeTodo} />
             </div>
         );
     }

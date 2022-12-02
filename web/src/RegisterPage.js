@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {register} from "./api.js";
 import AutoLogin from './AutoLogin';
 import LoginPage from './LoginPage';
 
@@ -8,9 +9,30 @@ const RegisterPage = () => {
   // 1: registered
   // 2: return to login page
 
-  // trying login
+  // trying registration
   const tryRegister = () => {
-    setFlag(1);
+    let name = document.getElementById("todogenie-register-name").value;
+    if (name === "") {
+      window.alert("Name is empty.");
+    }
+    let id = document.getElementById("todogenie-register-id").value;
+    if (id === "") {
+      window.alert("ID is empty.");
+    }
+    let pw = document.getElementById("todogenie-register-pw").value;
+    if (pw === "") {
+      window.alert("PW is empty.");
+    }
+
+    let res = register(name, id, pw);
+
+    if (res) {
+      window.alert("Successfully registered.");
+      setFlag(1);
+    }
+    else {
+      window.alert("Registration failed.");
+    }
   };
 
   const cancelRegister = () => {
@@ -20,16 +42,20 @@ const RegisterPage = () => {
   if (registerFlag === 0) {
     return (
       <div className="wholepage">
-        <div className="todogenie-title-logo">To-do Genie logo</div>
+        <div className="todogenie-title-logo">To-do Genie</div>
+        <div className="margin-1vh align-center">
+          <button className="rectangle-2-1">Name</button>
+          <input id="todogenie-register-name" className='rectangle-10-1 margin-left-1vw padding-both-1vw' placeholder="username (essential)" />
+        </div>
         <div className="margin-1vh align-center">
           <button className="rectangle-2-1">ID</button>
-          <input className='rectangle-10-1' placeholder="ID (essential)" />
+          <input id="todogenie-register-id" className='rectangle-10-1 margin-left-1vw padding-both-1vw' placeholder="id (essential)" />
         </div>
         <div className="margin-1vh align-center">
           <button className="rectangle-2-1">PW</button>
-          <input className='rectangle-10-1' placeholder="password (essential)" />
+          <input type="password" id="todogenie-register-pw" className='rectangle-10-1 margin-left-1vw padding-both-1vw' placeholder="password (essential)" />
         </div>
-        <button className="rectangle-10-1 align-center margin-1vh" onClick={tryRegister}>Register!</button>
+        <button className="rectangle-10-1 align-center margin-1vh" onClick={tryRegister}>Register</button>
         <button className="rectangle-10-1 align-center margin-1vh" onClick={cancelRegister}>Cancel</button>
       </div>
     );

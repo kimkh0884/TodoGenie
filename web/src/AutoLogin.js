@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import "./all.css";
+import {login, searchAuthInfo} from "./api.js";
 import LoginPage from './LoginPage';
 import MainFrame from './MainFrame';
 
-// keep logged-in state with cookie
-const createCookie = () => {};
-const removeCookie = () => {};
+const getCookie = (name) => {
+  let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return value? value[2] : null;
+};
 
 const AutoLogin = () => {
   const [loginFlag, setFlag]= useState(0);
@@ -13,11 +14,15 @@ const AutoLogin = () => {
   // trying auto-login
   // 1: fail
   // 2: success
-  const tryLogin = () => {
-    setTimeout(
-      () => setFlag(1),
-      2000
-    );
+  const tryLogin = () => {    
+    let authinfo = searchAuthInfo();
+    if (authinfo != null) {
+      let res = login(authinfo.id, authinfo.pw);
+      if (res) {
+        setFlag(2);
+      }
+    }
+    setFlag(1);
   }
   useEffect(tryLogin, []);
 
@@ -27,8 +32,8 @@ const AutoLogin = () => {
   if (loginFlag === 0) {
     return (
       <div className="wholepage">
-        <div className="todogenie-title-logo">To-do Genie logo</div>
-        <h2 className='align-center'>Auto-Login...</h2>
+        <div className="todogenie-title-logo">To-do Genie</div>
+        <h2 className='align-center system-text'>Auto-Login...</h2>
       </div>
     );
   }

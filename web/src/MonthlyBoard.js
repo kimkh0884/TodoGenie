@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { loadTodo, deleteTodo } from './api';
 
 const sampleData = [
     {
@@ -158,6 +159,15 @@ const MonthlyBoard = ({showEditPage}) => {
                     <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
                 </div>
                 <div className='mb-body'>
+                    <div id="mb-head" className='mb-row'>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sun</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Mon</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Tue</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Wed</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Thr</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Fri</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
+                    </div>
                     <div id="mb-row0" className='mb-row'>
                         <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
                         <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
@@ -207,6 +217,15 @@ const MonthlyBoard = ({showEditPage}) => {
                     <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
                 </div>
                 <div className='mb-body'>
+                    <div id="mb-head" className='mb-row'>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sun</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Mon</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Tue</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Wed</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Thr</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Fri</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
+                    </div>
                     <div id="mb-row0" className='mb-row'>
                         <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
                         <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
@@ -265,6 +284,15 @@ const MonthlyBoard = ({showEditPage}) => {
                     <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneMonthAfter}>Next Month</button></div>
                 </div>
                 <div className='mb-body'>
+                    <div id="mb-head" className='mb-row'>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sun</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Mon</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Tue</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Wed</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Thr</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Fri</button></div>
+                        <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
+                    </div>
                     <div id="mb-row0" className='mb-row'>
                         <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
                         <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
@@ -328,11 +356,16 @@ const MonthlyBoard = ({showEditPage}) => {
 const MonthlyBoardCell = ({date, showEditPage}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
-    const loadTodolist = () => {
-        return sampleData;
+    const loadTodolist = (date) => {
+        let startdt = new Date(intToString(date)+" 00:00");
+        let enddt = new Date(intToString(date)+" 23:59");
+
+        let res = loadTodo(startdt.getTime(), enddt.getTime());
+        return res;
     };
     
     const removeTodo = (id) => {
+        deleteTodo(id);
         setRmFlag(rmFlag + 1);
     };
 
@@ -380,8 +413,8 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
     if (moreFlag === 0) {
         return (
             <div className="monthlyboarditem">
-                {currState === 0 ? <button className='circle-small margin-05vw state_notyet' onClick={revState} /> : <button className='circle-small margin-05vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle-small margin-05vw floating-right" onClick={unfold}>...</button>
+                {currState === 0 ? <button className='circle-small margin-05vw state-notyet' onClick={revState} /> : <button className='circle-small margin-05vw state-done-circle' onClick={revState} />}
+                <button className="circle-small margin-05vw unfold-button" onClick={unfold} />
                 <div className='mbi-text-space'><h5 title={title} className='mbi-title'>{title}</h5></div>
             </div>
         );
@@ -389,12 +422,10 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
     else {
         return (
             <div className="monthlyboarditem">
-                {currState === 0 ? <button className='circle-small margin-05vw state_notyet' onClick={revState} /> : <button className='circle-small margin-05vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle-small margin-05vw floating-right" onClick={fold}>&#9650;</button>
-                <div className='flex-row'>
-                    <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__showEditPage}>Edit</button></div>
-                    <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__removeTodo}>Remove</button></div>
-                </div>
+                {currState === 0 ? <button className='circle-small margin-05vw state-notyet' onClick={revState} /> : <button className='circle-small margin-05vw state-done-circle' onClick={revState} />}
+                <button className="circle-small margin-05vw fold-button" onClick={fold} />
+                <button className="circle-small margin-05vw edit-button" onClick={__showEditPage} />
+                <button className="circle-small margin-05vw delete-button" onClick={__removeTodo} />
                 <div className='mbi-text-space'><h5 title={title} className='mbi-title'>{title}</h5></div>
                 <div className='mbi-text-space'>
                     <h6 className='mbi-time'>

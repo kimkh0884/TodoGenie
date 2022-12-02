@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { loadTodo, deleteTodo } from './api';
 
 const sampleData = [
     {
@@ -30,6 +31,34 @@ const dateToInt = (date) => {
 
 const intToString = (date) => {
     return (parseInt(date / 10000) + "-" + parseInt((date % 10000) / 100) + "-" + (date % 100));
+};
+
+const intToMMDD = (dtint) => {
+    return (parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
+};
+
+const intToDOW = (dtint) => {
+    let dt = new Date(intToString(dtint));
+    let dow = dt.getDay();
+    
+    switch(dow) {
+        case 0:
+            return "Sun";
+        case 1:
+            return "Mon";
+        case 2:
+            return "Tue";
+        case 3:
+            return "Wed";
+        case 4:
+            return "Thr";
+        case 5:
+            return "Fri";
+        case 6:
+            return "Sat";
+        default:
+            return "default";
+    }
 };
 
 const startOfWeek = (date) => {
@@ -91,16 +120,24 @@ const WeeklyBoardColumn = ({date, showEditPage}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
     const loadTodolist = (date) => {
-        return sampleData;
+        let startdt = new Date(intToString(date)+" 00:00");
+        let enddt = new Date(intToString(date)+" 23:59");
+
+        let res = loadTodo(startdt.getTime(), enddt.getTime());
+        return res;
     }
     
     const removeTodo = (id) => {
+        deleteTodo(id);
         setRmFlag(rmFlag + 1);
     };
 
     return (
         <div className='wb-column'>
-            <div className='wb-column-head'><button className='rectangle-small-4-1 align-center margin-05vw'>{intToString(date)}</button></div>
+            <div className='wb-column-head flex-row'>
+                <div className='flex-cell-1'><button className='rectangle-small-2-1 align-center margin-05vw'>{intToDOW(date)}</button></div>
+                <div className='flex-cell-1'><button className='rectangle-small-2-1 align-center margin-05vw'>{intToMMDD(date)}</button></div>
+            </div>
             {loadTodolist(date).map((todoitem) => (
                 <WeeklyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
@@ -140,8 +177,8 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
     if (moreFlag === 0) {
         return (
             <div className="weeklyboarditem">
-                {currState === 0 ? <button className='circle-small margin-05vw state_notyet' onClick={revState} /> : <button className='circle-small margin-05vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle-small margin-05vw floating-right" onClick={unfold}>...</button>
+                {currState === 0 ? <button className='circle-small margin-05vw state-notyet' onClick={revState} /> : <button className='circle-small margin-05vw state-done-circle' onClick={revState} />}
+                <button className="circle-small margin-05vw unfold-button" onClick={unfold} />
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
@@ -155,12 +192,10 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
     else {
         return (
             <div className="weeklyboarditem">
-                {currState === 0 ? <button className='circle-small margin-05vw state_notyet' onClick={revState} /> : <button className='circle-small margin-05vw state_done' onClick={revState}>&#10003;</button>}
-                <button className="circle-small margin-05vw floating-right" onClick={fold}>&#9650;</button>
-                <div className='flex-row'>
-                    <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__showEditPage}>Edit</button></div>
-                    <div className='flex-cell-1'><button className="rectangle-small-2-1 margin-05vw align-center" onClick={__removeTodo}>Remove</button></div>
-                </div>
+                {currState === 0 ? <button className='circle-small margin-05vw state-notyet' onClick={revState} /> : <button className='circle-small margin-05vw state-done-circle' onClick={revState} />}
+                <button className="circle-small margin-05vw fold-button" onClick={fold} />
+                <button className="circle-small margin-05vw edit-button" onClick={__showEditPage} />
+                <button className="circle-small margin-05vw delete-button" onClick={__removeTodo} />
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>

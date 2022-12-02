@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 /*
 Profile for the account that the user is signed in.
@@ -24,6 +24,8 @@ E. Sign out button
 */
 
 const SettingPage = ({exitSetting}) => {
+  const [checkedFlag, setCheckedFlag] = useState(0);
+
   const applyChangeAndExit = () => {
     if (window.confirm("Do you apply the modified settings?")) {
       exitSetting();
@@ -36,10 +38,22 @@ const SettingPage = ({exitSetting}) => {
     }
   };
 
+  const revState = () => {
+    if (checkedFlag === 0) {
+      setCheckedFlag(1);
+    }
+    else {
+      setCheckedFlag(0);
+    }
+  };
+
   return (
     <div className = "settingpage">
       <MenuBar exitWithoutChange={exitWithoutChange} applyChangeAndExit={applyChangeAndExit} />
-      <h1>Setting page</h1>
+      <div className='align-center margin-1vw'>
+        <button className='rectangle-4-1'>Setting1</button>
+        {(checkedFlag === 1) ? <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-done' onClick={revState}>Checked</button> : <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-notyet' onClick={revState}>Not Checked</button>}    
+      </div>
     </div>
   );
 };

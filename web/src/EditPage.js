@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { loadTodo, addTodo, editTodo } from './api';
 
-const getTodoProperties = (todo_id) => {
-  if (todo_id === -1) {
+const getTodoProperties = (data) => {
+  if (data.id === -1) {
     return ({
       id: -1,
       title: "",
@@ -11,18 +12,13 @@ const getTodoProperties = (todo_id) => {
     });
   }
   else {
-    return ({
-      id: todo_id,
-      title: "sample",
-      start: "2022-11-27 13:00",
-      end: "2022-11-27 15:00",
-      state: 0
-    });
+    return data;
   }
 };
 
-const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, id}) => {
+const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
   const todo_properties = getTodoProperties(id);
+  const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {
     if (window.confirm("Do you want to exit the editor without save?")) {
@@ -40,28 +36,105 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
 
   const saveAndExit = () => {
     if (window.confirm("Do you want to save the contents?")) {
-      if (prevBoard === 0) {
-        showDailyBoard();
-      }
-      else if (prevBoard === 1) {
-        showWeeklyBoard();
+      let res = null;
+      let title = document.getElementById("ep-title").value;
+      let start = document.getElementById("ep-start").value;
+      let end = document.getElementById("ep-end").value;
+      console.log(title);
+      console.log(start);
+      console.log(end);
+      if (todo_properties.id === -1) {
+        res = addTodo(title, start, end);
+
+        if (res) {
+          window.alert("Successfully added.");
+          if (prevBoard === 0) {
+            showDailyBoard();
+          }
+          else if (prevBoard === 1) {
+            showWeeklyBoard();
+          }
+          else {
+            showMonthlyBoard();
+          }
+        }
+        else {
+          window.alert("Adding a to-do is failed.");
+        }
       }
       else {
-        showMonthlyBoard();
+        res = editTodo(todo_properties.id, title, start, end, doneFlag);
+
+        if (res) {
+          window.alert("Successfully editted.");
+          if (prevBoard === 0) {
+            showDailyBoard();
+          }
+          else if (prevBoard === 1) {
+            showWeeklyBoard();
+          }
+          else {
+            showMonthlyBoard();
+          }
+        }
+        else {
+          window.alert("Editting the to-do is failed.");
+        }
       }
     }
   };
 
-  return (
-    <div className = "editpage">
-      <MenuBar exitWithoutSave={exitWithoutSave} saveAndExit={saveAndExit} />
-      <h1>{todo_properties.id}</h1>
-      <h1>{todo_properties.title}</h1>
-      <h1>{todo_properties.start}</h1>
-      <h1>{todo_properties.end}</h1>
-      <h1>{todo_properties.state}</h1>
-    </div>
-  );
+  const revState = () => {
+    if (doneFlag === 0) {
+      setDoneFlag(1);
+    }
+    else {
+      setDoneFlag(0);
+    }
+  };
+
+  if (todo_properties.id === -1) {
+    return (
+      <div className = "editpage">
+        <MenuBar exitWithoutSave={exitWithoutSave} saveAndExit={saveAndExit} />
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>Title</button>
+          <input id="ep-title" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.title} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>Start</button>
+          <input id="ep-start" type="datetime-local" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.start} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>End</button>
+          <input id="ep-end" type="datetime-local" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.end} />
+        </div>
+      </div>
+    );
+  }
+  else {
+    return (
+      <div className = "editpage">
+        <MenuBar exitWithoutSave={exitWithoutSave} saveAndExit={saveAndExit} />
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>Title</button>
+          <input id="ep-title" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.title} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>Start</button>
+          <input id="ep-start" type="datetime-local" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.start} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>End</button>
+          <input id="ep-end" type="datetime-local" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.end} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <button className='rectangle-4-1'>State</button>
+          {(doneFlag === 1) ? <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-done' onClick={revState}>Done</button> : <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-notyet' onClick={revState}>Not yet</button>}    
+        </div>
+      </div>
+    );
+  }
 };
 
 const MenuBar = ({exitWithoutSave, saveAndExit}) => {

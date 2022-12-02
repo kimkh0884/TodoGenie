@@ -1,16 +1,17 @@
 body {
+    background-color: ivory;
     margin: 0px;
     padding: 0px;
 }
 
 button {
     background-color: lightgreen;
-    font-weight: bold;
+    box-sizing: content-box;
+    padding: 0px;
 }
 
-input {
-    margin-left: 1vw;
-    padding-left: 1vw;
+.system-text {
+    font-family: "Nunito";
 }
 
 .wholepage {
@@ -41,8 +42,13 @@ input {
     vertical-align: middle;
 }
 
+@font-face {
+    font-family: "CookieRun Black";
+    src: url("resources/CookieRun\ Black.ttf");
+}
+
 .todogenie-title-logo {
-    background-color: green;
+    background-color: none;
     width: 36vw;
     min-width: 360px;
     height: 9vw;
@@ -51,6 +57,15 @@ input {
     margin-right: auto;
     padding-top: 25vh;
     margin-bottom: 5vh;
+    font-family: "CookieRun Black";
+    font-size: 5vw;
+    text-align: center;
+}
+
+.todogenie-logo {
+    font-family: "CookieRun Black";
+    font-size: 3vw;
+    padding: 1vw;
 }
 
 .margin-1vh {
@@ -63,6 +78,15 @@ input {
 
 .margin-05vw {
     margin: 0.5vw;
+}
+
+.margin-left-1vw {
+  margin-left: 1vw;
+}
+
+.padding-both-1vw {
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 
 .align-center {
@@ -85,6 +109,10 @@ input {
     flex: 1;
 }
 
+.floating-left {
+    float: left;
+}
+
 .floating-right {
     float: right;
 }
@@ -98,6 +126,7 @@ input {
     max-height: 45px;
     border-radius: 50%;
     font-weight: bold;
+    font-family: "Nunito";
 }
 
 .circle-small {
@@ -109,6 +138,7 @@ input {
     max-height: 30px;
     border-radius: 50%;
     font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-10-1 {
@@ -120,6 +150,8 @@ input {
     max-height: 45px;
     border-radius: 5% / 50%;
     font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-small-10-1 {
@@ -131,6 +163,8 @@ input {
     max-height: 30px;
     border-radius: 5% / 50%;
     font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-8-1 {
@@ -142,6 +176,8 @@ input {
     max-height: 45px;
     border-radius: 6.25% / 50%;
     font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-small-8-1 {
@@ -153,6 +189,8 @@ input {
     max-height: 30px;
     border-radius: 6.25% / 50%;
     font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-4-1 {
@@ -164,6 +202,8 @@ input {
     max-height: 45px;
     border-radius: 12.5% / 50%;
     font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-small-4-1 {
@@ -175,6 +215,8 @@ input {
     max-height: 30px;
     border-radius: 12.5% / 50%;
     font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-2-1 {
@@ -186,6 +228,8 @@ input {
     max-height: 45px;
     border-radius: 25% / 50%;
     font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .rectangle-small-2-1 {
@@ -197,6 +241,8 @@ input {
     max-height: 30px;
     border-radius: 25% / 50%;
     font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .db-head {
@@ -228,11 +274,15 @@ input {
     padding-left: 1vw;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 2vw;
+    font-family: "Nunito";
 }
 
 .dbi-time {
     padding-right: 1vw;
     text-align: right;
+    font-size: 1.5vw;
+    font-family: "Nunito";
 }
 
 .wb-head {
@@ -294,6 +344,8 @@ input {
     width: 10vw;
     min-width: 80px;
     font-size: 1.5vw;
+    font-weight: bold;
+    font-family: "Nunito";
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -303,6 +355,8 @@ input {
     margin-bottom: 10px;
     text-align: center;
     font-size: 0.8vw;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
 .mb-head {
@@ -331,6 +385,12 @@ input {
     margin: 0px;
     padding: 0px;
     display: flex;
+}
+
+.mb-body-head {
+    width: 14vw;
+    min-width: 112px;
+    border: 1px solid black;
 }
 
 .mb-cell {
@@ -372,6 +432,8 @@ input {
     width: 10vw;
     min-width: 80px;
     font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -381,14 +443,50 @@ input {
     margin-bottom: 6px;
     font-size: 0.75vw;
     text-align: center;
+    font-weight: bold;
+    font-family: "Nunito";
 }
 
-.state_done {
+.state-done-rectangle {
     background-color: lightgreen;
-    float: left;
 }
 
-.state_notyet {
+.state-done-circle {
+    background-color: lightgreen;
+    background-image: url("resources/correct-symbol.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.state-notyet {
     background-color: #ff6666;
-    float: left;
+}
+
+.edit-button {
+    background-image: url(resources/pencil.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.delete-button {
+    background-image: url(resources/bin.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.unfold-button {
+    background-image: url(resources/right-chevron.png);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.fold-button {
+    background-image: url(resources/left-chevron.png);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
 }

@@ -7,7 +7,7 @@ import EditPage from './EditPage';
 const MainPage = () => {
   const [boardNum, setBoardNum] = useState(0);
   const [prevBoardNum, setPrevBoardNum] = useState(0);
-  const [todo_id, setTodoId] = useState(0);
+  const [todoProperties, setTodoProperties] = useState({});
   const [refreshFlag, setRefreshFlag] = useState(0);
   
   const showDailyBoard = () => {
@@ -22,9 +22,9 @@ const MainPage = () => {
     setBoardNum(2);
   };
 
-  const showEditPage = (id) => {
+  const showEditPage = (data) => {
     setPrevBoardNum(boardNum);
-    setTodoId(id);
+    setTodoProperties(data);
     setBoardNum(3);
   };
 
@@ -59,7 +59,7 @@ const MainPage = () => {
   else {
     return (
       <div className="bodypage">
-        <EditPage showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} prevBoard={prevBoardNum} id={todo_id} />
+        <EditPage showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} prevBoard={prevBoardNum} data={todoProperties} />
       </div>
     );
   }
@@ -67,7 +67,7 @@ const MainPage = () => {
 
 const MenuBar = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, showEditPage, refreshAll}) => {
   const addTodo = () => {
-    showEditPage(-1);
+    showEditPage({id:-1});
   };
 
   return (

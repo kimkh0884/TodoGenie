@@ -9,7 +9,7 @@ const NavBar = ({showLoginPage, showSettingPage, showTutorialPage}) => {
 
   return (
     <div className = "headpage flex-row">
-      <div className='flex-cell-1'><b>To-do Genie Logo</b></div>
+      <div className='flex-cell-1'><font className="todogenie-logo">To-do Genie</font></div>
       <div className='flex-cell-1'>
         <div className='floating-right'>
           <b>User id</b>
