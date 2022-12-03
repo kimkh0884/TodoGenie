@@ -2,32 +2,63 @@ const router = require("express").Router();
 const Todo = require("../models/todo");
 
 router.get("/", (req, res) => {
-    Todo.findAll(req.session.userId)
+    const startDate = req.query.start;
+    const endDate = req.query.end;
+    
+    if(startDate && endDate) {
+      Todo.findByTime(req.session.userId, startDate, endDate)
       .then((todos) => {
         res.send(todos);
       })
       .catch((err) => res.status(500).send(err));
+    } else {      
+      Todo.findAll(req.session.userId)
+      .then((todos) => {
+        res.send(todos);
+      })
+      .catch((err) => res.status(500).send(err));
+    }
 });
 
 router.post("/", (req, res) => {
     const body = req.body;
-    Todo.create({
-      title: body.title,
-      owner: req.session.userId,
-      start: body.start,
-      end: body.end,
-      state: 'UNDONE'
-    })
+    if(body.start) {
+      Todo.create({
+        title: body.title,
+        owner: req.session.userId,
+        start: body.start,
+        end: body.end,
+        state: 0 
+      })
       .then((todo) => res.send(todo))
       .catch((err) => res.status(500).send(err));
+    } else {
+      Todo.create({
+        title: body.title,
+        owner: req.session.userId,
+        end: body.end,
+        state: 0
+      })
+      .then((todo) => res.send(todo))
+      .catch((err) => res.status(500).send(err));
+    }
   });
 
 router.put("/:todoId", (req, res) => {
     Todo.findOneById(req.params.todoId)
       .then((todo) => {
-          todo.title = req.body.title;
-          todo.start = req.body.start;
-          todo.end = req.body.end;
+          if(req.body.title) {
+            todo.title = req.body.title;
+          }
+          if(req.body.todo) {
+            todo.start = req.body.start;
+          } 
+          if(req.body.end) {
+            todo.end = req.body.end;
+          }
+          if(req.body.state) {
+            todo.state = req.body.state;
+          }
           todo.save();
           res.send(todo);
       })
@@ -51,6 +82,17 @@ router.get("/recommendation", (req, res) => {
   Todo.findAll()
     .then((todos) => {
       res.send(todos);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get("/search", (req, res) => {
+  const keyword = req.query.keyword;
+  if(keyword == null) keyword = "";
+
+  Todo.search(keyword)
+    .then((todos) =>  {
+        res.send(todos);
     })
     .catch((err) => res.status(500).send(err));
 });
