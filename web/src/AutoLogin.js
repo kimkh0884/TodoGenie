@@ -2,11 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {login, searchAuthInfo} from "./api.js";
 import LoginPage from './LoginPage';
 import MainFrame from './MainFrame';
-
-const getCookie = (name) => {
-  let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-  return value? value[2] : null;
-};
+import "./all.css";
 
 const AutoLogin = () => {
   const [loginFlag, setFlag]= useState(0);

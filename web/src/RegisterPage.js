@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {register} from "./api.js";
 import AutoLogin from './AutoLogin';
 import LoginPage from './LoginPage';
+import "./all.css";
 
 const RegisterPage = () => {
   const [registerFlag, setFlag]= useState(0);
@@ -14,14 +15,17 @@ const RegisterPage = () => {
     let name = document.getElementById("todogenie-register-name").value;
     if (name === "") {
       window.alert("Name is empty.");
+      return;
     }
     let id = document.getElementById("todogenie-register-id").value;
     if (id === "") {
       window.alert("ID is empty.");
+      return;
     }
     let pw = document.getElementById("todogenie-register-pw").value;
     if (pw === "") {
       window.alert("PW is empty.");
+      return;
     }
 
     let res = register(name, id, pw);

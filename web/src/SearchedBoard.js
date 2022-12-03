@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { loadTodo, editTodo, deleteTodo } from './api';
+import { searchTodo, editTodo, deleteTodo } from './api';
 import "./all.css";
 
 const sampleData = [
@@ -26,36 +26,11 @@ const sampleData = [
     }
 ];
 
-const dateToInt = (date) => {
-    return ((date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate());
-};
-
-const intToString = (dtint) => {
-    return (parseInt(dtint / 10000) + "-" + parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
-};
-
-const DailyBoard = ({showEditPage}) => {
-    const today = new Date();
-    const [focusedDate, setFocusedDate] = useState(dateToInt(today));
+const SearchedBoard = ({showEditPage, keyword}) => {
     const [rmFlag, setRmFlag] = useState(0);
 
-    const oneDayBefore = () => {
-        let dt = new Date(intToString(focusedDate));
-        dt.setDate(dt.getDate() - 1);
-        setFocusedDate(dateToInt(dt));
-    };
-
-    const oneDayAfter = () => {
-        let dt = new Date(intToString(focusedDate));
-        dt.setDate(dt.getDate() + 1);
-        setFocusedDate(dateToInt(dt));
-    };
-
     const loadTodolist = () => {
-        let startdt = new Date(intToString(focusedDate)+" 00:00");
-        let enddt = new Date(intToString(focusedDate)+" 23:59");
-
-        let res = loadTodo(startdt.getTime(), enddt.getTime());
+        let res = searchTodo(keyword);
         if (res == null) {
             return sampleData;
         }
@@ -75,20 +50,20 @@ const DailyBoard = ({showEditPage}) => {
     };
   
     return (
-        <div className="dailyboard">
+        <div className="searchedboard">
             <div className='db-head'>
-                <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-1vw' onClick={oneDayBefore}>Previous Day</button></div>
-                <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-1vw'>{intToString(focusedDate)}</button></div>
-                <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-1vw' onClick={oneDayAfter}>Next Day</button></div>
+                <div className='flex-cell-1'>
+                    <button className='rectangle-10-1 align-center margin-1vw padding-both-1vw length-maintain'>Searched for "{keyword}"</button>
+                </div>
             </div>
             {loadTodolist().map((todoitem) => (
-                <DailyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+                <SearchedBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
     );
 };
   
-const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}) => {
+const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}) => {
     const [moreFlag, setFlag] = useState(0);
     const [currState, setState] = useState(state);
 
@@ -175,4 +150,4 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
     }
 };
 
-export default DailyBoard;
+export default SearchedBoard;

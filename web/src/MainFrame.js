@@ -4,6 +4,7 @@ import MainPage from "./MainPage";
 import SettingPage from "./SettingPage";
 import TutorialPage from "./TutorialPage";
 import LoginPage from './LoginPage';
+import "./all.css";
 
 const MainFrame = () => {
     const [loginFlag, setLoginFlag] = useState(1);

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {login, saveAuthInfo} from "./api.js";
 import MainFrame from "./MainFrame";
 import RegisterPage from "./RegisterPage";
+import "./all.css";
 
 const LoginPage = () => {
   const [directLoginFlag, setDirectLoginFlag] = useState(0);
@@ -20,10 +21,12 @@ const LoginPage = () => {
     let id = document.getElementById("todogenie-login-id").value;
     if (id === "") {
       window.alert("ID is empty.");
+      return;
     }
     let pw = document.getElementById("todogenie-login-pw").value;
     if (pw === "") {
       window.alert("PW is empty.");
+      return;
     }
     let res = login(id, pw);
 
@@ -50,6 +53,10 @@ const LoginPage = () => {
     setPageNum(2);
   };
 
+  const testlogin = () => {
+    setPageNum(1);
+  };
+
   const revState = () => {
     if (authinfoSaveFlag === 0) {
       setAuthInfoSaveFlag(1);
@@ -67,6 +74,7 @@ const LoginPage = () => {
           <button className="rectangle-10-1 margin-1vh align-center" onClick={unfold}>Sign in</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
+          <button className="rectangle-10-1 margin-1vh align-center" onClick={testlogin}>login(for test)</button>
         </div>
       );
     }
@@ -83,11 +91,12 @@ const LoginPage = () => {
             <input id="todogenie-login-pw" type="password" className='rectangle-10-1 margin-left-1vw padding-both-1vw' placeholder="password (essential)" />
           </div>
           <div className="margin-1vh align-center">
-            {authinfoSaveFlag == 0 ? <button className='rectangle-10-1 padding-both-1vw state-done' onClick={revState}>Not use auto-login</button> : <button className='rectangle-10-1 padding-both-1vw state-notyet' onClick={revState}>Use auto-login for 1 day</button>}
+            {authinfoSaveFlag === 0 ? <button className='rectangle-8-1 state-done' onClick={revState}>Not use auto-login</button> : <button className='rectangle-8-1 state-notyet' onClick={revState}>Use auto-login for 1 day</button>}
           </div>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryLogin}>Sign in</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
+          <button className="rectangle-10-1 margin-1vh align-center" onClick={testlogin}>login(for test)</button>
         </div>
       );
     }

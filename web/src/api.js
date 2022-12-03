@@ -14,7 +14,7 @@ const register = (username, id, pw) => {
     axios.post((server_url + "/users/sign_up"), data).then((res) => {
         return true;
     }).catch((e) => {
-        console.log(e);
+        console.log("register: "+e);
         return false;
     });
 };
@@ -28,7 +28,7 @@ const login = (id, pw) => {
     axios.post((server_url + "/users/login"), data).then((res) => {
         return true;
     }).catch((e) => {
-        window.alert(e);
+        console.log("login: "+e);
         return false;
     });
 };
@@ -37,7 +37,7 @@ const logout = () => {
     axios.get((server_url + "/users/logout")).then((res) => {
         return true;
     }).catch((e) => {
-        window.alert(e);
+        console.log("logout: "+e);
         return false;
     });
 };
@@ -51,8 +51,21 @@ const loadTodo = (start, end) => {
     axios.get((server_url + "/todos"), {params: ps}).then((res) => {
         return res;
     }).catch((e) => {
-        window.alert(e);
-        return [];
+        console.log("loadTodo: "+e);
+        return null;
+    });
+};
+
+const searchTodo = (keyword) => {
+    const ps = {
+        keyword: keyword
+    };
+    
+    axios.get((server_url + "/todos/search"), {params: ps}).then((res) => {
+        return res;
+    }).catch((e) => {
+        console.log("searchTodo: "+e);
+        return null;
     });
 };
 
@@ -66,7 +79,7 @@ const addTodo = (title, start, end) => {
     axios.post((server_url + "/todos"), data).then((res) => {
         return true;
     }).catch((e) => {
-        window.alert(e);
+        console.log("addTodo: "+e);
         return false;
     });
 };
@@ -82,7 +95,7 @@ const editTodo = (id, title, start, end, state) => {
     axios.put((server_url + "/todos/:" + id), data).then((res) => {
         return true;
     }).catch((e) => {
-        window.alert(e);
+        console.log("editTodo: "+e);
         return false;
     });
 };
@@ -91,7 +104,7 @@ const deleteTodo = (id) => {
     axios.delete((server_url + "/todos:" + id)).then((res) => {
         return true;
     }).catch((e) => {
-        window.alert(e);
+        console.log("deleteTodo: "+e);
         return false;
     });
 };
@@ -101,7 +114,7 @@ const KEY = "WfH+%ug%G?TT=G/FY9z!6M}aqAQg?]pz";
 const saveAuthInfo = (authinfo) => {
     let encrypted_info = CryptoJS.AES.encrypt(JSON.stringify(authinfo), KEY).toString();
     let dt = new Date();
-    dt.setDate(date.getDate()+1);
+    dt.setDate(dt.getDate()+1);
     document.cookie = "dL7uM4gyk4="+encrypted_info+";path=/;expires="+dt.toUTCString()+";";
 }
 
@@ -117,4 +130,4 @@ const searchAuthInfo = () => {
     }
 }
 
-export {register, login, logout, loadTodo, addTodo, editTodo, deleteTodo, saveAuthInfo, searchAuthInfo};
+export {register, login, logout, loadTodo, searchTodo, addTodo, editTodo, deleteTodo, saveAuthInfo, searchAuthInfo};

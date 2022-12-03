@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { loadTodo, addTodo, editTodo } from './api';
+import { addTodo, editTodo } from './api';
+import "./all.css";
 
 const getTodoProperties = (data) => {
   if (data.id === -1) {
@@ -17,7 +18,7 @@ const getTodoProperties = (data) => {
 };
 
 const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
-  const todo_properties = getTodoProperties(id);
+  const todo_properties = getTodoProperties(data);
   const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {

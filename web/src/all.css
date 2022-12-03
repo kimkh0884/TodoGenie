@@ -101,8 +101,8 @@ button {
     width: 100%;
 }
 
-.flex-cell-5 {
-    flex: 5;
+.flex-cell-4 {
+    flex: 4;
 }
 
 .flex-cell-1 {
@@ -243,6 +243,23 @@ button {
     font-size: 0.66vw;
     font-weight: bold;
     font-family: "Nunito";
+}
+
+.search-bar {
+    width: 90%;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 10px;    
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.length-maintain {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .db-head {
@@ -461,6 +478,27 @@ button {
 
 .state-notyet {
     background-color: #ff6666;
+}
+
+.add-button {
+    background-image: url(resources/plus-black-symbol.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.refresh-button {
+    background-image: url(resources/refresh-page-option.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.search-button {
+    background-image: url(resources/magnifying-glass.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .edit-button {

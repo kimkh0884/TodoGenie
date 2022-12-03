@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "./all.css";
 
 /*
 A. Only shown for the first time after sign up.

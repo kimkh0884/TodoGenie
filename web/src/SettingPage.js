@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "./all.css";
 
 /*
 Profile for the account that the user is signed in.

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { loadTodo, deleteTodo } from './api';
+import { loadTodo, editTodo, deleteTodo } from './api';
+import "./all.css";
 
 const sampleData = [
     {
@@ -361,12 +362,22 @@ const MonthlyBoardCell = ({date, showEditPage}) => {
         let enddt = new Date(intToString(date)+" 23:59");
 
         let res = loadTodo(startdt.getTime(), enddt.getTime());
-        return res;
+        if (res == null) {
+            return [];
+        }
+        else {
+            return res;
+        }
     };
     
     const removeTodo = (id) => {
-        deleteTodo(id);
-        setRmFlag(rmFlag + 1);
+        let res = deleteTodo(id);
+        if (res) {
+            setRmFlag(rmFlag + 1);
+        }
+        else {
+            window.alert("Removing the to-do is failed.");
+        }
     };
 
     return (
@@ -395,10 +406,24 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
 
     const revState = () => {
         if (currState === 0) {
-            setState(1);
+            let res = editTodo(id, title, start, end, currState);
+
+            if (res) {
+                setState(1);
+            }
+            else {
+                window.alert("Changing the state is failed.");
+            }
         }
         else {
-            setState(0);
+            let res = editTodo(id, title, start, end, currState);
+
+            if (res) {
+                setState(0);
+            }
+            else {
+                window.alert("Changing the state is failed.");
+            }
         }
     };
     
