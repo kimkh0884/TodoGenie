@@ -51,25 +51,27 @@ router.get('/login', function(req, res, next) {
 // 로그인 POST
 router.post("/login", async function(req, res, next){
   let body = req.body;
+  console.log(body);
 
   let result = await User.findOne({
-      where: {
-          userId : body.userId
-      }
+      userId : body.userId
   });
 
-  let dbPassword = result.password;
-  let inputPassword = body.password;
-  let salt = result.salt;
-  let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
-
-  if(dbPassword === hashPassword){
-      console.log("비밀번호 일치");
-
-      req.session.userId = body.userId;
-  }
-  else{
-      console.log("비밀번호 불일치");
+  if(result) {
+    let dbPassword = result.password;
+    let inputPassword = body.password;
+    let salt = result.salt;
+    let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
+  
+    if(dbPassword === hashPassword){
+        console.log("비밀번호 일치");
+  
+        req.session.userId = body.userId;  
+    } else{
+        console.log("비밀번호 불일치");
+    }
+  } else {
+    console.log("존재하지 않는 아이디");
   }
   res.redirect("/users/login");
 });

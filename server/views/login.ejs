@@ -11,6 +11,25 @@
 <form action="/users/logout" method="get">
     <input type="submit" value="로그아웃">
 </form>
+<form action="/todos" method="post">
+    <table>
+        <tr>
+            <td>title</td>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td>start: </td>
+            <td><input type="number" name="start"></td>
+        </tr>
+        <tr>
+            <td>end: </td>
+            <td><input type="number" name="end"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="upload todo"></td>
+        </tr>
+    </table>
+</form>
 
 <% } else{ %>
 <h3>로그인</h3>
