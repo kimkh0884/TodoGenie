@@ -27,16 +27,16 @@ const RegisterPage = () => {
       window.alert("PW is empty.");
       return;
     }
-
-    let res = register(name, id, pw);
-
-    if (res) {
-      window.alert("Successfully registered.");
-      setFlag(1);
-    }
-    else {
-      window.alert("Registration failed.");
-    }
+    
+    register(name, id, pw, 
+      () => {
+        window.alert("Successfully registered.");
+        setFlag(1);
+      }, 
+      (e) => {
+        console.log("register: "+e);
+        window.alert("Registration failed.");
+      });
   };
 
   const cancelRegister = () => {

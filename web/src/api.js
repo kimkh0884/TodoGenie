@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
     baseURL: server_url
 });
 
-const register = (username, id, pw) => {
+const register = (username, id, pw, success, fail) => {
     const data = {
         userName: username,
         userId: id,
@@ -19,24 +19,26 @@ const register = (username, id, pw) => {
     };
     
     axiosInstance.post((server_url + "/users/sign_up"), data).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
-        console.log("register: "+e);
-        return false;
+        console.log("login: "+e);
+        fail();
     });
 };
 
-const login = (id, pw) => {
+const login = (id, pw, success, fail) => {
     const data = {
         userId: id,
         password: pw
     };
     
     axiosInstance.post((server_url + "/users/login"), data).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
         console.log("login: "+e);
-        return false;
+        fail();
     });
 };
 

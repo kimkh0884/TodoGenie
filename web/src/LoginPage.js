@@ -28,17 +28,25 @@ const LoginPage = () => {
       window.alert("PW is empty.");
       return;
     }
-    let res = login(id, pw);
 
-    if (res) {
-      if (authinfoSaveFlag === 1) {
+    let success = null;
+    if (authinfoSaveFlag === 1) {
+      success = () => {
         saveAuthInfo({id, pw});
-      }
-      setPageNum(1);
+        setPageNum(1);
+      };
     }
     else {
-      window.alert("login failed.");
+      success = () => {
+        setPageNum(1);
+      };
     }
+    
+    login(id, pw, success,
+      (e) => {
+        console.log("login: "+e);
+        window.alert("login failed.");
+      });
   };
 
   const tryGoogleLogin = () => {
