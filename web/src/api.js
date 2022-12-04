@@ -19,8 +19,13 @@ const register = (username, id, pw, success, fail) => {
     };
     
     axiosInstance.post((server_url + "/users/sign_up"), data).then((res) => {
-        console.log(res);
-        //success();
+        if (res.data === "user name already exists") {
+            fail();
+        }
+        else {
+            success();
+        }
+        //console.log(res);
     }).catch((e) => {
         console.log("register: "+e);
         fail();
@@ -52,34 +57,34 @@ const logout = (success, fail) => {
     });
 };
 
-const loadTodo = (start, end) => {
+const loadTodo = (start, end, success, fail) => {
     const ps = {
         start: start,
         end: end
     };
     
     axiosInstance.get((server_url + "/todos"), {params: ps}).then((res) => {
-        return res;
+        success(res.data);
     }).catch((e) => {
         console.log("loadTodo: "+e);
-        return null;
+        fail();
     });
 };
 
-const searchTodo = (keyword) => {
+const searchTodo = (keyword, success, fail) => {
     const ps = {
         keyword: keyword
     };
     
     axiosInstance.get((server_url + "/todos/search"), {params: ps}).then((res) => {
-        return res;
+        success(res.data);
     }).catch((e) => {
         console.log("searchTodo: "+e);
-        return null;
+        fail();
     });
 };
 
-const addTodo = (title, start, end) => {
+const addTodo = (title, start, end, success, fail) => {
     const data = {
         title: title,
         start: start,
@@ -87,14 +92,15 @@ const addTodo = (title, start, end) => {
     };
     
     axiosInstance.post((server_url + "/todos"), data).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
         console.log("addTodo: "+e);
-        return false;
+        fail();
     });
 };
 
-const editTodo = (id, title, start, end, state) => {
+const editTodo = (id, title, start, end, state, success, fail) => {
     const data = {
         title: title,
         start: start,
@@ -103,19 +109,21 @@ const editTodo = (id, title, start, end, state) => {
     };
     
     axiosInstance.put((server_url + "/todos/:" + id), data).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
         console.log("editTodo: "+e);
-        return false;
+        fail();
     });
 };
 
-const deleteTodo = (id) => {    
+const deleteTodo = (id, success, fail) => {    
     axiosInstance.delete((server_url + "/todos:" + id)).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
         console.log("deleteTodo: "+e);
-        return false;
+        fail();
     });
 };
 
@@ -131,8 +139,8 @@ const saveAuthInfo = (authinfo) => {
 const searchAuthInfo = () => {
     let regex = new RegExp("dL7uM4gyk4=([^;]*)");
     if (regex.test(document.cookie)) {
-        let encrypted_info = RegExp.exec(document.cookie);
-        let decryted_info = CryptoJS.AES.decrypt(encrypted_info, KEY).toString();
+        let encrypted_info = regex.exec(document.cookie);
+        let decryted_info = CryptoJS.AES.decrypt(encrypted_info[0], KEY).toString();
         return JSON.parse(decryted_info);
     }
     else {

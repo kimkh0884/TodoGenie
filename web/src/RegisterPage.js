@@ -34,7 +34,7 @@ const RegisterPage = () => {
         setFlag(1);
       }, 
       () => {
-        window.alert("Registration failed.");
+        window.alert("Registration is failed.");
       });
   };
 

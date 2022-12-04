@@ -10,7 +10,7 @@ const MainPage = () => {
   const [boardNum, setBoardNum] = useState(0);
   const [prevBoardNum, setPrevBoardNum] = useState(0);
   const [keyword, setKeyword] = useState("");
-  const [todoProperties, setTodoProperties] = useState({});
+  const [todoProperties, setTodoProperties] = useState("");
   const [refreshFlag, setRefreshFlag] = useState(0);
   
   const showDailyBoard = () => {
@@ -45,7 +45,7 @@ const MainPage = () => {
     if (boardNum !== 3) {
       setPrevBoardNum(boardNum);
     }
-    setTodoProperties(data);
+    setTodoProperties(JSON.stringify(data));
     setBoardNum(4);
   };
 
@@ -96,7 +96,13 @@ const MainPage = () => {
 
 const MenuBar = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, showSearchedBoard, showEditPage, refreshAll}) => {
   const addTodo = () => {
-    showEditPage({id:-1});
+    showEditPage({
+      id:-1,
+      title:"",
+      start:"",
+      end:"",
+      state:0
+    });
   };
 
   return (

@@ -2,23 +2,8 @@ import React, {useState} from 'react';
 import { addTodo, editTodo } from './api';
 import "./all.css";
 
-const getTodoProperties = (data) => {
-  if (data.id === -1) {
-    return ({
-      id: -1,
-      title: "",
-      start: "",
-      end: "",
-      state: 0
-    });
-  }
-  else {
-    return data;
-  }
-};
-
 const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
-  const todo_properties = getTodoProperties(data);
+  const todo_properties = JSON.parse(data);
   const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {
@@ -37,50 +22,43 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
 
   const saveAndExit = () => {
     if (window.confirm("Do you want to save the contents?")) {
-      let res = null;
       let title = document.getElementById("ep-title").value;
       let start = document.getElementById("ep-start").value;
       let end = document.getElementById("ep-end").value;
       console.log(title);
       console.log(start);
       console.log(end);
-      if (todo_properties.id === -1) {
-        res = addTodo(title, start, end);
 
-        if (res) {
-          window.alert("Successfully added.");
-          if (prevBoard === 0) {
-            showDailyBoard();
-          }
-          else if (prevBoard === 1) {
-            showWeeklyBoard();
-          }
-          else {
-            showMonthlyBoard();
-          }
-        }
-        else {
-          window.alert("Adding a to-do is failed.");
-        }
+      let success = null;
+      if (prevBoard === 0) {
+        success = showDailyBoard;
+      }
+      else if (prevBoard === 1) {
+        success = showWeeklyBoard;
       }
       else {
-        res = editTodo(todo_properties.id, title, start, end, doneFlag);
+        success = showMonthlyBoard;
+      }
 
-        if (res) {
-          window.alert("Successfully editted.");
-          if (prevBoard === 0) {
-            showDailyBoard();
-          }
-          else if (prevBoard === 1) {
-            showWeeklyBoard();
-          }
-          else {
-            showMonthlyBoard();
-          }
-        }
-        else {
-          window.alert("Editting the to-do is failed.");
-        }
+      if (todo_properties.id === -1) {
+        addTodo(title, start, end,
+          () => {
+            window.alert("Successfully added.");
+            success();
+          },
+          () => {
+            window.alert("Adding a to-do is failed.");
+          });
+      }
+      else {
+        editTodo(todo_properties.id, title, start, end, doneFlag,
+          () => {
+            window.alert("Successfully editted.");
+            success();
+          },
+          () => {
+            window.alert("Editting the to-do is failed.");
+          });
       }
     }
   };

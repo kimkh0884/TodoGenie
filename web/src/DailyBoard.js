@@ -1,30 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { loadTodo, editTodo, deleteTodo } from './api';
 import "./all.css";
-
-const sampleData = [
-    {
-        id: 0,
-        title: "sample0",
-        start: "2022-11-22 00:00",
-        end: "2022-11-22 01:00",
-        state: 0
-    },
-    {
-        id: 1,
-        title: "sample1",
-        start: "2022-11-22 01:00",
-        end: "2022-11-22 02:00",
-        state: 0
-    },
-    {
-        id: 2,
-        title: "veryveryverylongnamesample",
-        start: "2022-11-22 02:00",
-        end: "2022-11-22 03:00",
-        state: 1
-    }
-];
 
 const dateToInt = (date) => {
     return ((date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate());
@@ -36,6 +12,7 @@ const intToString = (dtint) => {
 
 const DailyBoard = ({showEditPage}) => {
     const today = new Date();
+    const [todoList, setTodoList] = useState([]);
     const [focusedDate, setFocusedDate] = useState(dateToInt(today));
     const [rmFlag, setRmFlag] = useState(0);
 
@@ -55,22 +32,24 @@ const DailyBoard = ({showEditPage}) => {
         let startdt = new Date(intToString(focusedDate)+" 00:00");
         let enddt = new Date(intToString(focusedDate)+" 23:59");
 
-        return loadTodo(startdt.getTime(), enddt.getTime(), 
+        loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
-                return res;
+                setTodoList(res);
             },
             () => {
-                return sampleData
+                setTodoList([]);
             });
     };
+    useEffect(loadTodolist, [focusedDate]);
 
     const removeTodo = (id) => {
-        deleteTodo(id, () => {
-            setRmFlag(rmFlag + 1);
-        },
-        () => {
-            window.alert("Removing the to-do is failed.");
-        });
+        deleteTodo(id, 
+            () => {
+                setRmFlag(rmFlag + 1);
+            },
+            () => {
+                window.alert("Removing the to-do is failed.");
+            });
     };
   
     return (
@@ -80,7 +59,7 @@ const DailyBoard = ({showEditPage}) => {
                 <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-1vw'>{intToString(focusedDate)}</button></div>
                 <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-1vw' onClick={oneDayAfter}>Next Day</button></div>
             </div>
-            {loadTodolist().map((todoitem) => (
+            {todoList.map((todoitem) => (
                 <DailyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
@@ -101,24 +80,22 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
 
     const revState = () => {
         if (currState === 0) {
-            let res = editTodo(id, title, start, end, currState);
-
-            if (res) {
-                setState(1);
-            }
-            else {
-                window.alert("Changing the state is failed.");
-            }
+            editTodo(id, title, start, end, currState,
+                () => {
+                    setState(1);
+                },
+                () => {
+                    window.alert("Changing the state is failed.");
+                });
         }
         else {
-            let res = editTodo(id, title, start, end, currState);
-
-            if (res) {
-                setState(0);
-            }
-            else {
-                window.alert("Changing the state is failed.");
-            }
+            editTodo(id, title, start, end, currState,
+                () => {
+                    setState(0);
+                },
+                () => {
+                    window.alert("Changing the state is failed.");
+                });
         }
     };
     

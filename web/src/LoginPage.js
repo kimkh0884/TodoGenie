@@ -44,7 +44,7 @@ const LoginPage = () => {
     
     login(id, pw, success,
       () => {
-        window.alert("login failed.");
+        window.alert("Login is failed.");
       });
   };
 

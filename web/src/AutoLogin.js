@@ -13,10 +13,13 @@ const AutoLogin = () => {
   const tryLogin = () => {    
     let authinfo = searchAuthInfo();
     if (authinfo != null) {
-      let res = login(authinfo.id, authinfo.pw);
-      if (res) {
-        setFlag(2);
-      }
+      login(authinfo.id, authinfo.pw,
+        () => {
+          setFlag(2);
+        },
+        () => {
+          window.alert("Login is failed.");
+        });
     }
     setFlag(1);
   }

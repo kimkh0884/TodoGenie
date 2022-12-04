@@ -1,52 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { searchTodo, editTodo, deleteTodo } from './api';
 import "./all.css";
 
-const sampleData = [
-    {
-        id: 0,
-        title: "sample0",
-        start: "2022-11-22 00:00",
-        end: "2022-11-22 01:00",
-        state: 0
-    },
-    {
-        id: 1,
-        title: "sample1",
-        start: "2022-11-22 01:00",
-        end: "2022-11-22 02:00",
-        state: 0
-    },
-    {
-        id: 2,
-        title: "veryveryverylongnamesample",
-        start: "2022-11-22 02:00",
-        end: "2022-11-22 03:00",
-        state: 1
-    }
-];
-
 const SearchedBoard = ({showEditPage, keyword}) => {
+    const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
     const loadTodolist = () => {
-        let res = searchTodo(keyword);
-        if (res == null) {
-            return sampleData;
-        }
-        else {
-            return res;
-        }
+        searchTodo(keyword, 
+            (res) => {
+                setTodoList(res);
+            },
+            () => {
+                setTodoList([]);
+            });
     };
+    useEffect(loadTodolist, [keyword]);
 
     const removeTodo = (id) => {
-        let res = deleteTodo(id);
-        if (res) {
-            setRmFlag(rmFlag + 1);
-        }
-        else {
-            window.alert("Removing the to-do is failed.");
-        }
+        deleteTodo(id, 
+            () => {
+                setRmFlag(rmFlag + 1);
+            },
+            () => {
+                window.alert("Removing the to-do is failed.");
+            });
     };
   
     return (
@@ -56,7 +34,7 @@ const SearchedBoard = ({showEditPage, keyword}) => {
                     <button className='rectangle-10-1 align-center margin-1vw padding-both-1vw length-maintain'>Searched for "{keyword}"</button>
                 </div>
             </div>
-            {loadTodolist().map((todoitem) => (
+            {todoList.map((todoitem) => (
                 <SearchedBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
@@ -77,24 +55,22 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
 
     const revState = () => {
         if (currState === 0) {
-            let res = editTodo(id, title, start, end, currState);
-
-            if (res) {
-                setState(1);
-            }
-            else {
-                window.alert("Changing the state is failed.");
-            }
+            editTodo(id, title, start, end, currState,
+                () => {
+                    setState(1);
+                },
+                () => {
+                    window.alert("Changing the state is failed.");
+                });
         }
         else {
-            let res = editTodo(id, title, start, end, currState);
-
-            if (res) {
-                setState(0);
-            }
-            else {
-                window.alert("Changing the state is failed.");
-            }
+            editTodo(id, title, start, end, currState,
+                () => {
+                    setState(0);
+                },
+                () => {
+                    window.alert("Changing the state is failed.");
+                });
         }
     };
     

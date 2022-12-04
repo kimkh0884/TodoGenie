@@ -5,13 +5,14 @@ import "./all.css";
 const NavBar = ({showLoginPage, showSettingPage, showTutorialPage}) => {
   const tryLogout = () => {
     if (window.confirm("Do you want to logout?")) {
-      if (logout()) {
-        window.alert("Successfully logged out");
-        showLoginPage();
-      }
-      else {
-        window.alert("Logout is failed.");
-      }
+      logout(
+        () => {
+          window.alert("Successfully logged out");
+          showLoginPage();
+        },
+        () => {
+          window.alert("Logout is failed.");
+        });
     }
   };
 
