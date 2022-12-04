@@ -21,4 +21,8 @@ userSchema.statics.findAll = function () {
   return this.find({});
 };
 
+userSchema.statics.findExisting = function(userId) {
+  return this.findOne({ userId : userId });
+}
+
 module.exports = mongoose.model("User", userSchema);
