@@ -12,6 +12,7 @@ const port = 8000;
 const path = require('path');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const cors = require('cors');
 
 const uri = "mongodb+srv://admin:admin12345@cluster0.pzm0h.mongodb.net/todoGenie?retryWrites=true&w=majority";
 const GOOGLE_CLIENT_ID = "465272069084-thehp3rgl4ji68pf4m65l7d2bbrcn34j.apps.googleusercontent.com";
@@ -39,6 +40,7 @@ app.use("/todos", require("./routes/todos"));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
+app.use(cors());
 
 
 server.listen(port, () => {
