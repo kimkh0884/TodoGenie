@@ -18,21 +18,21 @@ router.post("/sign_up", async function(req,res,next){
   User.findExisting(body.userId)
   .then( user => {
     if(user) {
-      res.send("user name already exists");
+      return res.send("user name already exists");
+    } else {
+      User.create({
+        userName: body.userName,
+        userId: body.userId,
+        password: hashPassword,
+        salt: salt
+      })
+      .then( user => {
+        res.send(user);
+      })
+      .catch( err => {
+        console.log(err)
+      })
     }
-  })
-  
-  User.create({
-    userName: body.userName,
-    userId: body.userId,
-    password: hashPassword,
-    salt: salt
-  })
-  .then( user => {
-    res.send(user);
-  })
-  .catch( err => {
-    console.log(err)
   })
 })
 
