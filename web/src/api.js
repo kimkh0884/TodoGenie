@@ -2,7 +2,14 @@
 import axios from 'axios';
 import CryptoJS from "crypto-js";
 
-const server_url = "";
+const server_url = "http://localhost:8000";
+
+const axiosInstance = axios.create({
+    headers: {
+        'Access-Control-Allow-Origin': '*'
+    },
+    baseURL: server_url
+});
 
 const register = (username, id, pw) => {
     const data = {
@@ -11,7 +18,7 @@ const register = (username, id, pw) => {
         password: pw
     };
     
-    axios.post((server_url + "/users/sign_up"), data).then((res) => {
+    axiosInstance.post((server_url + "/users/sign_up"), data).then((res) => {
         return true;
     }).catch((e) => {
         console.log("register: "+e);
@@ -25,7 +32,7 @@ const login = (id, pw) => {
         password: pw
     };
     
-    axios.post((server_url + "/users/login"), data).then((res) => {
+    axiosInstance.post((server_url + "/users/login"), data).then((res) => {
         return true;
     }).catch((e) => {
         console.log("login: "+e);
@@ -34,7 +41,7 @@ const login = (id, pw) => {
 };
 
 const logout = () => {    
-    axios.get((server_url + "/users/logout")).then((res) => {
+    axiosInstance.get((server_url + "/users/logout")).then((res) => {
         return true;
     }).catch((e) => {
         console.log("logout: "+e);
@@ -48,7 +55,7 @@ const loadTodo = (start, end) => {
         end: end
     };
     
-    axios.get((server_url + "/todos"), {params: ps}).then((res) => {
+    axiosInstance.get((server_url + "/todos"), {params: ps}).then((res) => {
         return res;
     }).catch((e) => {
         console.log("loadTodo: "+e);
@@ -61,7 +68,7 @@ const searchTodo = (keyword) => {
         keyword: keyword
     };
     
-    axios.get((server_url + "/todos/search"), {params: ps}).then((res) => {
+    axiosInstance.get((server_url + "/todos/search"), {params: ps}).then((res) => {
         return res;
     }).catch((e) => {
         console.log("searchTodo: "+e);
@@ -76,7 +83,7 @@ const addTodo = (title, start, end) => {
         end: end
     };
     
-    axios.post((server_url + "/todos"), data).then((res) => {
+    axiosInstance.post((server_url + "/todos"), data).then((res) => {
         return true;
     }).catch((e) => {
         console.log("addTodo: "+e);
@@ -92,7 +99,7 @@ const editTodo = (id, title, start, end, state) => {
         state: state
     };
     
-    axios.put((server_url + "/todos/:" + id), data).then((res) => {
+    axiosInstance.put((server_url + "/todos/:" + id), data).then((res) => {
         return true;
     }).catch((e) => {
         console.log("editTodo: "+e);
@@ -101,7 +108,7 @@ const editTodo = (id, title, start, end, state) => {
 };
 
 const deleteTodo = (id) => {    
-    axios.delete((server_url + "/todos:" + id)).then((res) => {
+    axiosInstance.delete((server_url + "/todos:" + id)).then((res) => {
         return true;
     }).catch((e) => {
         console.log("deleteTodo: "+e);
