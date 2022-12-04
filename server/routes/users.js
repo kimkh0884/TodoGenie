@@ -74,14 +74,16 @@ router.post("/login", async function(req, res, next){
     if(dbPassword === hashPassword){
         console.log("비밀번호 일치");
   
-        req.session.userId = body.userId;  
+        req.session.userId = body.userId;
+        res.send(result);  
     } else{
         console.log("비밀번호 불일치");
+        res.send("Wrong Password");
     }
   } else {
     console.log("존재하지 않는 아이디");
+    res.send("No matching ID");
   }
-  res.redirect("/users/login");
 });
 
 // 로그아웃
@@ -89,7 +91,7 @@ router.get("/logout", function(req,res,next){
   req.session.destroy();
   res.clearCookie('sid');
 
-  res.redirect("/users/login")
+  res.send("Logged out");
 })
 
 module.exports = router;
