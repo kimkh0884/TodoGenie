@@ -55,23 +55,22 @@ const DailyBoard = ({showEditPage}) => {
         let startdt = new Date(intToString(focusedDate)+" 00:00");
         let enddt = new Date(intToString(focusedDate)+" 23:59");
 
-        let res = loadTodo(startdt.getTime(), enddt.getTime());
-        if (res == null) {
-            return sampleData;
-        }
-        else {
-            return res;
-        }
+        return loadTodo(startdt.getTime(), enddt.getTime(), 
+            (res) => {
+                return res;
+            },
+            () => {
+                return sampleData
+            });
     };
 
     const removeTodo = (id) => {
-        let res = deleteTodo(id);
-        if (res) {
+        deleteTodo(id, () => {
             setRmFlag(rmFlag + 1);
-        }
-        else {
+        },
+        () => {
             window.alert("Removing the to-do is failed.");
-        }
+        });
     };
   
     return (

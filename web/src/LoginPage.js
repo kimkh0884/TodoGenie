@@ -43,8 +43,7 @@ const LoginPage = () => {
     }
     
     login(id, pw, success,
-      (e) => {
-        console.log("login: "+e);
+      () => {
         window.alert("login failed.");
       });
   };

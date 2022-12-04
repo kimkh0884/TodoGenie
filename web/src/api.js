@@ -22,7 +22,7 @@ const register = (username, id, pw, success, fail) => {
         console.log(res);
         //success();
     }).catch((e) => {
-        console.log("login: "+e);
+        console.log("register: "+e);
         fail();
     });
 };
@@ -42,12 +42,13 @@ const login = (id, pw, success, fail) => {
     });
 };
 
-const logout = () => {    
+const logout = (success, fail) => {    
     axiosInstance.get((server_url + "/users/logout")).then((res) => {
-        return true;
+        console.log(res);
+        //success();
     }).catch((e) => {
         console.log("logout: "+e);
-        return false;
+        fail();
     });
 };
 

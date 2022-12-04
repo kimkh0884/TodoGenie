@@ -33,8 +33,7 @@ const RegisterPage = () => {
         window.alert("Successfully registered.");
         setFlag(1);
       }, 
-      (e) => {
-        console.log("register: "+e);
+      () => {
         window.alert("Registration failed.");
       });
   };
