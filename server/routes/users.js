@@ -15,20 +15,24 @@ router.post("/sign_up", async function(req,res,next){
   let salt = Math.random() + "";
   let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
 
-  // User.findExisting(body.userId))
-  // console.log("hello");
-
-  User.create({
-    userName: body.userName,
-    userId: body.userId,
-    password: hashPassword,
-    salt: salt
-  })
+  User.findExisting(body.userId)
   .then( user => {
-    res.send(user);
-  })
-  .catch( err => {
-    console.log(err)
+    if(user) {
+      return res.send("user name already exists");
+    } else {
+      User.create({
+        userName: body.userName,
+        userId: body.userId,
+        password: hashPassword,
+        salt: salt
+      })
+      .then( user => {
+        res.send(user);
+      })
+      .catch( err => {
+        console.log(err)
+      })
+    }
   })
 })
 
