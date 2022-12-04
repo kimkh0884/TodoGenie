@@ -6,7 +6,7 @@ const server_url = "http://localhost:8000";
 
 const axiosInstance = axios.create({
     headers: {
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': 'https://localhost:8000'
     },
     baseURL: server_url
 });
@@ -40,17 +40,29 @@ const login = (id, pw, success, fail) => {
     
     axiosInstance.post((server_url + "/users/login"), data).then((res) => {
         console.log(res);
-        //success();
+        if (res.data === "Wrong Password") {
+            fail("\nPassword is wrong.");
+        }
+        else if (res.data === "No matching ID") {
+            fail("\nID is wrong.");
+        }
+        else {
+            success(res);
+        }
     }).catch((e) => {
         console.log("login: "+e);
-        fail();
+        fail("");
     });
 };
 
 const logout = (success, fail) => {    
     axiosInstance.get((server_url + "/users/logout")).then((res) => {
-        console.log(res);
-        //success();
+        if (res.data === "Logged out") {
+            success();
+        }
+        else {
+            fail();
+        }
     }).catch((e) => {
         console.log("logout: "+e);
         fail();
@@ -93,7 +105,7 @@ const addTodo = (title, start, end, success, fail) => {
     
     axiosInstance.post((server_url + "/todos"), data).then((res) => {
         console.log(res);
-        //success();
+        success();
     }).catch((e) => {
         console.log("addTodo: "+e);
         fail();
@@ -110,7 +122,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
     
     axiosInstance.put((server_url + "/todos/:" + id), data).then((res) => {
         console.log(res);
-        //success();
+        success();
     }).catch((e) => {
         console.log("editTodo: "+e);
         fail();
@@ -120,7 +132,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
 const deleteTodo = (id, success, fail) => {    
     axiosInstance.delete((server_url + "/todos:" + id)).then((res) => {
         console.log(res);
-        //success();
+        success();
     }).catch((e) => {
         console.log("deleteTodo: "+e);
         fail();

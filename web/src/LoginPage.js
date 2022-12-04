@@ -5,6 +5,7 @@ import RegisterPage from "./RegisterPage";
 import "./all.css";
 
 const LoginPage = () => {
+  const [userName, setUserName] = useState("");
   const [directLoginFlag, setDirectLoginFlag] = useState(0);
   const [authinfoSaveFlag, setAuthInfoSaveFlag] = useState(0);
   const [pageNum, setPageNum]= useState(0);
@@ -31,20 +32,22 @@ const LoginPage = () => {
 
     let success = null;
     if (authinfoSaveFlag === 1) {
-      success = () => {
+      success = (res) => {
         saveAuthInfo({id, pw});
+        setUserName(res.data.userName);
         setPageNum(1);
       };
     }
     else {
-      success = () => {
+      success = (res) => {
+        setUserName(res.data.userName);
         setPageNum(1);
       };
     }
     
     login(id, pw, success,
-      () => {
-        window.alert("Login is failed.");
+      (msg) => {
+        window.alert("Login is failed."+msg);
       });
   };
 
@@ -58,10 +61,6 @@ const LoginPage = () => {
 
   const goRegisterPage = () => {
     setPageNum(2);
-  };
-
-  const testlogin = () => {
-    setPageNum(1);
   };
 
   const revState = () => {
@@ -81,7 +80,6 @@ const LoginPage = () => {
           <button className="rectangle-10-1 margin-1vh align-center" onClick={unfold}>Sign in</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
-          <button className="rectangle-10-1 margin-1vh align-center" onClick={testlogin}>login(for test)</button>
         </div>
       );
     }
@@ -103,7 +101,6 @@ const LoginPage = () => {
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryLogin}>Sign in</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
-          <button className="rectangle-10-1 margin-1vh align-center" onClick={testlogin}>login(for test)</button>
         </div>
       );
     }
@@ -111,7 +108,7 @@ const LoginPage = () => {
   }
   else if (pageNum === 1) {
     return (
-      <MainFrame />
+      <MainFrame username={userName} />
     );
   }
   else {

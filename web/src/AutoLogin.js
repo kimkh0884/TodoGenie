@@ -5,6 +5,7 @@ import MainFrame from './MainFrame';
 import "./all.css";
 
 const AutoLogin = () => {
+  const [id, setId]= useState("");
   const [loginFlag, setFlag]= useState(0);
 
   // trying auto-login
@@ -15,10 +16,11 @@ const AutoLogin = () => {
     if (authinfo != null) {
       login(authinfo.id, authinfo.pw,
         () => {
+          setId(authinfo.id);
           setFlag(2);
         },
-        () => {
-          window.alert("Login is failed.");
+        (msg) => {
+          setFlag(1);
         });
     }
     setFlag(1);
@@ -43,7 +45,7 @@ const AutoLogin = () => {
   }
   else {
     return (
-      <MainFrame />
+      <MainFrame user_id={id}/>
     );
   }
   

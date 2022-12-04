@@ -6,7 +6,7 @@ import TutorialPage from "./TutorialPage";
 import LoginPage from './LoginPage';
 import "./all.css";
 
-const MainFrame = () => {
+const MainFrame = ({user_id}) => {
     const [loginFlag, setLoginFlag] = useState(1);
     const [pageNum, setPageNum] = useState(0);
 
@@ -30,7 +30,7 @@ const MainFrame = () => {
         if (pageNum === 0) {
             return (
                 <div className="wholepage">
-                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
+                    <NavBar user_id={user_id} showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
                     <MainPage />
                 </div>
             );
@@ -38,7 +38,7 @@ const MainFrame = () => {
         else if (pageNum === 1) {
             return (
                 <div className="wholepage">
-                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
+                    <NavBar user_id={user_id} showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
                     <SettingPage exitSetting={exitCurrPage} />
                 </div>
             );
@@ -46,7 +46,7 @@ const MainFrame = () => {
         else {
             return (
                 <div className="wholepage">
-                    <NavBar showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
+                    <NavBar user_id={user_id} showLoginPage={showLoginPage} showSettingPage={showSettingPage} showTutorialPage={showTutorialPage} />
                     <TutorialPage exitTutorial={exitCurrPage} />
                 </div>
             );
