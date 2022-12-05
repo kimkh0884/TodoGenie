@@ -139,6 +139,10 @@ const deleteTodo = (id, success, fail) => {
     });
 };
 
+const getRecommendations = (success, fail) => {    
+    //
+};
+
 const KEY = "WfH+%ug%G?TT=G/FY9z!6M}aqAQg?]pz";
 
 const saveAuthInfo = (authinfo) => {
@@ -160,4 +164,4 @@ const searchAuthInfo = () => {
     }
 }
 
-export {register, login, logout, loadTodo, searchTodo, addTodo, editTodo, deleteTodo, saveAuthInfo, searchAuthInfo};
+export {register, login, logout, loadTodo, searchTodo, addTodo, editTodo, deleteTodo, getRecommendations, saveAuthInfo, searchAuthInfo};

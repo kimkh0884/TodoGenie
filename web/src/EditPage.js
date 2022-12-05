@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
-import { addTodo, editTodo } from './api';
+import React, {useState, useEffect} from 'react';
+import { addTodo, editTodo, getRecommendations } from './api';
 import "./all.css";
+
+const sampleRecommendations = ["Exercise", "Homework"];
 
 const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
   const todo_properties = JSON.parse(data);
+  const [recommendations, setRecommendations] = useState(sampleRecommendations);
   const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {
@@ -72,6 +75,15 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
     }
   };
 
+  const tryGetRecommendations = () => {
+    getRecommendations(
+      (res) => {
+        setRecommendations(res);
+      },
+      () => {});
+  };
+  useEffect(tryGetRecommendations, []);
+
   if (todo_properties.id === -1) {
     return (
       <div className = "editpage">
@@ -87,6 +99,12 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
         <div className='align-center margin-1vw'>
           <button className='rectangle-4-1'>End</button>
           <input id="ep-end" type="datetime-local" className='rectangle-10-1 margin-left-1vw padding-both-1vw' defaultValue={todo_properties.end} />
+        </div>
+        <div className='align-center margin-1vw'>
+          <h4 className='system-text'>※ People often adds these to-dos</h4>
+          {recommendations.map((word, i) => (
+            <button key={i} className='rectangle-small-10-1 margin-05vw align-center'>{word}</button>
+          ))}
         </div>
       </div>
     );
