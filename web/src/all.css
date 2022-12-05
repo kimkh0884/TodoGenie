@@ -528,3 +528,8 @@ button {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.google-button {
+    background: none;
+    border: none;
+}

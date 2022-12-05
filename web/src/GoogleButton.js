@@ -1,24 +1,40 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
+import React, {useEffect, useRef} from 'react';
 
-const clientId = "465272069084-thehp3rgl4ji68pf4m65l7d2bbrcn34j.apps.googleusercontent.com";
+const clientId = "97764899111-jt22t491iupccou7nev5veemti15g76q.apps.googleusercontent.com";
 
-function GoogleButton() {
-    const onSuccess = (response) => {
-    	console.log(response);        
-    };
+const useScript = (onload) => {
+    useEffect(() => {
+        const script = document.createElement('script');
 
-    const onFailure = (error) => {
-        console.log(error);
-    };
+        script.src = "https://accounts.google.com/gsi/client";
+        script.onload = onload;
+        document.head.appendChild(script);
+
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, [onload]);
+};
+
+const GoogleButton = ({tryLoginWithGoogle}) => {
+    const googleSignInButton = useRef(null);
+
+    useScript(() => {
+        window.google.accounts.id.initialize({
+            client_id: clientId,
+            callback: tryLoginWithGoogle,
+        });
+        window.google.accounts.id.renderButton(googleSignInButton.current, {
+            width: 300,
+            theme: 'filled_blue',
+            shape: 'circle',
+            text: 'signin_with'
+        });
+    });
 
     return(
         <div>
-            <GoogleLogin
-                clientId={clientId}
-                responseType={"id_token"}
-                onSuccess={onSuccess}
-                onFailure={onFailure}/>
+            <button className='google-button margin-1vh align-center' ref={googleSignInButton} />
         </div>
     )
 };

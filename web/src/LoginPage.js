@@ -3,6 +3,7 @@ import {login, saveAuthInfo} from "./api.js";
 import MainFrame from "./MainFrame";
 import RegisterPage from "./RegisterPage";
 import "./all.css";
+import GoogleButton from './GoogleButton.js';
 
 const LoginPage = () => {
   const [userName, setUserName] = useState("");
@@ -51,12 +52,8 @@ const LoginPage = () => {
       });
   };
 
-  const tryGoogleLogin = () => {
-    //if success, go to main page.
-    //setPageNum(1);
-
-    //if fail, alert.
-    window.alert("Sorry! This is not provided yet.");
+  const tryLoginWithGoogle = (res) => {
+    console.log(res);
   };
 
   const goRegisterPage = () => {
@@ -78,8 +75,8 @@ const LoginPage = () => {
         <div className="wholepage">
           <div className="todogenie-title-logo">To-do Genie</div>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={unfold}>Sign in</button>
-          <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
+          <GoogleButton tryLoginWithGoogle={tryLoginWithGoogle}/>
         </div>
       );
     }
@@ -99,7 +96,6 @@ const LoginPage = () => {
             {authinfoSaveFlag === 0 ? <button className='rectangle-8-1 state-done' onClick={revState}>Not use auto-login</button> : <button className='rectangle-8-1 state-notyet' onClick={revState}>Use auto-login for 1 day</button>}
           </div>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryLogin}>Sign in</button>
-          <button className="rectangle-10-1 margin-1vh align-center" onClick={tryGoogleLogin}>Sign in with Google</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
         </div>
       );
