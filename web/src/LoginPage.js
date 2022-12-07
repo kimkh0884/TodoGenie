@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {login, saveAuthInfo} from "./api.js";
+import {register, login, saveAuthInfo} from "./api.js";
 import MainFrame from "./MainFrame";
 import RegisterPage from "./RegisterPage";
 import "./all.css";
@@ -53,7 +53,29 @@ const LoginPage = () => {
   };
 
   const tryLoginWithGoogle = (res) => {
-    console.log(res);
+    let payload = JSON.parse(window.atob(res.credential.split(".")[1]));
+    login(payload.email, payload.sub, 
+      (res) => {
+        setUserId(res.data.userId);
+        setPageNum(1);
+      },
+      (msg) => {
+        if (msg === "\nID is wrong.") {
+          register(payload.name, payload.email, payload.sub, 
+            () => {
+              login(payload.email, payload.sub, 
+                (res) => {
+                  setUserId(res.data.userId);
+                  setPageNum(1);
+                }, 
+                () => {});
+            }, 
+            () => {});
+        }
+        else {
+          window.alert("Login is failed.");
+        }
+      });
   };
 
   const goRegisterPage = () => {
@@ -97,6 +119,7 @@ const LoginPage = () => {
           </div>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={tryLogin}>Sign in</button>
           <button className="rectangle-10-1 margin-1vh align-center" onClick={goRegisterPage}>Register</button>
+          <GoogleButton tryLoginWithGoogle={tryLoginWithGoogle}/>
         </div>
       );
     }

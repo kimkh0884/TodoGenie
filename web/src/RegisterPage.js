@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {register} from "./api.js";
+import {register, login} from "./api.js";
 import AutoLogin from './AutoLogin';
 import LoginPage from './LoginPage';
+import GoogleButton from './GoogleButton.js';
 import "./all.css";
 
 const RegisterPage = () => {
@@ -31,7 +32,7 @@ const RegisterPage = () => {
     register(name, id, pw, 
       () => {
         window.alert("Successfully registered.");
-        setFlag(1);
+        login(id, pw, () => {setFlag(1);}, () => {});
       }, 
       () => {
         window.alert("Registration is failed.");
@@ -40,6 +41,20 @@ const RegisterPage = () => {
 
   const cancelRegister = () => {
     setFlag(2);
+  };
+
+  const tryRegisterWithGoogle = (res) => {
+    let payload = JSON.parse(window.atob(res.credential.split(".")[1]));
+    register(payload.name, payload.email, payload.sub, 
+      () => {
+        window.alert("Successfully registered.");
+        login(payload.email, payload.sub, 
+          () => {}, 
+          () => {});
+      }, 
+      () => {
+        window.alert("Registration is failed.");
+      });
   };
 
   if (registerFlag === 0) {
@@ -60,6 +75,7 @@ const RegisterPage = () => {
         </div>
         <button className="rectangle-10-1 align-center margin-1vh" onClick={tryRegister}>Register</button>
         <button className="rectangle-10-1 align-center margin-1vh" onClick={cancelRegister}>Cancel</button>
+        <GoogleButton tryLoginWithGoogle={tryRegisterWithGoogle}/>
       </div>
     );
   }

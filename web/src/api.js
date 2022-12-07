@@ -54,7 +54,6 @@ const login = (id, pw, success, fail) => {
     };
     
     axiosInstance.post((server_url + "/users/login"), data).then((res) => {
-        console.log(res);
         if (res.data === "Wrong Password") {
             fail("\nPassword is wrong.");
         }
@@ -176,13 +175,11 @@ const searchAuthInfo = () => {
 
     if (regex.test(document.cookie)) {
         let encrypted_info = (regex.exec(document.cookie))[0].substring(11);
-        console.log(encrypted_info);
         let decryted_info = CryptoJS.AES.decrypt(encrypted_info, CryptoJS.enc.Utf8.parse(KEY), {
             iv: CryptoJS.enc.Utf8.parse(""),
             padding: CryptoJS.pad.Pkcs7,
             mode: CryptoJS.mode.CBC
         }).toString(CryptoJS.enc.Utf8);
-        console.log(decryted_info);
         return JSON.parse(decryted_info);
     }
     else {
