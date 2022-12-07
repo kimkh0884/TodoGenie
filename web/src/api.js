@@ -131,10 +131,8 @@ const editTodo = (id, title, start, end, state, success, fail) => {
         end: end,
         state: state
     };
-    console.log(data);
     
     axiosInstance.put("/todos/" + id, data).then((res) => {
-        console.log(res.data);
         success();
     }).catch((e) => {
         console.log("editTodo: "+e);

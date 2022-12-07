@@ -49,11 +49,11 @@ const SettingPage = ({exitSetting}) => {
 
       const style = document.createElement('style');
       if (checkedFlag === 0) {
-        style.textContent = "body {\nbackground-color: ivory;\n}\nbutton {\nbackground-color: lightgreen;\n}";
+        style.textContent = "body {background-color: ivory;color: black;}\nbutton {background-color: #eeeeee;border-color: black;color: black;}\ninput {background-color: ivory;border-color: black;color: black;}\n.system-text {color: black;}\n::placeholder {color: grey;opacity: 1;}\n.headpage {background-color: #dddddd;}\n.menubar {background-color: #dddddd;}\n.dailyboarditem, .weeklyboarditem, .monthlyboarditem {--bd-color: #000000;}\n.db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {--bd-color: #000000;}\n.wb-column, .mb-row, .mb-cell {--bd-color: #000000;}\n.state-done-circle, .state-done-rectangle {background-color: #99ff99;}\n.state-notyet {background-color: #ff6666;}";
         document.head.appendChild(style);
       }
       else {
-        style.textContent = "body {\nbackground-color: #555555;\n}\nbutton {\nbackground-color: green;\n}";
+        style.textContent = "body {background-color: #555555;color: white;}\nbutton {background-color: #bbbbbb;border-color: black;color: black;filter: invert(100%);}\ninput {background-color: #555555;border-color: white;color: white;}\n.system-text {color: white;}\n::placeholder {color: white;opacity: 1;}\n.headpage {background-color: #333333;}\n.menubar {background-color: #333333;}\n.dailyboarditem, .weeklyboarditem, .monthlyboarditem {--bd-color: #ffffff;}\n.db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {--bd-color: #ffffff;}\n.wb-column, .mb-row, .mb-cell {--bd-color: #ffffff;}\n.add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {filter: invert(100%);}\n.state-done-circle, .state-done-rectangle {background-color: #aa55aa;}\n.state-notyet {background-color: #00bbbb;}";
         document.head.appendChild(style);
       }
 
