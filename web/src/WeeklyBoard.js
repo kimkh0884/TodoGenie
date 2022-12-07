@@ -55,7 +55,7 @@ const fillFocusedDates = (focusedDate) => {
     }
 };
 
-const WeeklyBoard = ({showEditPage}) => {
+const WeeklyBoard = ({showEditPage, refreshCnt}) => {
     const today = new Date();
     const [focusedDate, setFocusedDate] = useState(dateToInt(startOfWeek(today)));
 
@@ -81,19 +81,19 @@ const WeeklyBoard = ({showEditPage}) => {
                 <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneWeekAfter}>Next Week</button></div>
             </div>
             <div className="wb-body">
-                <WeeklyBoardColumn date={focusedDates[0]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[1]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[2]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[3]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[4]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[5]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[6]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
             </div>
         </div>
     );
 };
 
-const WeeklyBoardColumn = ({date, showEditPage}) => {
+const WeeklyBoardColumn = ({date, showEditPage, refreshCnt}) => {
     const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
@@ -111,7 +111,7 @@ const WeeklyBoardColumn = ({date, showEditPage}) => {
                 setTodoList([]);
             });
     }
-    useEffect(loadTodolist, [date]);
+    useEffect(loadTodolist, [date, rmFlag, refreshCnt]);
     
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -175,12 +175,14 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
             title: title,
             start: start.substring(0,16),
             end: end.substring(0,16),
-            state: state
+            state: currState
         });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {

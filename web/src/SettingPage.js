@@ -53,7 +53,7 @@ const SettingPage = ({exitSetting}) => {
         document.head.appendChild(style);
       }
       else {
-        style.textContent = "body {\nbackground-color: darkslategray;\n}\nbutton {\nbackground-color: green;\n}";
+        style.textContent = "body {\nbackground-color: #555555;\n}\nbutton {\nbackground-color: green;\n}";
         document.head.appendChild(style);
       }
 

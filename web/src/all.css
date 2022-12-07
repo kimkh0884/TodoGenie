@@ -10,11 +10,19 @@ button {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: darkslategray;
+        background-color: #555555;
     }
     
     button {
         background-color: green;
+    }
+
+    .headpage {
+        background-color: aquamarine;
+    }
+
+    .menubar {
+        background-color: aquamarine;
     }
 }
 
@@ -25,6 +33,22 @@ button {
     
     button {
         background-color: lightgreen;
+    }
+
+    .headpage {
+        background-color: aquamarine;
+    }
+
+    .menubar {
+        background-color: aquamarine;
+    }
+
+    .dailyboarditem .weeklyboarditem .monthlyboarditem {
+        background-color: ivory;
+    }
+
+    .db-head .wb-head .wb-column-head .mb-head .mb-body-head .mb-cell-head {
+        background-color: antiquewhite;
     }
 }
 
@@ -38,7 +62,6 @@ button {
 }
 
 .headpage {
-    background-color: aquamarine;
     width: 100vw;
     min-width: 800px;
     height: 5vw;
@@ -53,7 +76,6 @@ button {
 }
 
 .menubar {
-    background-color: aquamarine;
     width: 100vw;
     min-width: 800px;
     height: fit-content;

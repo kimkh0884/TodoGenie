@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { addTodo, editTodo, getRecommendations } from './api';
 import "./all.css";
 
-const sampleRecommendations = ["Exercise", "Homework"];
-
 const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
   const todo_properties = JSON.parse(data);
-  const [recommendations, setRecommendations] = useState(sampleRecommendations);
+  const [recommendations, setRecommendations] = useState([]);
   const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {
@@ -77,7 +75,7 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
   const tryGetRecommendations = () => {
     getRecommendations(
       (res) => {
-        setRecommendations(res);
+        setRecommendations(res.data);
       },
       () => {});
   };
@@ -101,8 +99,8 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
         </div>
         <div className='align-center margin-1vw'>
           <h4 className='system-text'>※ People often adds these to-dos</h4>
-          {recommendations.map((word, i) => (
-            <button key={i} className='rectangle-small-10-1 margin-05vw align-center'>{word}</button>
+          {recommendations.map((pair) => (
+            <button key={pair._id} className='rectangle-small-10-1 margin-05vw align-center'>{pair._id}</button>
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { searchTodo, editTodo, deleteTodo } from './api';
 import "./all.css";
 
-const SearchedBoard = ({showEditPage, keyword}) => {
+const SearchedBoard = ({showEditPage, keyword, refreshCnt}) => {
     const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
@@ -15,7 +15,7 @@ const SearchedBoard = ({showEditPage, keyword}) => {
                 setTodoList([]);
             });
     };
-    useEffect(loadTodolist, [keyword]);
+    useEffect(loadTodolist, [keyword, rmFlag, refreshCnt]);
 
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -80,12 +80,14 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
             title: title,
             start: start.substring(0,16),
             end: end.substring(0,16),
-            state: state
+            state: currState
         });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {

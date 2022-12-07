@@ -10,7 +10,7 @@ const intToString = (dtint) => {
     return (parseInt(dtint / 10000) + "-" + parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
 };
 
-const DailyBoard = ({showEditPage}) => {
+const DailyBoard = ({showEditPage, refreshCnt}) => {
     const today = new Date();
     const [todoList, setTodoList] = useState([]);
     const [focusedDate, setFocusedDate] = useState(dateToInt(today));
@@ -42,7 +42,7 @@ const DailyBoard = ({showEditPage}) => {
                 setTodoList([]);
             });
     };
-    useEffect(loadTodolist, [focusedDate]);
+    useEffect(loadTodolist, [focusedDate, rmFlag, refreshCnt]);
 
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -107,12 +107,14 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
             title: title,
             start: start.substring(0,16),
             end: end.substring(0,16),
-            state: state
+            state: currState
         });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {
