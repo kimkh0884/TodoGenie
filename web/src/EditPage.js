@@ -26,11 +26,10 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
   const saveAndExit = () => {
     if (window.confirm("Do you want to save the contents?")) {
       let title = document.getElementById("ep-title").value;
-      let start = document.getElementById("ep-start").value;
-      let end = document.getElementById("ep-end").value;
-      console.log(title);
-      console.log(start);
-      console.log(end);
+      let start = new Date(document.getElementById("ep-start").value);
+      start.setMinutes(start.getMinutes() - start.getTimezoneOffset());
+      let end = new Date(document.getElementById("ep-end").value);
+      end.setMinutes(end.getMinutes() - end.getTimezoneOffset());
 
       let success = null;
       if (prevBoard === 0) {

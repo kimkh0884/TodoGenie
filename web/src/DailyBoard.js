@@ -30,11 +30,12 @@ const DailyBoard = ({showEditPage}) => {
 
     const loadTodolist = () => {
         let startdt = new Date(intToString(focusedDate)+" 00:00");
+        startdt.setMinutes(startdt.getMinutes() - startdt.getTimezoneOffset());
         let enddt = new Date(intToString(focusedDate)+" 23:59");
+        enddt.setMinutes(enddt.getMinutes() - enddt.getTimezoneOffset());
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
-                console.log(res);
                 setTodoList(res);
             },
             () => {
@@ -104,8 +105,8 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
         showEditPage({
             id: id,
             title: title,
-            start: start,
-            end: end,
+            start: start.substring(0,16),
+            end: end.substring(0,16),
             state: state
         });
     };
@@ -121,8 +122,8 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>
@@ -138,8 +139,8 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>

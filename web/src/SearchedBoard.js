@@ -78,8 +78,8 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
         showEditPage({
             id: id,
             title: title,
-            start: start,
-            end: end,
+            start: start.substring(0,16),
+            end: end.substring(0,16),
             state: state
         });
     };
@@ -95,8 +95,8 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>
@@ -112,8 +112,8 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>

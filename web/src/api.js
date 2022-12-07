@@ -118,7 +118,6 @@ const addTodo = (title, start, end, success, fail) => {
     };
     
     axiosInstance.post((server_url + "/todos"), data).then((res) => {
-        console.log(res);
         success();
     }).catch((e) => {
         console.log("addTodo: "+e);
@@ -133,9 +132,10 @@ const editTodo = (id, title, start, end, state, success, fail) => {
         end: end,
         state: state
     };
+    console.log(data);
     
     axiosInstance.put((server_url + "/todos/:" + id), data).then((res) => {
-        console.log(res);
+        console.log(res.data);
         success();
     }).catch((e) => {
         console.log("editTodo: "+e);
@@ -145,7 +145,6 @@ const editTodo = (id, title, start, end, state, success, fail) => {
 
 const deleteTodo = (id, success, fail) => {    
     axiosInstance.delete((server_url + "/todos:" + id)).then((res) => {
-        console.log(res);
         success();
     }).catch((e) => {
         console.log("deleteTodo: "+e);

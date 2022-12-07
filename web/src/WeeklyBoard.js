@@ -99,7 +99,9 @@ const WeeklyBoardColumn = ({date, showEditPage}) => {
 
     const loadTodolist = () => {
         let startdt = new Date(intToString(date)+" 00:00");
+        startdt.setMinutes(startdt.getMinutes() - startdt.getTimezoneOffset());
         let enddt = new Date(intToString(date)+" 23:59");
+        enddt.setMinutes(enddt.getMinutes() - enddt.getTimezoneOffset());
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
@@ -168,7 +170,13 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
     };
 
     const __showEditPage = () => {
-        showEditPage(id);
+        showEditPage({
+            id: id,
+            title: title,
+            start: start.substring(0,16),
+            end: end.substring(0,16),
+            state: state
+        });
     };
 
     const __removeTodo = () => {
@@ -183,8 +191,8 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start}<br />
-                        End : {end}
+                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
             </div>
@@ -200,8 +208,8 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start}<br />
-                        End : {end}
+                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
             </div>
