@@ -50,16 +50,16 @@ router.post("/", (req, res) => {
 router.put("/:todoId", (req, res) => {
     Todo.findOneById(req.params.todoId)
       .then((todo) => {
-          if(req.body.title) {
+          if(req.body.hasOwnProperty('title')) {
             todo.title = req.body.title;
           }
-          if(req.body.todo) {
+          if(req.body.hasOwnProperty('start')) {
             todo.start = req.body.start;
           } 
-          if(req.body.end) {
+          if(req.body.hasOwnProperty('end')) {
             todo.end = req.body.end;
           }
-          if(req.body.state) {
+          if(req.body.hasOwnProperty('state')) {
             todo.state = req.body.state;
           }
           todo.save();
