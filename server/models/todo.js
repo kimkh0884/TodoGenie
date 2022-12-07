@@ -29,6 +29,17 @@ todoSchema.statics.findByTime = function (user, startDate, endDate) {
   })
 }
 
+todoSchema.statics.findTopRank = function () {
+  return this.aggregate([
+    { "$group": { 
+        "_id": '$title', 
+        "count": { "$sum": 1 }
+    }},
+
+    { "$sort": { "count": -1 } }
+]);
+}
+
 todoSchema.statics.findOneByInfo = function (user, title) {
   return this.findOne({ owner : user, title : title });
 };

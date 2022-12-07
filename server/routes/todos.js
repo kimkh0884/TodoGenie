@@ -75,16 +75,9 @@ router.delete("/:todoId", (req, res) => {
 });
 
 router.get("/recommendation", (req, res) => {
-  const day = req.query.day;
-  const time = req.query.time;
-  if(time) {
-    const chunks = time.split("-");
-    const start = chunks[0];
-    const end = chunks[1];
-  }
-  Todo.findAll()
+  Todo.findTopRank()
     .then((todos) => {
-      res.send(todos);
+      res.send(todos.slice(0,5));
     })
     .catch((err) => res.status(500).send(err));
 });
