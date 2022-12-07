@@ -134,7 +134,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
         state: state
     };
     
-    axiosInstance.put((server_url + "/todos/:" + id), data).then((res) => {
+    axiosInstance.put((server_url + "/todos/" + id), data).then((res) => {
         console.log(res);
         success();
     }).catch((e) => {
@@ -144,7 +144,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
 };
 
 const deleteTodo = (id, success, fail) => {    
-    axiosInstance.delete((server_url + "/todos:" + id)).then((res) => {
+    axiosInstance.delete((server_url + "/todos/" + id)).then((res) => {
         console.log(res);
         success();
     }).catch((e) => {
