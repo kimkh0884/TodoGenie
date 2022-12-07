@@ -1,67 +1,67 @@
 package com.example.todogenie.ui.main.ui.home;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
-import com.example.todogenie.R;
-import com.example.todogenie.databinding.FragmentHomeBinding;
-import com.example.todogenie.databinding.FragmentHomeDailyBinding;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
+import com.example.todogenie.databinding.FragmentHomeWeeklyBinding;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class HomeFragment_Weekly extends Fragment {
-    private FragmentHomeDailyBinding binding;
-    private RecyclerView rcvDailyTodo;
-    private RVAdapter_Daily rvAdapter_Daily;
+    private FragmentHomeWeeklyBinding binding;
+    private RecyclerView rcvWeeklyTodo;
+    private RVAdapter_Weekly rvAdapter_Weekly;
 
-    public List<TodoVO> lstTodo = new ArrayList<TodoVO>();
+    public ArrayList<TodoVO> lstTodo = new ArrayList<TodoVO>();
     public Object TodoVO;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeDailyBinding.inflate(inflater, container, false);
+        binding = FragmentHomeWeeklyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        rcvDailyTodo = binding.recyclerViewTodoDaily;
-        rcvDailyTodo.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
-        rvAdapter_Daily = new RVAdapter_Daily(getContext(), lstTodo);
-        rcvDailyTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rcvDailyTodo.setAdapter(rvAdapter_Daily);
+        rcvWeeklyTodo = binding.recyclerViewTodoWeekly;
+        rcvWeeklyTodo.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
 
-        lstTodo.add(new TodoVO()); // test
-        lstTodo.add(new TodoVO());
-        lstTodo.add(new TodoVO());
+        rvAdapter_Weekly = new RVAdapter_Weekly(getContext(), lstTodo);
+        rcvWeeklyTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rcvWeeklyTodo.setAdapter(rvAdapter_Weekly);
+        HomeViewModel homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM.");
-        binding.textDateDaily.setText(sdf.format(date).toString() + " week " + getWeekOfYear(date));
+        binding.textDateWeekly.setText(homeViewModel.getWeeklyDateString());
+        //homeViewModel.getLstTodoWeekly(lstTodo, rvAdapter_Weekly);
+
+        ImageButton buttonTodoLeft = binding.buttonTodoLeft;
+        buttonTodoLeft.setOnClickListener(view -> {
+            lstTodo.clear();
+            rvAdapter_Weekly.notifyDataSetChanged();
+            homeViewModel.subOneWeek();
+            homeViewModel.getLstTodoWeekly(lstTodo, rvAdapter_Weekly);
+            binding.textDateWeekly.setText(homeViewModel.getWeeklyDateString());
+        });
+
+        ImageButton buttonTodoRight = binding.buttonTodoRight;
+        buttonTodoRight.setOnClickListener(view -> {
+            lstTodo.clear();
+            rvAdapter_Weekly.notifyDataSetChanged();
+            homeViewModel.addOneWeek();
+            homeViewModel.getLstTodoWeekly(lstTodo, rvAdapter_Weekly);
+            binding.textDateWeekly.setText(homeViewModel.getWeeklyDateString());
+        });
 
         return root;
     }
 
-    private int getWeekOfYear(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        String[] dates = sdf.format(date).toString().split("-");
-        int year = Integer.parseInt(dates[0]);
-        int month = Integer.parseInt(dates[1]);
-        int day = Integer.parseInt(dates[2]);
-        calendar.set(year, month - 1, day);
-        return calendar.get(Calendar.WEEK_OF_MONTH);
-    }
 }
 

@@ -6,60 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.todogenie.R;
+import com.example.todogenie.databinding.FragmentHomeMonthlyBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment_Monthly#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class HomeFragment_Monthly extends Fragment {
+    private FragmentHomeMonthlyBinding binding;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment_Monthly() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment_Daily.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment_Monthly newInstance(String param1, String param2) {
-        HomeFragment_Monthly fragment = new HomeFragment_Monthly();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    public ArrayList<TodoVO> lstTodo;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home__daily, container, false);
+
+        lstTodo = new ArrayList<TodoVO>();
+        binding = FragmentHomeMonthlyBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        HomeViewModel homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        return root;
     }
 }

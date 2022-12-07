@@ -2,12 +2,7 @@ package com.example.todogenie.ui.main.ui.home;
 
 
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +12,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,11 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RVAdapter_Daily extends RecyclerView.Adapter<RVAdapter_Daily.MyViewHolder> implements Filterable {
-
-    //액티비티의 Context, Data추가
     Context mContext;
-    List<TodoVO> mData; // filteredList
-    List<TodoVO> unFilData; // unfilteredlist
+    List<TodoVO> mData;
+    List<TodoVO> unFilData;
     Dialog mDialog;
 
     public RVAdapter_Daily(Context mContext, List<TodoVO> mData) {
@@ -51,6 +43,8 @@ public class RVAdapter_Daily extends RecyclerView.Adapter<RVAdapter_Daily.MyView
         final MyViewHolder vHolder = new MyViewHolder(v);
         final Animation animFadeIn = AnimationUtils.loadAnimation(v.getContext(), R.anim.fade_in);
         final Animation animFadeOut = AnimationUtils.loadAnimation(v.getContext(), R.anim.fade_out);
+        final Animation animFadeInHalf = AnimationUtils.loadAnimation(v.getContext(), R.anim.fade_in_half);
+        final Animation animFadeOutHalf = AnimationUtils.loadAnimation(v.getContext(), R.anim.fade_out_half);
 
         //Dialog init
 //        mDialog = new Dialog(mContext);
@@ -151,12 +145,12 @@ public class RVAdapter_Daily extends RecyclerView.Adapter<RVAdapter_Daily.MyView
                 vHolder.menus_todo.setVisibility(View.VISIBLE);
                 if(vHolder.is_menu_opened == false) {
                     vHolder.is_menu_opened = true;
-                    vHolder.btn_menu.startAnimation(animFadeOut);
+                    vHolder.btn_menu.startAnimation(animFadeOutHalf);
                     vHolder.menus_todo.startAnimation(animFadeIn);
                 }
                 else {
                     vHolder.is_menu_opened = false;
-                    vHolder.btn_menu.startAnimation(animFadeIn);
+                    vHolder.btn_menu.startAnimation(animFadeInHalf);
                     vHolder.menus_todo.startAnimation(animFadeOut);
                 }
             }

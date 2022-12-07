@@ -5,12 +5,11 @@ import com.example.todogenie.data.model.LoggedInUser;
 import java.io.IOException;
 
 /**
- * Class that handles authentication w/ login credentials and retrieves user information.
+ * Class that handles authentication w/ login credentials and turn activities after retrieves user information.
+ * Not used since asynchronous way to receive http response cannot be implement in android networking.
  */
 public class LoginDataSource {
-
-    public Result<LoggedInUser> login(String username, String password) {
-
+    public Result<LoggedInUser> login(String userId, String password) {
         try {
             // TODO: handle loggedInUser authentication
             LoggedInUser fakeUser =
