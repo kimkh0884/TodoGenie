@@ -128,7 +128,7 @@ const WeeklyBoardColumn = ({date, showEditPage}) => {
                 <div className='flex-cell-1'><button className='rectangle-small-2-1 align-center margin-05vw'>{intToMMDD(date)}</button></div>
             </div>
             {todoList.map((todoitem) => (
-                <WeeklyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+                <WeeklyBoardItem key={todoitem._id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem._id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
     );
@@ -148,7 +148,7 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
 
     const revState = () => {
         if (currState === 0) {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 1,
                 () => {
                     setState(1);
                 },
@@ -157,7 +157,7 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 });
         }
         else {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 0,
                 () => {
                     setState(0);
                 },

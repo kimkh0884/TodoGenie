@@ -364,7 +364,7 @@ const MonthlyBoardCell = ({date, showEditPage}) => {
                 <button className='rectangle-small-4-1 align-center margin-05vw'>{intToMMDD(date)}</button>
             </div>
             {todoList.map((todoitem) => (
-                <MonthlyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+                <MonthlyBoardItem key={todoitem._id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem._id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
     );
@@ -384,7 +384,7 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
 
     const revState = () => {
         if (currState === 0) {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 1,
                 () => {
                     setState(1);
                 },
@@ -393,7 +393,7 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
                 });
         }
         else {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 0,
                 () => {
                     setState(0);
                 },

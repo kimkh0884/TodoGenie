@@ -1,13 +1,31 @@
 body {
-    background-color: ivory;
     margin: 0px;
     padding: 0px;
 }
 
 button {
-    background-color: lightgreen;
     box-sizing: content-box;
     padding: 0px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: darkslategray;
+    }
+    
+    button {
+        background-color: green;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: ivory;
+    }
+    
+    button {
+        background-color: lightgreen;
+    }
 }
 
 .system-text {

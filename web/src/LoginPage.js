@@ -6,7 +6,7 @@ import "./all.css";
 import GoogleButton from './GoogleButton.js';
 
 const LoginPage = () => {
-  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
   const [directLoginFlag, setDirectLoginFlag] = useState(0);
   const [authinfoSaveFlag, setAuthInfoSaveFlag] = useState(0);
   const [pageNum, setPageNum]= useState(0);
@@ -35,13 +35,13 @@ const LoginPage = () => {
     if (authinfoSaveFlag === 1) {
       success = (res) => {
         saveAuthInfo({id, pw});
-        setUserName(res.data.userName);
+        setUserId(res.data.userId);
         setPageNum(1);
       };
     }
     else {
       success = (res) => {
-        setUserName(res.data.userName);
+        setUserId(res.data.userId);
         setPageNum(1);
       };
     }
@@ -104,7 +104,7 @@ const LoginPage = () => {
   }
   else if (pageNum === 1) {
     return (
-      <MainFrame username={userName} />
+      <MainFrame user_id={userId} />
     );
   }
   else {

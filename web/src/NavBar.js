@@ -1,5 +1,5 @@
 import React from 'react';
-import { logout } from "./api";
+import { logout, deleteAuthInfo } from "./api";
 import "./all.css";
 
 const NavBar = ({user_id, showLoginPage, showSettingPage, showTutorialPage}) => {
@@ -8,6 +8,7 @@ const NavBar = ({user_id, showLoginPage, showSettingPage, showTutorialPage}) => 
       logout(
         () => {
           window.alert("Successfully logged out");
+          deleteAuthInfo();
           showLoginPage();
         },
         () => {

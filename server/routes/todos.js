@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Todo = require("../models/todo");
 const cors = require('cors');
-router.use(cors());
+router.use(cors({origin: true, credentials: true}));
 
 
 router.get("/", (req, res) => {

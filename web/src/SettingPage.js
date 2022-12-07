@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./all.css";
 
 /*
@@ -27,8 +27,36 @@ E. Sign out button
 const SettingPage = ({exitSetting}) => {
   const [checkedFlag, setCheckedFlag] = useState(0);
 
+  const getCurrentSettings = () => {
+    let regex = new RegExp("settings=([^;]*)");
+    if (regex.test(document.cookie)) {
+      let result = regex.exec(document.cookie);
+      let settings = JSON.parse((result[0]).substring(9));
+      setCheckedFlag(settings.darkmode);
+    }
+  };
+  useEffect(getCurrentSettings, []);
+
   const applyChangeAndExit = () => {
     if (window.confirm("Do you apply the modified settings?")) {
+      let settings = {
+        darkmode: checkedFlag
+      };
+      let dt = new Date();
+      dt.setDate(dt.getDate()+365);
+
+      document.cookie = "settings="+JSON.stringify(settings)+";path=/;expires="+dt.toUTCString()+";";
+
+      const style = document.createElement('style');
+      if (checkedFlag === 0) {
+        style.textContent = "body {\nbackground-color: ivory;\n}\nbutton {\nbackground-color: lightgreen;\n}";
+        document.head.appendChild(style);
+      }
+      else {
+        style.textContent = "body {\nbackground-color: darkslategray;\n}\nbutton {\nbackground-color: green;\n}";
+        document.head.appendChild(style);
+      }
+
       exitSetting();
     }
   };
@@ -52,8 +80,8 @@ const SettingPage = ({exitSetting}) => {
     <div className = "settingpage">
       <MenuBar exitWithoutChange={exitWithoutChange} applyChangeAndExit={applyChangeAndExit} />
       <div className='align-center margin-1vw'>
-        <button className='rectangle-4-1'>Setting1</button>
-        {(checkedFlag === 1) ? <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-done' onClick={revState}>Checked</button> : <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-notyet' onClick={revState}>Not Checked</button>}    
+        <button className='rectangle-4-1'>Dark mode</button>
+        {(checkedFlag === 1) ? <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-done' onClick={revState}>Yes</button> : <button className='rectangle-10-1 margin-left-1vw padding-both-1vw state-notyet' onClick={revState}>No</button>}    
       </div>
     </div>
   );

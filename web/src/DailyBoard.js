@@ -34,6 +34,7 @@ const DailyBoard = ({showEditPage}) => {
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
+                console.log(res);
                 setTodoList(res);
             },
             () => {
@@ -60,7 +61,7 @@ const DailyBoard = ({showEditPage}) => {
                 <div className='flex-cell-1'><button className='rectangle-4-1 align-center margin-1vw' onClick={oneDayAfter}>Next Day</button></div>
             </div>
             {todoList.map((todoitem) => (
-                <DailyBoardItem key={todoitem.id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem.id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
+                <DailyBoardItem key={todoitem._id} showEditPage={showEditPage} removeTodo={removeTodo} id={todoitem._id} title={todoitem.title} start={todoitem.start} end={todoitem.end} state={todoitem.state} />
             ))}
         </div>
     );
@@ -80,7 +81,7 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
 
     const revState = () => {
         if (currState === 0) {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 1,
                 () => {
                     setState(1);
                 },
@@ -89,7 +90,7 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
                 });
         }
         else {
-            editTodo(id, title, start, end, currState,
+            editTodo(id, title, start, end, 0,
                 () => {
                     setState(0);
                 },

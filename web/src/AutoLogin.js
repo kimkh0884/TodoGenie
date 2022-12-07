@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {login, searchAuthInfo} from "./api.js";
+import {checkLoggedIn, login, searchAuthInfo} from "./api.js";
 import LoginPage from './LoginPage';
 import MainFrame from './MainFrame';
 import "./all.css";
@@ -8,11 +8,9 @@ const AutoLogin = () => {
   const [id, setId]= useState("");
   const [loginFlag, setFlag]= useState(0);
 
-  // trying auto-login
-  // 1: fail
-  // 2: success
-  const tryLogin = () => {    
+  const tryLogin = () => {
     let authinfo = searchAuthInfo();
+
     if (authinfo != null) {
       login(authinfo.id, authinfo.pw,
         () => {
@@ -24,8 +22,35 @@ const AutoLogin = () => {
         });
     }
     setFlag(1);
-  }
-  useEffect(tryLogin, []);
+  };
+
+  const applySettings = () => {
+    let regex = new RegExp("settings=([^;]*)");
+
+    if (regex.test(document.cookie)) {
+      let result = regex.exec(document.cookie);
+      let settings = JSON.parse((result[0]).substring(9));
+
+      const style = document.createElement('style');
+      if (settings.darkmode === 0) {
+        style.textContent = "body {\nbackground-color: ivory;\n}\nbutton {\nbackground-color: lightgreen;\n}";
+        document.head.appendChild(style);
+      }
+      else {
+        style.textContent = "body {\nbackground-color: darkslategray;\n}\nbutton {\nbackground-color: green;\n}";
+        document.head.appendChild(style);
+      }
+    }
+  };
+
+  const initiate = () => {
+    applySettings();
+    checkLoggedIn((userId) => {
+      setId(userId);
+      setFlag(2);
+      }, tryLogin);
+  };
+  useEffect(initiate, []);
 
   // 0 (still doing auto-login) -> Initial
   // 1 (auto-login fail)        -> Login page

@@ -8,7 +8,8 @@ const axiosInstance = axios.create({
     headers: {
         'Access-Control-Allow-Origin': 'https://localhost:8000'
     },
-    baseURL: server_url
+    baseURL: server_url,
+    withCredentials: true
 });
 
 const register = (username, id, pw, success, fail) => {
@@ -28,6 +29,20 @@ const register = (username, id, pw, success, fail) => {
         //console.log(res);
     }).catch((e) => {
         console.log("register: "+e);
+        fail();
+    });
+};
+
+const checkLoggedIn = (success, fail) => {    
+    axiosInstance.get((server_url + "/users/login")).then((res) => {
+        if (res.data === "Not Logged In") {
+            fail();
+        }
+        else {
+            success(res.data.userId);
+        }
+    }).catch((e) => {
+        console.log("checkLoggedIn: "+e);
         fail();
     });
 };
@@ -145,23 +160,38 @@ const getRecommendations = (success, fail) => {
 
 const KEY = "WfH+%ug%G?TT=G/FY9z!6M}aqAQg?]pz";
 
-const saveAuthInfo = (authinfo) => {
-    let encrypted_info = CryptoJS.AES.encrypt(JSON.stringify(authinfo), KEY).toString();
+const saveAuthInfo = (authinfo, mode) => {
+    let encrypted_info = CryptoJS.AES.encrypt(JSON.stringify(authinfo), CryptoJS.enc.Utf8.parse(KEY), {
+        iv: CryptoJS.enc.Utf8.parse(""),
+        padding: CryptoJS.pad.Pkcs7,
+        mode: CryptoJS.mode.CBC
+    }).toString();
     let dt = new Date();
     dt.setDate(dt.getDate()+1);
     document.cookie = "dL7uM4gyk4="+encrypted_info+";path=/;expires="+dt.toUTCString()+";";
-}
+};
 
 const searchAuthInfo = () => {
     let regex = new RegExp("dL7uM4gyk4=([^;]*)");
+
     if (regex.test(document.cookie)) {
-        let encrypted_info = regex.exec(document.cookie);
-        let decryted_info = CryptoJS.AES.decrypt(encrypted_info[0], KEY).toString();
+        let encrypted_info = (regex.exec(document.cookie))[0].substring(11);
+        console.log(encrypted_info);
+        let decryted_info = CryptoJS.AES.decrypt(encrypted_info, CryptoJS.enc.Utf8.parse(KEY), {
+            iv: CryptoJS.enc.Utf8.parse(""),
+            padding: CryptoJS.pad.Pkcs7,
+            mode: CryptoJS.mode.CBC
+        }).toString(CryptoJS.enc.Utf8);
+        console.log(decryted_info);
         return JSON.parse(decryted_info);
     }
     else {
         return null;
     }
+};
+
+const deleteAuthInfo = () => {
+    document.cookie = "dL7uM4gyk4=none;path=/;expires=Thu, 01 Jan 1999 00:00:10 GMT;";
 }
 
-export {register, login, logout, loadTodo, searchTodo, addTodo, editTodo, deleteTodo, getRecommendations, saveAuthInfo, searchAuthInfo};
+export {register, checkLoggedIn, login, logout, loadTodo, searchTodo, addTodo, editTodo, deleteTodo, getRecommendations, saveAuthInfo, searchAuthInfo, deleteAuthInfo};

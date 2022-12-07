@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/user");
 const crypto = require('crypto');
 const cors = require('cors');
-router.use(cors());
+router.use(cors({origin: true, credentials: true}));
 
 // router.get('/sign_up', function(req, res, next) {
 //   res.render("signup");
@@ -49,11 +49,14 @@ router.get('/', function(req, res, next) {
 
 // 로그인 GET
 router.get('/login', function(req, res, next) {
-  let session = req.session;
-
-  res.render("login", {
-    session : session
-  });
+  if (req.session.userId) {
+    console.log("이미 로그인된 유저");
+    res.send({userId: req.session.userId});
+  }
+  else {
+    console.log("세션 정보가 없음");
+    res.send("Not Logged In");
+  }
 });
 
 // 로그인 POST
