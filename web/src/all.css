@@ -10,21 +10,123 @@ button {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: darkslategray;
+        background-color: #555555;
+        color: white;
     }
     
     button {
-        background-color: green;
+        background-color: #bbbbbb;
+        border-color: black;
+        color: black;
+        filter: invert(100%);
+    }
+
+    input {
+        background-color: #555555;
+        border-color: white;
+        color: white;
+    }
+
+    .system-text {
+        color: white;
+    }
+
+    ::placeholder {
+        color: white;
+        opacity: 1;
+    }
+
+    .headpage {
+        background-color: #333333;
+    }
+
+    .menubar {
+        background-color: #333333;
+    }
+
+    .dailyboarditem, .weeklyboarditem, .monthlyboarditem {
+        --bd-color: #ffffff;
+    }
+
+    .db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {
+        --bd-color: #ffffff;
+    }
+
+    .wb-column, .mb-row, .mb-cell {
+        --bd-color: #ffffff;
+    }
+
+    .add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {
+        filter: invert(100%);
+    }
+
+    .state-done-circle, .state-done-rectangle {
+        background-color: #aa55aa;
+    }
+
+    .state-notyet {
+        background-color: #00bbbb;
     }
 }
 
 @media (prefers-color-scheme: light) {
     body {
         background-color: ivory;
+        color: black;
     }
     
     button {
-        background-color: lightgreen;
+        background-color: #eeeeee;
+        border-color: black;
+        color: black;
+        filter: invert(0%);
+    }
+
+    input {
+        background-color: ivory;
+        border-color: black;
+        color: black;
+    }
+
+    .system-text {
+        color: black;
+    }
+
+    ::placeholder {
+        color: grey;
+        opacity: 1;
+    }
+
+    .headpage {
+        background-color: #dddddd;
+    }
+
+    .menubar {
+        background-color: #dddddd;
+    }
+
+    .dailyboarditem, .weeklyboarditem, .monthlyboarditem {
+        --bd-color: #000000;
+    }
+
+    .db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {
+        --bd-color: #000000;
+    }
+
+    .wb-column, .mb-row, .mb-cell {
+        --bd-color: #000000;
+    }
+
+    .add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {
+        filter: invert(0%);
+    }
+
+    .state-done-circle, .state-done-rectangle {
+        background-color: #99ff99;
+    }
+
+    .state-notyet {
+        background-color: #ff6666;
     }
 }
 
@@ -38,7 +140,6 @@ button {
 }
 
 .headpage {
-    background-color: aquamarine;
     width: 100vw;
     min-width: 800px;
     height: 5vw;
@@ -53,7 +154,6 @@ button {
 }
 
 .menubar {
-    background-color: aquamarine;
     width: 100vw;
     min-width: 800px;
     height: fit-content;
@@ -283,7 +383,7 @@ button {
 .db-head {
     width: 98vw;
     min-width: 784px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     margin: 0.5% 1% 1% 1%;
     text-align: center;
     vertical-align: middle;
@@ -294,7 +394,7 @@ button {
     width: 96vw;
     min-width: 768px;
     height: fit-content;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     border-radius: 0.96vw;
     margin: 1%;
     padding: 1%;
@@ -327,7 +427,7 @@ button {
     margin-left: 1%;
     margin-right: 1%;
     margin-bottom: 0px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     text-align: center;
     vertical-align: middle;
     display: flex;
@@ -343,7 +443,7 @@ button {
 .wb-column {
     width: 14vw;
     min-width: 112px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     flex: 1;
 }
 
@@ -351,7 +451,7 @@ button {
     width: 14vw;
     min-width: 112px;
     margin-bottom: 0.8vw;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--bd-color);
     text-align: center;
     font-size: 1.5vw;
 }
@@ -360,7 +460,7 @@ button {
     width: 12vw;
     min-width: 96px;
     height: fit-content;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     border-radius: 0.96vw;
     margin-left: auto;
     margin-right: auto;
@@ -401,7 +501,7 @@ button {
     margin-left: 1%;
     margin-right: 1%;
     margin-bottom: 0px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     text-align: center;
     vertical-align: middle;
     display: flex;
@@ -416,7 +516,7 @@ button {
 .mb-row {
     width: 98vw;
     min-width: 784px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -425,13 +525,13 @@ button {
 .mb-body-head {
     width: 14vw;
     min-width: 112px;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
 }
 
 .mb-cell {
     flex: 1;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-left: 1px solid var(--bd-color);
+    border-right: 1px solid var(--bd-color);
     width: 14vw;
     min-width: 112px;
     min-height: 8vh;
@@ -440,7 +540,7 @@ button {
 .mb-cell-head {
     width: 14vw;
     min-width: 112px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--bd-color);
     margin-bottom: 0.8vw;
 }
 
@@ -448,7 +548,7 @@ button {
     width: 12vw;
     min-width: 96px;
     height: fit-content;
-    border: 1px solid black;
+    border: 1px solid var(--bd-color);
     border-radius: 0.96vw;
     margin-left: auto;
     margin-right: auto;
@@ -482,20 +582,11 @@ button {
     font-family: "Nunito";
 }
 
-.state-done-rectangle {
-    background-color: lightgreen;
-}
-
 .state-done-circle {
-    background-color: lightgreen;
     background-image: url("resources/correct-symbol.png");
     background-size: 50% 50%;
     background-repeat: no-repeat;
     background-position: center center;
-}
-
-.state-notyet {
-    background-color: #ff6666;
 }
 
 .add-button {
@@ -550,4 +641,115 @@ button {
 .google-button {
     background: none;
     border: none;
+    filter: invert(0%);
+}
+
+#tutorial-image1 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image2 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image3 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image4 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto4.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image5 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto5.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image6 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto6.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image7 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto7.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image8 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto8.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image9 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto9.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image10 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto10.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image11 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto11.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

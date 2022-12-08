@@ -55,7 +55,7 @@ const fillFocusedDates = (focusedDate) => {
     }
 };
 
-const WeeklyBoard = ({showEditPage}) => {
+const WeeklyBoard = ({showEditPage, refreshCnt}) => {
     const today = new Date();
     const [focusedDate, setFocusedDate] = useState(dateToInt(startOfWeek(today)));
 
@@ -81,25 +81,27 @@ const WeeklyBoard = ({showEditPage}) => {
                 <div className='flex-cell-1'><button className='rectangle-10-1 align-center margin-05vw' onClick={oneWeekAfter}>Next Week</button></div>
             </div>
             <div className="wb-body">
-                <WeeklyBoardColumn date={focusedDates[0]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[1]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[2]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[3]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[4]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[5]} showEditPage={showEditPage} />
-                <WeeklyBoardColumn date={focusedDates[6]} showEditPage={showEditPage} />
+                <WeeklyBoardColumn date={focusedDates[0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                <WeeklyBoardColumn date={focusedDates[6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
             </div>
         </div>
     );
 };
 
-const WeeklyBoardColumn = ({date, showEditPage}) => {
+const WeeklyBoardColumn = ({date, showEditPage, refreshCnt}) => {
     const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
     const loadTodolist = () => {
         let startdt = new Date(intToString(date)+" 00:00");
+        startdt.setMinutes(startdt.getMinutes() - startdt.getTimezoneOffset());
         let enddt = new Date(intToString(date)+" 23:59");
+        enddt.setMinutes(enddt.getMinutes() - enddt.getTimezoneOffset());
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
@@ -109,7 +111,7 @@ const WeeklyBoardColumn = ({date, showEditPage}) => {
                 setTodoList([]);
             });
     }
-    useEffect(loadTodolist, [date]);
+    useEffect(loadTodolist, [date, rmFlag, refreshCnt]);
     
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -168,11 +170,19 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
     };
 
     const __showEditPage = () => {
-        showEditPage(id);
+        showEditPage({
+            id: id,
+            title: title,
+            start: start.substring(0,16),
+            end: end.substring(0,16),
+            state: currState
+        });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {
@@ -183,8 +193,8 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start}<br />
-                        End : {end}
+                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
             </div>
@@ -200,8 +210,8 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start}<br />
-                        End : {end}
+                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
             </div>

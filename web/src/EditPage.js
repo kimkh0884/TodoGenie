@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { addTodo, editTodo, getRecommendations } from './api';
 import "./all.css";
 
-const sampleRecommendations = ["Exercise", "Homework"];
-
 const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard, data}) => {
   const todo_properties = JSON.parse(data);
-  const [recommendations, setRecommendations] = useState(sampleRecommendations);
+  const [recommendations, setRecommendations] = useState([]);
   const [doneFlag, setDoneFlag] = useState(todo_properties.state);
 
   const exitWithoutSave = () => {
@@ -26,11 +24,10 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
   const saveAndExit = () => {
     if (window.confirm("Do you want to save the contents?")) {
       let title = document.getElementById("ep-title").value;
-      let start = document.getElementById("ep-start").value;
-      let end = document.getElementById("ep-end").value;
-      console.log(title);
-      console.log(start);
-      console.log(end);
+      let start = new Date(document.getElementById("ep-start").value);
+      start.setMinutes(start.getMinutes() - start.getTimezoneOffset());
+      let end = new Date(document.getElementById("ep-end").value);
+      end.setMinutes(end.getMinutes() - end.getTimezoneOffset());
 
       let success = null;
       if (prevBoard === 0) {
@@ -78,7 +75,7 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
   const tryGetRecommendations = () => {
     getRecommendations(
       (res) => {
-        setRecommendations(res);
+        setRecommendations(res.data);
       },
       () => {});
   };
@@ -102,8 +99,8 @@ const EditPage = ({showDailyBoard, showWeeklyBoard, showMonthlyBoard, prevBoard,
         </div>
         <div className='align-center margin-1vw'>
           <h4 className='system-text'>※ People often adds these to-dos</h4>
-          {recommendations.map((word, i) => (
-            <button key={i} className='rectangle-small-10-1 margin-05vw align-center'>{word}</button>
+          {recommendations.map((pair) => (
+            <button key={pair._id} className='rectangle-small-10-1 margin-05vw align-center'>{pair._id}</button>
           ))}
         </div>
       </div>

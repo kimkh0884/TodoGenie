@@ -8,8 +8,7 @@ const axiosInstance = axios.create({
     headers: {
         'Access-Control-Allow-Origin': 'https://localhost:8000'
     },
-    baseURL: server_url,
-    withCredentials: true
+    baseURL: server_url
 });
 
 const register = (username, id, pw, success, fail) => {
@@ -19,9 +18,9 @@ const register = (username, id, pw, success, fail) => {
         password: pw
     };
     
-    axiosInstance.post((server_url + "/users/sign_up"), data).then((res) => {
+    axiosInstance.post("/users/sign_up", data, {withCredentials: true}).then((res) => {
         if (res.data === "user name already exists") {
-            fail();
+            fail("\nAlready registered!");
         }
         else {
             success();
@@ -29,12 +28,12 @@ const register = (username, id, pw, success, fail) => {
         //console.log(res);
     }).catch((e) => {
         console.log("register: "+e);
-        fail();
+        fail("");
     });
 };
 
 const checkLoggedIn = (success, fail) => {    
-    axiosInstance.get((server_url + "/users/login")).then((res) => {
+    axiosInstance.get("/users/login", {withCredentials: true}).then((res) => {
         if (res.data === "Not Logged In") {
             fail();
         }
@@ -53,7 +52,7 @@ const login = (id, pw, success, fail) => {
         password: pw
     };
     
-    axiosInstance.post((server_url + "/users/login"), data).then((res) => {
+    axiosInstance.post("/users/login", data, {withCredentials: true}).then((res) => {
         if (res.data === "Wrong Password") {
             fail("\nPassword is wrong.");
         }
@@ -70,7 +69,7 @@ const login = (id, pw, success, fail) => {
 };
 
 const logout = (success, fail) => {    
-    axiosInstance.get((server_url + "/users/logout")).then((res) => {
+    axiosInstance.get("/users/logout", {withCredentials: true}).then((res) => {
         if (res.data === "Logged out") {
             success();
         }
@@ -89,7 +88,7 @@ const loadTodo = (start, end, success, fail) => {
         end: end
     };
     
-    axiosInstance.get((server_url + "/todos"), {params: ps}).then((res) => {
+    axiosInstance.get("/todos", {params: ps, withCredentials: true}).then((res) => {
         success(res.data);
     }).catch((e) => {
         console.log("loadTodo: "+e);
@@ -102,7 +101,7 @@ const searchTodo = (keyword, success, fail) => {
         keyword: keyword
     };
     
-    axiosInstance.get((server_url + "/todos/search"), {params: ps}).then((res) => {
+    axiosInstance.get("/todos/search", {params: ps, withCredentials: true}).then((res) => {
         success(res.data);
     }).catch((e) => {
         console.log("searchTodo: "+e);
@@ -117,8 +116,7 @@ const addTodo = (title, start, end, success, fail) => {
         end: end
     };
     
-    axiosInstance.post((server_url + "/todos"), data).then((res) => {
-        console.log(res);
+    axiosInstance.post("/todos", data, {withCredentials: true}).then((res) => {
         success();
     }).catch((e) => {
         console.log("addTodo: "+e);
@@ -134,8 +132,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
         state: state
     };
     
-    axiosInstance.put((server_url + "/todos/" + id), data).then((res) => {
-        console.log(res);
+    axiosInstance.put("/todos/" + id, data).then((res) => {
         success();
     }).catch((e) => {
         console.log("editTodo: "+e);
@@ -144,8 +141,7 @@ const editTodo = (id, title, start, end, state, success, fail) => {
 };
 
 const deleteTodo = (id, success, fail) => {    
-    axiosInstance.delete((server_url + "/todos/" + id)).then((res) => {
-        console.log(res);
+    axiosInstance.delete("/todos/" + id).then((res) => {
         success();
     }).catch((e) => {
         console.log("deleteTodo: "+e);
@@ -154,7 +150,12 @@ const deleteTodo = (id, success, fail) => {
 };
 
 const getRecommendations = (success, fail) => {    
-    //
+    axiosInstance.get("/todos/recommendation").then((res) => {
+        success(res);
+    }).catch((e) => {
+        console.log("getRecommendations: "+e);
+        fail();
+    });
 };
 
 const KEY = "WfH+%ug%G?TT=G/FY9z!6M}aqAQg?]pz";

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { searchTodo, editTodo, deleteTodo } from './api';
 import "./all.css";
 
-const SearchedBoard = ({showEditPage, keyword}) => {
+const SearchedBoard = ({showEditPage, keyword, refreshCnt}) => {
     const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
@@ -15,7 +15,7 @@ const SearchedBoard = ({showEditPage, keyword}) => {
                 setTodoList([]);
             });
     };
-    useEffect(loadTodolist, [keyword]);
+    useEffect(loadTodolist, [keyword, rmFlag, refreshCnt]);
 
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -78,14 +78,16 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
         showEditPage({
             id: id,
             title: title,
-            start: start,
-            end: end,
-            state: state
+            start: start.substring(0,16),
+            end: end.substring(0,16),
+            state: currState
         });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {
@@ -95,8 +97,8 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>
@@ -112,8 +114,8 @@ const SearchedBoardItem = ({showEditPage, removeTodo, id, title, start, end, sta
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>

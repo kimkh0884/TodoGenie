@@ -57,7 +57,7 @@ const MainPage = () => {
     return (
       <div className="bodypage">
         <MenuBar showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} showSearchedBoard={showSearchedBoard} showEditPage={showEditPage} refreshAll={refreshAll} />
-        <DailyBoard showEditPage={showEditPage}/>
+        <DailyBoard showEditPage={showEditPage} refreshCnt={refreshFlag}/>
       </div>
     );
   }
@@ -65,7 +65,7 @@ const MainPage = () => {
     return (
       <div className="bodypage">
         <MenuBar showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} showSearchedBoard={showSearchedBoard} showEditPage={showEditPage} refreshAll={refreshAll} />
-        <WeeklyBoard showEditPage={showEditPage}/>
+        <WeeklyBoard showEditPage={showEditPage} refreshCnt={refreshFlag}/>
       </div>
     );
   }
@@ -73,7 +73,7 @@ const MainPage = () => {
     return (
       <div className="bodypage">
         <MenuBar showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} showSearchedBoard={showSearchedBoard} showEditPage={showEditPage} refreshAll={refreshAll} />
-        <MonthlyBoard showEditPage={showEditPage}/>
+        <MonthlyBoard showEditPage={showEditPage} refreshCnt={refreshFlag}/>
       </div>
     );
   }
@@ -81,7 +81,7 @@ const MainPage = () => {
     return (
       <div className="bodypage">
         <MenuBar showDailyBoard={showDailyBoard} showWeeklyBoard={showWeeklyBoard} showMonthlyBoard={showMonthlyBoard} showSearchedBoard={showSearchedBoard} showEditPage={showEditPage} refreshAll={refreshAll} />
-        <SearchedBoard showEditPage={showEditPage} keyword={keyword}/>
+        <SearchedBoard showEditPage={showEditPage} keyword={keyword} refreshCnt={refreshFlag}/>
       </div>
     );
   }

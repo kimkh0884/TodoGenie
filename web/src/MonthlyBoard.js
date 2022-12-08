@@ -104,7 +104,7 @@ const fillFocusedDates = (focusedDate) => {
     }
 };
 
-const MonthlyBoard = ({showEditPage}) => {
+const MonthlyBoard = ({showEditPage, refreshCnt}) => {
     const today = new Date();
     const [focusedDate, setFocusedDate] = useState(dateToInt(startOfMonth(today)));
 
@@ -146,40 +146,40 @@ const MonthlyBoard = ({showEditPage}) => {
                         <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
                     </div>
                     <div id="mb-row0" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row1" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row2" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row3" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                 </div>
             </div>
@@ -204,49 +204,49 @@ const MonthlyBoard = ({showEditPage}) => {
                         <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
                     </div>
                     <div id="mb-row0" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row1" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row2" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row3" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row4" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                 </div>
             </div>
@@ -271,58 +271,58 @@ const MonthlyBoard = ({showEditPage}) => {
                         <div className='mb-body-head'><button className='rectangle-small-2-1 align-center margin-05vw'>Sat</button></div>
                     </div>
                     <div id="mb-row0" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[0][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[0][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row1" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[1][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[1][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row2" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[2][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[2][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row3" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[3][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[3][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row4" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[4][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[4][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                     <div id="mb-row5" className='mb-row'>
-                        <MonthlyBoardCell date={focusedDates[5][0]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][1]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][2]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][3]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][4]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][5]} showEditPage={showEditPage} />
-                        <MonthlyBoardCell date={focusedDates[5][6]} showEditPage={showEditPage} />
+                        <MonthlyBoardCell date={focusedDates[5][0]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][1]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][2]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][3]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][4]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][5]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
+                        <MonthlyBoardCell date={focusedDates[5][6]} showEditPage={showEditPage} refreshCnt={refreshCnt} />
                     </div>
                 </div>
             </div>
@@ -330,13 +330,15 @@ const MonthlyBoard = ({showEditPage}) => {
     }
 };
 
-const MonthlyBoardCell = ({date, showEditPage}) => {
+const MonthlyBoardCell = ({date, showEditPage, refreshCnt}) => {
     const [todoList, setTodoList] = useState([]);
     const [rmFlag, setRmFlag] = useState(0);
 
     const loadTodolist = () => {
         let startdt = new Date(intToString(date)+" 00:00");
+        startdt.setMinutes(startdt.getMinutes() - startdt.getTimezoneOffset());
         let enddt = new Date(intToString(date)+" 23:59");
+        enddt.setMinutes(enddt.getMinutes() - enddt.getTimezoneOffset());
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
@@ -346,7 +348,7 @@ const MonthlyBoardCell = ({date, showEditPage}) => {
                 setTodoList([]);
             });
     };
-    useEffect(loadTodolist, [date]);
+    useEffect(loadTodolist, [date, rmFlag, refreshCnt]);
     
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -404,11 +406,19 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
     };
     
     const __showEditPage = () => {
-        showEditPage(id);
+        showEditPage({
+            id: id,
+            title: title,
+            start: start.substring(0,16),
+            end: end.substring(0,16),
+            state: currState
+        });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {
@@ -430,8 +440,8 @@ const MonthlyBoardItem = ({showEditPage, removeTodo, id, title, start, end, stat
                 <div className='mbi-text-space'><h5 title={title} className='mbi-title'>{title}</h5></div>
                 <div className='mbi-text-space'>
                     <h6 className='mbi-time'>
-                        Start : {start}<br />
-                        End : {end}
+                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
             </div>

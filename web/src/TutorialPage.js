@@ -24,37 +24,94 @@ const TutorialPage = ({exitTutorial}) => {
   };
 
   const showNext = () => {
-    if (pageNum < 3) {
+    if (pageNum < 11) {
       setPageNum(pageNum+1);
     }
   };
 
-  if (pageNum === 1) {
-    return (
-      <div className = "tutorialpage">
-        <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
-        <h1>Tutorial</h1>
-        <h2>tuto1.jpg</h2>
-      </div>
-    );
-  }
-  else if (pageNum === 2) {
-    return (
-      <div className = "tutorialpage">
-        <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
-        <h1>Tutorial</h1>
-        <h2>tuto2.jpg</h2>
-      </div>
-    );
-  }
-  else {
-    return (
-      <div className = "tutorialpage">
-        <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
-        <h1>Tutorial</h1>
-        <h2>tuto3.jpg</h2>
-      </div>
-    );
+  switch (pageNum) {
+    case 1:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image1" />
+        </div>
+      );
+    case 2:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image2" />
+        </div>
+      );
+    case 3:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image3" />
+        </div>
+      );
+    case 4:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image4" />
+        </div>
+      );
+    case 5:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image5" />
+        </div>
+      );
+    case 6:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image6" />
+        </div>
+      );
+    case 7:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image7" />
+        </div>
+      );
+    case 8:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image8" />
+        </div>
+      );
+    case 9:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image9" />
+        </div>
+      );
+    case 10:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image10" />
+        </div>
+      );
+    case 11:
+      return (
+        <div className = "tutorialpage">
+          <MenuBar currPageNum={currPageNum} showPrev={showPrev} showNext={showNext} exitTutorial={exitTutorial} />
+          <div id="tutorial-image11" />
+        </div>
+      );
+    default:
+      return (
+        <div className = "tutorialpage">
+        </div>
+      );
   }
   
 };
@@ -63,7 +120,7 @@ const MenuBar = ({currPageNum, showPrev, showNext, exitTutorial}) => {
   return (
     <div className='menubar flex-row'>
       <div className='flex-cell-1'><button className='rectangle-4-1 margin-1vh align-center' onClick={showPrev}>Previous</button></div>
-      <div className='flex-cell-1'><button className='rectangle-10-1 margin-1vh align-center'>{currPageNum()}/3</button></div>
+      <div className='flex-cell-1'><button className='rectangle-10-1 margin-1vh align-center'>{currPageNum()}/11</button></div>
       <div className='flex-cell-1'><button className='rectangle-4-1 margin-1vh align-center' onClick={showNext}>Next</button></div>
       <div className='flex-cell-1'><button className='rectangle-4-1 margin-1vh align-center' onClick={exitTutorial}>Return to Main</button></div>
     </div>

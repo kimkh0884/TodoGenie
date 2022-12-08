@@ -10,7 +10,7 @@ const intToString = (dtint) => {
     return (parseInt(dtint / 10000) + "-" + parseInt((dtint % 10000) / 100) + "-" + (dtint % 100));
 };
 
-const DailyBoard = ({showEditPage}) => {
+const DailyBoard = ({showEditPage, refreshCnt}) => {
     const today = new Date();
     const [todoList, setTodoList] = useState([]);
     const [focusedDate, setFocusedDate] = useState(dateToInt(today));
@@ -30,18 +30,19 @@ const DailyBoard = ({showEditPage}) => {
 
     const loadTodolist = () => {
         let startdt = new Date(intToString(focusedDate)+" 00:00");
+        startdt.setMinutes(startdt.getMinutes() - startdt.getTimezoneOffset());
         let enddt = new Date(intToString(focusedDate)+" 23:59");
+        enddt.setMinutes(enddt.getMinutes() - enddt.getTimezoneOffset());
 
         loadTodo(startdt.getTime(), enddt.getTime(), 
             (res) => {
-                console.log(res);
                 setTodoList(res);
             },
             () => {
                 setTodoList([]);
             });
     };
-    useEffect(loadTodolist, [focusedDate]);
+    useEffect(loadTodolist, [focusedDate, rmFlag, refreshCnt]);
 
     const removeTodo = (id) => {
         deleteTodo(id, 
@@ -104,14 +105,16 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
         showEditPage({
             id: id,
             title: title,
-            start: start,
-            end: end,
-            state: state
+            start: start.substring(0,16),
+            end: end.substring(0,16),
+            state: currState
         });
     };
 
     const __removeTodo = () => {
-        removeTodo(id);
+        if (window.confirm("Do you want to remove this to-do?")) {
+            removeTodo(id);
+        }
     };
 
     if (moreFlag === 0) {
@@ -121,8 +124,8 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>
@@ -138,8 +141,8 @@ const DailyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state}
                     <div className='dbi-text-space'><h1 title={title} className='dbi-title'>{title}</h1></div>
                     <div className='dbi-text-space'>
                         <h3 className='dbi-time'>
-                            Start : {start}<br />
-                            End : {end}
+                            Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                            End : {end.substring(0,10)+" "+end.substring(11,16)}
                         </h3>
                     </div>
                 </div>
