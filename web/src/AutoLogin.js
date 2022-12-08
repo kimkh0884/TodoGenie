@@ -33,7 +33,7 @@ const AutoLogin = () => {
 
       const style = document.createElement('style');
       if (settings.darkmode === 0) {
-        style.textContent = "body {background-color: ivory;color: black;}\nbutton {background-color: #eeeeee;border-color: black;color: black;}\ninput {background-color: ivory;border-color: black;color: black;}\n.system-text {color: black;}\n::placeholder {color: grey;opacity: 1;}\n.headpage {background-color: #dddddd;}\n.menubar {background-color: #dddddd;}\n.dailyboarditem, .weeklyboarditem, .monthlyboarditem {--bd-color: #000000;}\n.db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {--bd-color: #000000;}\n.wb-column, .mb-row, .mb-cell {--bd-color: #000000;}\n.state-done-circle, .state-done-rectangle {background-color: #99ff99;}\n.state-notyet {background-color: #ff6666;}";
+        style.textContent = "body {background-color: ivory;color: black;}\nbutton {background-color: #eeeeee;border-color: black;color: black;filter: invert(0%);}\ninput {background-color: ivory;border-color: black;color: black;}\n.system-text {color: black;}\n::placeholder {color: grey;opacity: 1;}\n.headpage {background-color: #dddddd;}\n.menubar {background-color: #dddddd;}\n.dailyboarditem, .weeklyboarditem, .monthlyboarditem {--bd-color: #000000;}\n.db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {--bd-color: #000000;}\n.wb-column, .mb-row, .mb-cell {--bd-color: #000000;}\n.add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {filter: invert(0%);}\n.state-done-circle, .state-done-rectangle {background-color: #99ff99;}\n.state-notyet {background-color: #ff6666;}";
         document.head.appendChild(style);
       }
       else {

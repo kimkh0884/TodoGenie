@@ -34,8 +34,8 @@ const RegisterPage = () => {
         window.alert("Successfully registered.");
         login(id, pw, () => {setFlag(1);}, () => {});
       }, 
-      () => {
-        window.alert("Registration is failed.");
+      (msg) => {
+        window.alert("Registration is failed."+msg);
       });
   };
 

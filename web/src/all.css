@@ -79,6 +79,7 @@ button {
         background-color: #eeeeee;
         border-color: black;
         color: black;
+        filter: invert(0%);
     }
 
     input {
@@ -114,6 +115,10 @@ button {
 
     .wb-column, .mb-row, .mb-cell {
         --bd-color: #000000;
+    }
+
+    .add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {
+        filter: invert(0%);
     }
 
     .state-done-circle, .state-done-rectangle {
@@ -636,4 +641,115 @@ button {
 .google-button {
     background: none;
     border: none;
+    filter: invert(0%);
+}
+
+#tutorial-image1 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image2 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image3 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image4 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto4.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image5 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto5.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image6 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto6.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image7 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto7.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image8 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto8.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image9 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto9.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image10 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto10.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image11 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto11.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

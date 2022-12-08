@@ -20,7 +20,7 @@ const register = (username, id, pw, success, fail) => {
     
     axiosInstance.post("/users/sign_up", data, {withCredentials: true}).then((res) => {
         if (res.data === "user name already exists") {
-            fail();
+            fail("\nAlready registered!");
         }
         else {
             success();
@@ -28,7 +28,7 @@ const register = (username, id, pw, success, fail) => {
         //console.log(res);
     }).catch((e) => {
         console.log("register: "+e);
-        fail();
+        fail("");
     });
 };
 
