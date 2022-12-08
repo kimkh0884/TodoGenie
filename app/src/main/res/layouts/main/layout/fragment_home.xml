@@ -17,6 +17,15 @@
         app:layout_constraintBottom_toTopOf="@id/todoSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button_add_todo"
+        android:text="@string/add_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/todoSearch"/>
 
     <EditText
         android:id="@+id/todoSearch"

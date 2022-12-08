@@ -113,7 +113,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                     login(userIdEditText.getText().toString(),
                             passwordEditText.getText().toString());
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(binding.password.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(binding.loginPassword.getWindowToken(), 0);
                 }
                 return false;
             }
@@ -128,7 +128,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                 login(userIdEditText.getText().toString(),
                         passwordEditText.getText().toString());
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(binding.password.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(binding.loginPassword.getWindowToken(), 0);
             }
         });
     }
@@ -138,7 +138,7 @@ public class CustomLoginActivity extends AppCompatActivity {
             Call<user_model> call;
 
             login_model bodyObject = new login_model(userId, password);
-            call = retrofit_client.getApiService().login(bodyObject);
+            call = retrofit_client.getApiService(this).login(bodyObject);
             call.enqueue(new Callback<user_model>() {
                 @Override
                 public void onResponse(Call<user_model> call, Response<user_model> response) {

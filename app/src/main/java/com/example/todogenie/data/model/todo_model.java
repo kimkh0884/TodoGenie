@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class data_model {
+public class todo_model {
     @SerializedName("_id")
     @Expose
     private String id;
@@ -14,9 +14,9 @@ public class data_model {
     @Expose
     private String title;
 
-    @SerializedName("owner")
+    @SerializedName("start")
     @Expose
-    private String owner;
+    private Date start;
 
     @SerializedName("end")
     @Expose
@@ -24,15 +24,14 @@ public class data_model {
 
     @SerializedName("state")
     @Expose
-    private String state;
+    private int state;
 
-    @SerializedName("createTime")
-    @Expose
-    private Date createTime;
-
-    @SerializedName("updateTime")
-    @Expose
-    private Date updateTime;
+    public todo_model(String title, Date start, Date end, Boolean state){
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.state = state == false ? 0 : 1;
+    }
 
     public String getId() {
         return id;
@@ -42,23 +41,15 @@ public class data_model {
         return title;
     }
 
+    public Date getStart() {
+        return start;
+    }
+
     public Date getEnd() {
         return end;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
     public Boolean getState() {
-        return state.equals("1");
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
+        return state == 1;
     }
 }
