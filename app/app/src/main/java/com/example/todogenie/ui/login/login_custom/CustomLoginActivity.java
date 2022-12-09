@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -113,7 +114,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                     login(userIdEditText.getText().toString(),
                             passwordEditText.getText().toString());
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(binding.password.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(binding.loginPassword.getWindowToken(), 0);
                 }
                 return false;
             }
@@ -128,7 +129,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                 login(userIdEditText.getText().toString(),
                         passwordEditText.getText().toString());
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(binding.password.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(binding.loginPassword.getWindowToken(), 0);
             }
         });
     }
@@ -138,12 +139,13 @@ public class CustomLoginActivity extends AppCompatActivity {
             Call<user_model> call;
 
             login_model bodyObject = new login_model(userId, password);
-            call = retrofit_client.getApiService().login(bodyObject);
+            call = retrofit_client.getApiService(this).login(bodyObject);
             call.enqueue(new Callback<user_model>() {
                 @Override
                 public void onResponse(Call<user_model> call, Response<user_model> response) {
                     binding.loading.setVisibility(View.INVISIBLE);
                     if (response.isSuccessful()) { // response code 200~300
+                        Log.d("res", response.message());
                         user_model responseData = response.body();
                         if ("null".equals(responseData.getErrorStr())) { // login success
                             gotoMainActivity(responseData.getUserId(), responseData.getUserName());

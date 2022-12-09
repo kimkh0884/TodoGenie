@@ -18,7 +18,7 @@ router.post("/sign_up", async function(req,res,next){
   User.findExisting(body.userId)
   .then( user => {
     if(user) {
-      return res.send("user name already exists");
+      return res.send({"err":"user name already exists"});
     } else {
       User.create({
         userName: body.userName,
@@ -55,7 +55,7 @@ router.get('/login', function(req, res, next) {
   }
   else {
     console.log("세션 정보가 없음");
-    res.send("Not Logged In");
+    res.send({"err": "Not Logged In"});
   }
 });
 
@@ -81,11 +81,11 @@ router.post("/login", async function(req, res, next){
         res.send(result);  
     } else{
         console.log("비밀번호 불일치");
-        res.send("Wrong Password");
+        res.send({"err": "Wrong Password"});
     }
   } else {
     console.log("존재하지 않는 아이디");
-    res.send("No matching ID");
+    res.send({"err":"No matching ID"});
   }
 });
 

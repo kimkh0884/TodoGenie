@@ -12,6 +12,7 @@ import com.example.todogenie.databinding.ActivityLoginBinding;
 import com.example.todogenie.ui.login.login_custom.CustomLoginActivity;
 import com.example.todogenie.ui.main.MainActivity;
 import com.example.todogenie.ui.register.RegisterActivity;
+import com.example.todogenie.ui.tutorial.TutorialActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             // function for testing
             @Override
             public void onClick(View view) {
-                gotoMainActivity("test_ID", "test_UserName");
+                gotoTutorialActivity("test_ID", "test_UserName");
             }
         });
 
@@ -89,6 +90,14 @@ public class LoginActivity extends AppCompatActivity {
     public void gotoCustomLoginActivity() {
         Intent intent = new Intent(this, CustomLoginActivity.class);
         startActivity(intent);
+    }
+
+    private void gotoTutorialActivity(String userId, String userName) {
+        Intent intent = new Intent(getApplicationContext(), TutorialActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("userName", userName);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -46,8 +46,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
-            android:layout_weight="1"
             android:text="To-do Content"
+            android:textColor="#5B5454"
+            android:textSize="6pt" />
+        <TextView
+            android:id="@+id/start_todo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+
+            android:text="To-do Start"
+            android:textColor="#5B5454"
+            android:textSize="6pt" />
+        <TextView
+            android:id="@+id/end_todo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:text="To-do End"
             android:textColor="#5B5454"
             android:textSize="6pt" />
 

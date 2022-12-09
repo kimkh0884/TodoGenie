@@ -52,19 +52,41 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Setting 1 example"
+                        android:text="Dark mode"
                         android:textSize="10pt" />
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:layout_height="match_parent"
                         android:gravity="end|center_vertical">
-                        <CheckBox
-                            android:id="@+id/checkbox_settings1"
-                            android:layout_marginEnd="20dp"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:checked="true" />
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            >
+
+                            <RadioButton
+                                android:layout_weight="1"
+                                android:text="Light"
+                                android:id="@+id/rg_btn1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content" />
+
+                            <RadioButton
+                                android:layout_weight="1"
+                                android:text="Dark"
+                                android:id="@+id/rg_btn2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content" />
+
+                            <RadioButton
+                                android:layout_weight="1"
+                                android:text="Default"
+                                android:id="@+id/rg_btn3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content" />
+                        </RadioGroup>
                     </LinearLayout>
 
                 </LinearLayout>
