@@ -7,7 +7,7 @@ const fs = require("fs");
 const app = express();
 const bodyParser = require('body-parser');
 const { createServer } = require("http");
-const port = 80;
+const port = 8000;
 const path = require('path');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
@@ -44,5 +44,5 @@ app.use(cors());
 const server = createServer(app);
 
 server.listen(port, () => {
-    console.log('Server is running on port:80');
+    console.log('Server is running on port:8000');
 });
