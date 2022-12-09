@@ -1,0 +1,755 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    box-sizing: content-box;
+    padding: 0px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #555555;
+        color: white;
+    }
+    
+    button {
+        background-color: #bbbbbb;
+        border-color: black;
+        color: black;
+        filter: invert(100%);
+    }
+
+    input {
+        background-color: #555555;
+        border-color: white;
+        color: white;
+    }
+
+    .system-text {
+        color: white;
+    }
+
+    ::placeholder {
+        color: white;
+        opacity: 1;
+    }
+
+    .headpage {
+        background-color: #333333;
+    }
+
+    .menubar {
+        background-color: #333333;
+    }
+
+    .dailyboarditem, .weeklyboarditem, .monthlyboarditem {
+        --bd-color: #ffffff;
+    }
+
+    .db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {
+        --bd-color: #ffffff;
+    }
+
+    .wb-column, .mb-row, .mb-cell {
+        --bd-color: #ffffff;
+    }
+
+    .add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {
+        filter: invert(100%);
+    }
+
+    .state-done-circle, .state-done-rectangle {
+        background-color: #aa55aa;
+    }
+
+    .state-notyet {
+        background-color: #00bbbb;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: ivory;
+        color: black;
+    }
+    
+    button {
+        background-color: #eeeeee;
+        border-color: black;
+        color: black;
+        filter: invert(0%);
+    }
+
+    input {
+        background-color: ivory;
+        border-color: black;
+        color: black;
+    }
+
+    .system-text {
+        color: black;
+    }
+
+    ::placeholder {
+        color: grey;
+        opacity: 1;
+    }
+
+    .headpage {
+        background-color: #dddddd;
+    }
+
+    .menubar {
+        background-color: #dddddd;
+    }
+
+    .dailyboarditem, .weeklyboarditem, .monthlyboarditem {
+        --bd-color: #000000;
+    }
+
+    .db-head, .wb-head, .wb-column-head, .mb-head, .mb-body-head, .mb-cell-head {
+        --bd-color: #000000;
+    }
+
+    .wb-column, .mb-row, .mb-cell {
+        --bd-color: #000000;
+    }
+
+    .add-button, .edit-button, .fold-button, .unfold-button, .delete-button, .search-button, .refresh-button {
+        filter: invert(0%);
+    }
+
+    .state-done-circle, .state-done-rectangle {
+        background-color: #99ff99;
+    }
+
+    .state-notyet {
+        background-color: #ff6666;
+    }
+}
+
+.system-text {
+    font-family: "Nunito";
+}
+
+.wholepage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.headpage {
+    width: 100vw;
+    min-width: 800px;
+    height: 5vw;
+    min-height: 50px;
+    vertical-align: middle;
+}
+
+.bodypage {
+    width: 100vw;
+    min-width: 800px;
+    padding-bottom: 1px;
+}
+
+.menubar {
+    width: 100vw;
+    min-width: 800px;
+    height: fit-content;
+    vertical-align: middle;
+}
+
+@font-face {
+    font-family: "CookieRun Black";
+    src: url("resources/CookieRun\ Black.ttf");
+}
+
+.todogenie-title-logo {
+    background-color: none;
+    width: 36vw;
+    min-width: 360px;
+    height: 9vw;
+    min-height: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25vh;
+    margin-bottom: 5vh;
+    font-family: "CookieRun Black";
+    font-size: 5vw;
+    text-align: center;
+}
+
+.todogenie-logo {
+    font-family: "CookieRun Black";
+    font-size: 3vw;
+    padding: 1vw;
+}
+
+.margin-1vh {
+    margin: 1vh;
+}
+
+.margin-1vw {
+    margin: 1vw;
+}
+
+.margin-05vw {
+    margin: 0.5vw;
+}
+
+.margin-left-1vw {
+  margin-left: 1vw;
+}
+
+.padding-both-1vw {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    width: 100%;
+}
+
+.flex-cell-4 {
+    flex: 4;
+}
+
+.flex-cell-1 {
+    flex: 1;
+}
+
+.floating-left {
+    float: left;
+}
+
+.floating-right {
+    float: right;
+}
+
+.circle {
+    width: 3vw;
+    min-width: 30px;
+    max-width: 45px;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.circle-small {
+    width: 2vw;
+    min-width: 20px;
+    max-width: 30px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-10-1 {
+    width: 30vw;
+    min-width: 300px;
+    max-width: 450px;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 5% / 50%;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-small-10-1 {
+    width: 20vw;
+    min-width: 200px;
+    max-width: 300px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 5% / 50%;
+    font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-8-1 {
+    width: 24vw;
+    min-width: 240px;
+    max-width: 360px;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 6.25% / 50%;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-small-8-1 {
+    width: 16vw;
+    min-width: 160px;
+    max-width: 240px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 6.25% / 50%;
+    font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-4-1 {
+    width: 12vw;
+    min-width: 120px;
+    max-width: 180px;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 12.5% / 50%;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-small-4-1 {
+    width: 8vw;
+    min-width: 80px;
+    max-width: 120px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 12.5% / 50%;
+    font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-2-1 {
+    width: 6vw;
+    min-width: 60px;
+    max-width: 90px;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 25% / 50%;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.rectangle-small-2-1 {
+    width: 4vw;
+    min-width: 40px;
+    max-width: 60px;
+    height: 2vw;
+    min-height: 20px;
+    max-height: 30px;
+    border-radius: 25% / 50%;
+    font-size: 0.66vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.search-bar {
+    width: 90%;
+    height: 3vw;
+    min-height: 30px;
+    max-height: 45px;
+    border-radius: 10px;    
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.length-maintain {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.db-head {
+    width: 98vw;
+    min-width: 784px;
+    border: 1px solid var(--bd-color);
+    margin: 0.5% 1% 1% 1%;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+}
+
+.dailyboarditem {
+    width: 96vw;
+    min-width: 768px;
+    height: fit-content;
+    border: 1px solid var(--bd-color);
+    border-radius: 0.96vw;
+    margin: 1%;
+    padding: 1%;
+}
+
+.dbi-text-space {
+    width: 50%;
+    vertical-align: middle;
+}
+
+.dbi-title {
+    padding-left: 1vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 2vw;
+    font-family: "Nunito";
+}
+
+.dbi-time {
+    padding-right: 1vw;
+    text-align: right;
+    font-size: 1.5vw;
+    font-family: "Nunito";
+}
+
+.wb-head {
+    width: 98vw;
+    min-width: 784px;
+    margin-top: 0.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 0px;
+    border: 1px solid var(--bd-color);
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+}
+
+.wb-body {
+    width: 98vw;
+    min-width: 784px;
+    margin: 0.5% 1%;
+    display: flex;
+}
+
+.wb-column {
+    width: 14vw;
+    min-width: 112px;
+    border: 1px solid var(--bd-color);
+    flex: 1;
+}
+
+.wb-column-head {
+    width: 14vw;
+    min-width: 112px;
+    margin-bottom: 0.8vw;
+    border-bottom: 1px solid var(--bd-color);
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.weeklyboarditem {
+    width: 12vw;
+    min-width: 96px;
+    height: fit-content;
+    border: 1px solid var(--bd-color);
+    border-radius: 0.96vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw; 
+    padding: 0.5%;
+}
+
+.wbi-text-space {
+    vertical-align: middle;
+}
+
+.wbi-title {
+    margin-top: 2px;
+    margin-bottom: 6px;
+    padding-left: 1vw;
+    width: 10vw;
+    min-width: 80px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    font-family: "Nunito";
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wbi-time {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 0.8vw;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.mb-head {
+    width: 98vw;
+    min-width: 784px;
+    margin-top: 0.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 0px;
+    border: 1px solid var(--bd-color);
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+}
+
+.mb-body {
+    width: 98vw;
+    min-width: 784px;
+    margin: 0.5% 1%;
+}
+
+.mb-row {
+    width: 98vw;
+    min-width: 784px;
+    border: 1px solid var(--bd-color);
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
+
+.mb-body-head {
+    width: 14vw;
+    min-width: 112px;
+    border: 1px solid var(--bd-color);
+}
+
+.mb-cell {
+    flex: 1;
+    border-left: 1px solid var(--bd-color);
+    border-right: 1px solid var(--bd-color);
+    width: 14vw;
+    min-width: 112px;
+    min-height: 8vh;
+}
+
+.mb-cell-head {
+    width: 14vw;
+    min-width: 112px;
+    border-bottom: 1px solid var(--bd-color);
+    margin-bottom: 0.8vw;
+}
+
+.monthlyboarditem {
+    width: 12vw;
+    min-width: 96px;
+    height: fit-content;
+    border: 1px solid var(--bd-color);
+    border-radius: 0.96vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw; 
+    padding: 0.5% 0.5% 5% 0.5%; 
+}
+
+.mbi-text-space {
+    vertical-align: middle;
+}
+
+.mbi-title {
+    margin-top: 1px;
+    margin-bottom: 6px;
+    padding-left: 1vw;
+    width: 10vw;
+    min-width: 80px;
+    font-size: 1vw;
+    font-weight: bold;
+    font-family: "Nunito";
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mbi-time {
+    margin-top: 2px;
+    margin-bottom: 6px;
+    font-size: 0.75vw;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.state-done-circle {
+    background-image: url("resources/correct-symbol.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.add-button {
+    background-image: url(resources/plus-black-symbol.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.refresh-button {
+    background-image: url(resources/refresh-page-option.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.search-button {
+    background-image: url(resources/magnifying-glass.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.edit-button {
+    background-image: url(resources/pencil.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.delete-button {
+    background-image: url(resources/bin.png);
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.unfold-button {
+    background-image: url(resources/right-chevron.png);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.fold-button {
+    background-image: url(resources/left-chevron.png);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.google-button {
+    background: none;
+    border: none;
+    filter: invert(0%);
+}
+
+#tutorial-image1 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image2 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image3 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image4 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto4.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image5 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto5.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image6 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto6.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image7 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto7.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image8 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto8.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image9 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto9.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image10 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto10.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tutorial-image11 {
+    width: 100vw;
+    height: 70vh;
+    margin-top: 15px;
+    background-image: url(./resources/tutorial/tuto11.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
