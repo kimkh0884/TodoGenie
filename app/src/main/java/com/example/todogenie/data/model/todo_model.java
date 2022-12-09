@@ -8,7 +8,7 @@ import java.util.Date;
 public class todo_model {
     @SerializedName("_id")
     @Expose
-    private String id;
+    private String _id;
 
     @SerializedName("title")
     @Expose
@@ -33,8 +33,16 @@ public class todo_model {
         this.state = state == false ? 0 : 1;
     }
 
+    public todo_model(String _id, String title, Date start, Date end, Boolean state){
+        this._id = _id;
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.state = state == false ? 0 : 1;
+    }
+
     public String getId() {
-        return id;
+        return _id;
     }
 
     public String getTitle() {

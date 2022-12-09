@@ -23,7 +23,7 @@ import com.example.todogenie.data.model.register_model;
 import com.example.todogenie.data.model.user_model;
 import com.example.todogenie.data.retrofit_client;
 import com.example.todogenie.databinding.ActivityRegisterBinding;
-import com.example.todogenie.ui.main.MainActivity;
+import com.example.todogenie.ui.tutorial.TutorialActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -125,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (response.isSuccessful()) { // response code 200~300
                         user_model responseData = response.body();
                         if ("null".equals(responseData.getErrorStr())) { // register success
-                            gotoMainActivity(responseData.getUserId(), responseData.getUserName());
+                            gotoTutorialActivity(responseData.getUserId(), responseData.getUserName());
                             Toast.makeText(getApplicationContext(), "Welcome!", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), responseData.getErrorStr(), Toast.LENGTH_LONG).show();
@@ -145,8 +145,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void gotoMainActivity(String userId, String userName) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+    private void gotoTutorialActivity(String userId, String userName) {
+        Intent intent = new Intent(getApplicationContext(), TutorialActivity.class);
         intent.putExtra("userId", userId);
         intent.putExtra("userName", userName);
         startActivity(intent);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -144,6 +145,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                 public void onResponse(Call<user_model> call, Response<user_model> response) {
                     binding.loading.setVisibility(View.INVISIBLE);
                     if (response.isSuccessful()) { // response code 200~300
+                        Log.d("res", response.message());
                         user_model responseData = response.body();
                         if ("null".equals(responseData.getErrorStr())) { // login success
                             gotoMainActivity(responseData.getUserId(), responseData.getUserName());

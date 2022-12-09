@@ -1,8 +1,10 @@
 package com.example.todogenie.ui.main.ui.home;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TodoVO {
+    private String _id;
     private String title;
     private String content;
     private Date start;
@@ -23,6 +25,23 @@ public class TodoVO {
         this.start = start;
         this.end = end;
         this.checked = checked;
+    }
+
+    TodoVO(String _id, String title, String content, Date start, Date end, boolean checked) {
+        this._id = _id;
+        this.title = title;
+        this.content = content;
+        this.start = start;
+        this.end = end;
+        this.checked = checked;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getTitle() {
@@ -65,11 +84,21 @@ public class TodoVO {
         this.checked = checked;
     }
 
+    public String getStartStr(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(getStart());
+    }
+
+    public String getEndStr(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(getEnd());
+    }
 
     @Override
     public String toString() {
         return "TodoVO{" +
-                "title='" + getTitle() + '\'' +
+                "_id='" + get_id() + '\'' +
+                ", title='" + getTitle() + '\'' +
                 ", content='" + getContent() + '\'' +
                 '}';
     }
