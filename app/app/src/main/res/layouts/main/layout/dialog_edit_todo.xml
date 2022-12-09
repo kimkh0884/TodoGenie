@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="7pt"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Title*"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#787878"
+            android:textColor="#5B5454"
+            android:backgroundTint = "#787878"/>
+
+
+        <EditText
+            android:id="@+id/startDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="7pt"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Start Date"
+            android:paddingLeft="10dp"
+            android:textColorHint="#787878"
+            android:textColor="#5B5454"
+            android:backgroundTint = "#787878"
+            android:focusable="false"
+            />
+
+        <EditText
+            android:id="@+id/endDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="7pt"
+            android:inputType="textPersonName"
+            android:hint="End Date*"
+            android:paddingLeft="10dp"
+            android:textColorHint="#787878"
+            android:textColor="#5B5454"
+            android:backgroundTint = "#787878"
+            android:focusable="false"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/todoEditCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textSize="6pt"
+                android:textStyle="bold"
+                android:textColor="#5B5454"
+                android:backgroundTint="#00FF0000"
+                android:background="#00FF0000"/>
+
+            <Button
+                android:id="@+id/todoEditOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ok"
+                android:textSize="6pt"
+                android:textStyle="bold"
+                android:textColor="#5B5454"
+                android:backgroundTint="#00FF0000"
+                android:background="#00FF0000" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Edit Todo"
+        android:textColor="#5B5454"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
