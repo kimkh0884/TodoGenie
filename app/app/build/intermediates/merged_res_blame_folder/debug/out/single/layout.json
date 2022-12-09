@@ -1,0 +1,74 @@
+[
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\dialog_edit_todo.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\dialog_edit_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\login\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\activity_tutorial.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\activity_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\dialog_add_todo.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\dialog_add_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_settings.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_first.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_second.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "com.example.todogenie.app-mergeDebugResources-46:/layout/activity_tutorial.xml",
+        "source": "com.example.todogenie.app-main-49:/layouts/tutorial/layout/activity_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_home__monthly.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__monthly.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\content_tutorial.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\content_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_home__daily.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__daily.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\item_todo.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\item_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_notifications.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\fragment_home__weekly.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__weekly.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\activity_login_custom.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\login\\layout\\activity_login_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-mergeDebugResources-46:\\layout\\activity_register.xml",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\register\\layout\\activity_register.xml"
+    }
+]

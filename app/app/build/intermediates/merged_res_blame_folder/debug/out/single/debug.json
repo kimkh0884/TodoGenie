@@ -1,0 +1,214 @@
+[
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_home__daily.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__daily.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_right_arrow.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\drawable\\right_arrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_ic_home_black_24dp.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\ic_home_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_ic_settings_black_24dp.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\ic_settings_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_notifications.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_left_arrow.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\drawable\\left_arrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_dialog_add_todo.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\dialog_add_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_close.png.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\close.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_ic_notifications_black_24dp.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\ic_notifications_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_second.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_edit.png.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\edit.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\anim_fade_out_half.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\anim\\fade_out_half.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_home__monthly.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__monthly.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_simple_stroke.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\simple_stroke.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout-w936dp_activity_login_custom.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layout-w936dp\\activity_login_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\anim_fade_in.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\anim\\fade_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\register\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_item_todo.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\item_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_home__weekly.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_home__weekly.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-pngs-42:\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_menu.png.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\menu.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\anim_fade_out.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\anim\\fade_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_dialog_edit_todo.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\dialog_edit_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.todogenie.app-merged_res-47:/layout_activity_tutorial.xml.flat",
+        "source": "com.example.todogenie.app-main-49:/layouts/tutorial/layout/activity_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_activity_login_custom.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\login\\layout\\activity_login_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout-w1240dp_activity_login_custom.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layout-w1240dp\\activity_login_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\login\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_settings.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\main\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\anim_fade_in_half.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\anim\\fade_in_half.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_fragment_first.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_activity_tutorial.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\activity_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\navigation_mobile_navigation.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\layout_content_tutorial.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\layouts\\tutorial\\layout\\content_tutorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-merged_res-47:\\drawable_alarm.png.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\7.3.3\\com.example.todogenie.app-main-49:\\drawable\\alarm.png"
+    }
+]
