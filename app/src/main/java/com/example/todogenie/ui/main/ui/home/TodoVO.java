@@ -1,25 +1,47 @@
 package com.example.todogenie.ui.main.ui.home;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TodoVO {
+    private String _id;
     private String title;
     private String content;
+    private Date start;
+    private Date end;
     private boolean checked;
-    private Date alarm;
 
     TodoVO(){
         this.title = "todoTitle";
         this.content = "todoContent";
         this.checked = true;
-        this.alarm = null;
+        this.start = new Date();
+        this.end = new Date();
     }
 
-    TodoVO(String title, String content, boolean checked, Date alarm) {
+    TodoVO(String title, String content, Date start, Date end, boolean checked) {
         this.title = title;
         this.content = content;
+        this.start = start;
+        this.end = end;
         this.checked = checked;
-        this.alarm = alarm;
+    }
+
+    TodoVO(String _id, String title, String content, Date start, Date end, boolean checked) {
+        this._id = _id;
+        this.title = title;
+        this.content = content;
+        this.start = start;
+        this.end = end;
+        this.checked = checked;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getTitle() {
@@ -38,6 +60,22 @@ public class TodoVO {
         this.content = this.content;
     }
 
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
     public boolean getChecked() {
         return this.checked;
     }
@@ -46,19 +84,21 @@ public class TodoVO {
         this.checked = checked;
     }
 
-    public Date getAlarm() {
-        return this.alarm;
+    public String getStartStr(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(getStart());
     }
 
-    public void setAlarm(Date alarm) {
-        this.alarm = alarm;
+    public String getEndStr(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(getEnd());
     }
-
 
     @Override
     public String toString() {
         return "TodoVO{" +
-                "title='" + getTitle() + '\'' +
+                "_id='" + get_id() + '\'' +
+                ", title='" + getTitle() + '\'' +
                 ", content='" + getContent() + '\'' +
                 '}';
     }

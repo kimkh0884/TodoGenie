@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tutorial" />
+        <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false"
             android:label="@string/title_activity_register" />
