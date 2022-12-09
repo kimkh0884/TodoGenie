@@ -19,7 +19,7 @@ const register = (username, id, pw, success, fail) => {
     };
     
     axiosInstance.post("/users/sign_up", data, {withCredentials: true}).then((res) => {
-        if (res.data === "user name already exists") {
+        if (res.data.hasOwnProperty("err")) {
             fail("\nAlready registered!");
         }
         else {
@@ -34,7 +34,7 @@ const register = (username, id, pw, success, fail) => {
 
 const checkLoggedIn = (success, fail) => {    
     axiosInstance.get("/users/login", {withCredentials: true}).then((res) => {
-        if (res.data === "Not Logged In") {
+        if (res.data.hasOwnProperty("err")) {
             fail();
         }
         else {
@@ -53,12 +53,14 @@ const login = (id, pw, success, fail) => {
     };
     
     axiosInstance.post("/users/login", data, {withCredentials: true}).then((res) => {
-        if (res.data === "Wrong Password") {
-            fail("\nPassword is wrong.");
-        }
-        else if (res.data === "No matching ID") {
-            fail("\nID is wrong.");
-        }
+        if (res.data.hasOwnProperty("err")) {
+            if (res.data.err === "Wrong Password") {
+                fail("\nPassword is wrong.");
+            }
+            else if (res.data.err === "No matching ID") {
+                fail("\nID is wrong.");
+            }
+        } 
         else {
             success(res);
         }
