@@ -173,7 +173,7 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
         showEditPage({
             id: id,
             title: title,
-            start: start.substring(0,16),
+            start: (start ? start.substring(0,16) : ""),
             end: end.substring(0,16),
             state: currState
         });
@@ -193,7 +193,7 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        {start ? ("Start : " + start.substring(0,10) + " " + start.substring(11,16)) : ""}<br />
                         End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
@@ -210,7 +210,7 @@ const WeeklyBoardItem = ({showEditPage, removeTodo, id, title, start, end, state
                 <div className='wbi-text-space'><h5 title={title} className='wbi-title'>{title}</h5></div>
                 <div className='wbi-text-space'>
                     <h6 className='wbi-time'>
-                        Start : {start.substring(0,10)+" "+start.substring(11,16)}<br />
+                        {start ? ("Start : " + start.substring(0,10) + " " + start.substring(11,16)) : ""}<br />
                         End : {end.substring(0,10)+" "+end.substring(11,16)}
                     </h6>
                 </div>
