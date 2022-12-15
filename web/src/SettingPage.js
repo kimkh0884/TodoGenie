@@ -25,7 +25,7 @@ E. Sign out button
 */
 
 const SettingPage = ({exitSetting}) => {
-  const [checkedFlag, setCheckedFlag] = useState(0);
+  const [checkedFlag, setCheckedFlag] = useState((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 1 : 0);
 
   const getCurrentSettings = () => {
     let regex = new RegExp("settings=([^;]*)");

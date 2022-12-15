@@ -23,9 +23,17 @@ const RegisterPage = () => {
       window.alert("ID is empty.");
       return;
     }
+    if (id.length <= 5) {
+      window.alert("ID should contain more than 5 characters.");
+      return;
+    }
     let pw = document.getElementById("todogenie-register-pw").value;
     if (pw === "") {
       window.alert("PW is empty.");
+      return;
+    }
+    if (pw.length <= 5) {
+      window.alert("PW should contain more than 5 characters.");
       return;
     }
     
